@@ -1,0 +1,64 @@
+#DADOS PRODUTOR
+id_cliente (INT)
+nome (VARCHAR 128)
+cpf (VARCHAR 11)
+cnpj (VARCHAR 14)
+inscricao_estadual (INT 9)
+data_nascimento (TIME)
+escolaridade  (VARCHAR 64)
+membros_familia (INT)
+email (VARCHAR 128)
+telefone (VARCHAR 14)
+foto_cliente (text)
+
+#correspondencia
+endereco (VARCHAR 128) 
+numero (INT)
+complemento (VARCHAR 128)
+cep (VARCHAR 128)
+estado (VARCHAR 9)
+
+
+#DADOS PRORIEDADE
+id_propriedade (INT)
+nome (VARCHAR 256)
+contato (VARCHAR 256)
+telefone_propriedade (VARCHAR 14)
+foto_propriedade (text)
+comprovante_bancario (text)
+latitude (VARCHAR 28)
+longitude (VARCHAR 28)
+altitude (VARCHAR 28)
+area_total (FLOAT)
+area_plantada (FLOAT)
+area_irrigada (FLOAT)
+area-arrendada (FLOAT)
+prod_media_cafe (FLOAT)
+
+#TRUE/FALSE
+p_eletricidade (INT)
+p_familiar (INT)
+p_analise_solo_folha (INT)
+p_adubacao_organica (INT)
+p_fertilizacao (INT)
+p_analise_camada_expessura (INT)
+p_sistema_tulhas (INT)
+p_protecao_chuva (INT)
+
+#COMBOBOX
+tipo_terreiro (VARCHAR 128)
+tipo_processamento (VARCHAR 128)
+processamento_via_umido (VARCHAR 128)
+
+#SAFRAS GERAL (TABELA 1 x n)
+id_safra_geral (INT)
+ds_safra (VARCHAR 128)
+valor_safra (FLOAT)
+
+#SAFRAS CAFE (TABELA 1 x n)
+id_safra_cafe (INT)
+ds_safra (VARCHAR 128)
+variedade (VARCHAR 128)
+area_plantada (FLOAT)
+producao_media (FLOAT)
+
