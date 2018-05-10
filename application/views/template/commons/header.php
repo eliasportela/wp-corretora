@@ -38,9 +38,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 <div class="w3-container w3-padding menuDesktop w3-hide-small">
   <div class="w3-bar w3-wide">
     <div class="w3-center">
-      <a href="<?=base_url('imoveis')?>" class="w3-button w3-border-right "><i class="fa fa-newspaper-o"></i> Cotações</a>
-      <a href="<?=base_url('quem-somos')?>" class="w3-button w3-border-right"><i class="fa fa-home"></i> Empresa</a>
-      <a href="<?=base_url('contato')?>" class="w3-button"><i class="fa fa-envelope-o"></i> Contato</a>
+      <a href="<?=base_url('imoveis')?>" class="w3-button hover-cabecalho w3-border-right"><i class="fa fa-newspaper-o"></i> Cotações</a>
+      <a href="<?=base_url('quem-somos')?>" class="w3-button hover-cabecalho w3-border-right"><i class="fa fa-home"></i> Empresa</a>
+      <a href="<?=base_url('contato')?>" class="w3-button hover-cabecalho"><i class="fa fa-envelope-o"></i> Contato</a>
     </div>
   </div>
 </div>

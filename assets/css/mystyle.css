@@ -1,3 +1,6 @@
+.text {
+	color: #777;
+}
 .menuDesktop{
 	position: absolute;
 	z-index: 1;
@@ -12,6 +15,34 @@
 .image-banner{
 	width: 100%;
 	height: auto;
+}
+.container-home{
+	height: 70vh;
+	width: 70%
+}
+.col-home{
+	height: 70vh;
+}
+.col-home > div{
+	width: 80%;
+}
+.col-cotacoes{
+	height: 300px;
+}
+.container-empresa{
+	height:200px;
+	margin-bottom: 64px
+}
+.card-info{
+	height: 230px
+}
+.hover-btn:hover{
+	background-color: #4CAF50D9!important;
+	color: #FFF!important;
+}
+.hover-cabecalho:hover{
+	background-color: transparent!important;
+	color: #FFFFFFE0!important;
 }
 
 
@@ -35,7 +66,7 @@ thead > tr{
 	background-color: #4CAF50!important;
 }
 .na-cotacoes .na-tabela td,.na-cotacoes .na-tabela th{
-	padding: 8px!important
+	padding: 4px!important
 }
 .na-cotacoes .na-tabela th{
 	color: #fff!important;
