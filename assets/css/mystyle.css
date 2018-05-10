@@ -1,0 +1,60 @@
+.menuDesktop{
+	position: absolute;
+	z-index: 1;
+	right: 0;
+	color: #fff;
+}
+.container-banner{
+	height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+.image-banner{
+	width: 100%;
+	height: auto;
+}
+
+
+/*TABELAS WEGETS*/
+.na-cotacoes{
+	text-align: -webkit-center
+}
+.na-cotacoes .na-tabela{
+	width: 100%!important
+}
+tr.na-rotulo{
+	height: 65px!important
+}
+td > a > img {
+    display: none;
+}
+.na-cotacoes .na-tabela .linhapar{
+	background-color: #FFF!important;
+}
+thead > tr{
+	background-color: #4CAF50!important;
+}
+.na-cotacoes .na-tabela td,.na-cotacoes .na-tabela th{
+	padding: 8px!important
+}
+.na-cotacoes .na-tabela th{
+	color: #fff!important;
+}
+.na-cotacoes .na-tabela td{
+	border-bottom: 1px solid rgba(0,0,0,0.2)
+}
+.na-cotacoes .na-tabela td:lastchild{
+	border-bottom: none!important;
+}
+.na-cotacoes .na-tabela th > tr:firstchild{
+	color: #aaa!important
+}
+.na-cotacoes .na-titulo{
+	display: none;
+}
+tfoot > tr > td {
+	border: none!important;
+}
+tfoot > tr > td > div {
+	float: right!important;
+}

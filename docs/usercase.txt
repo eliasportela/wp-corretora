@@ -10,7 +10,6 @@ membros_familia (INT)
 email (VARCHAR 128)
 telefone (VARCHAR 14)
 foto_cliente (text)
-
 #correspondencia
 endereco (VARCHAR 128) 
 numero (INT)
