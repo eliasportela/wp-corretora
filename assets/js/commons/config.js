@@ -1,1 +1,0 @@
-var base_urla = "http://localhost/w3-corretora/";
