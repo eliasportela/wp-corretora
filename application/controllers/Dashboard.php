@@ -10,8 +10,9 @@ class Dashboard extends CI_Controller {
 	public function index()
 	{
 
-		$nivel_user = 3;		
-		if (($this->session->userdata('logged')) and ($this->session->userdata('id_tu') <= $nivel_user)):
+		//die(var_dump($this->session->userdata('logged')));
+		$nivel_user = 1;		
+		if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)):
 
 		$header = array('title' => 'Dashboard | Home');
 		$menu = array('id_page' => 1);

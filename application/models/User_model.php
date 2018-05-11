@@ -48,7 +48,7 @@ class User_model extends CI_Model
 	}
 
 	function Login($data){
-		$par = array('user' => $data['user'], 'fg_ativo' => 1);
+		$par = array('email' => $data['email'], 'fg_ativo' => 1);
 		$this->db->select('*')->from('usuario')->where($par);
 		$results = $this->db->get()->result();
 		return $results;

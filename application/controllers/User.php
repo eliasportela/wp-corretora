@@ -12,7 +12,8 @@ class User extends CI_Controller {
 public function Login()
   
   {
-    $this->form_validation->set_rules('user','Usuário','required|min_length[4]|alpha_dash|trim');
+  	
+  	$this->form_validation->set_rules('email','E-mail','required|min_length[4]|alpha_dash|trim');
     $this->form_validation->set_rules('senha','Senha','required|min_length[6]|trim');
     if($this->form_validation->run() == FALSE)
    	{
@@ -36,9 +37,8 @@ public function Login()
             $this->session->set_userdata('logged',true);
             $this->session->set_userdata('id_usuario',$result->id_usuario);
             $this->session->set_userdata('nome_usuario',$result->nome);
-            $this->session->set_userdata('user',$result->user);
-            $this->session->set_userdata('img_usuario',$result->img_perfil);
-            $this->session->set_userdata('id_tipo_usuario',$result->id_tipo_usuario);
+            $this->session->set_userdata('email',$result->email);
+            $this->session->set_userdata('administrativo',$result->administrativo);
             redirect(base_url('admin'));
           }
           else
@@ -55,21 +55,21 @@ public function Login()
     }
 
     if ($this->session->userdata('logged')) {
-    	redirect(base_url('profile'));
+    	redirect(base_url('admin'));
     }else{
-	    $data['title'] = "Dashboard | Login";
-		$this->parser->parse('dashboard/template/commons/header',$data);
-	    $this->load->view('dashboard/login');
+	    $header['title'] = "Dashboard | Login";
+	    $header['tela_login'] = true;
+		$this->load->view('dashboard/template/commons/header',$header);
+	    $this->load->view('dashboard/login',$data);
 	    $this->load->view('dashboard/template/commons/footer');
 	}
-
     
   }
 
 	public function Logout() {
 		$this->session->unset_userdata('logged');
 		$this->session->unset_userdata('id_usuario');
-		$this->session->unset_userdata('id_tipo_usuario');
+		$this->session->unset_userdata('administrativo');
 		redirect(base_url('login'));
 	}
 
@@ -77,17 +77,17 @@ public function Login()
 
 		$nivel_user = 1; //Nivel requirido para visualizar a pagina
 
-		if (($this->session->userdata('logged')) and ($this->session->userdata('id_tu') <= $nivel_user)){
+		if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)){
 
 			$dataRegister = $_POST;
 
-			if((isset($dataRegister['nome'])) and (isset($dataRegister['user'])) and (isset($dataRegister['senha'])) and (isset($dataRegister['tipo_user']))){
+			if((isset($dataRegister['nome'])) and (isset($dataRegister['email'])) and (isset($dataRegister['senha'])) and (isset($dataRegister['administrativo']))){
 				$dataRegister = $this->input->post();
 				$dataModel = array(
 					'nome' => $dataRegister['nome'], 
-					'user' => $dataRegister['user'],
+					'email' => $dataRegister['email'],
 					'senha' => $dataRegister['senha'],
-					'id_tipo_usuario' => $dataRegister['tipo_user']);
+					'administrativo' => $dataRegister['administrativo']);
 					$res = $this->User_model->Save($dataModel);
 				if($res){
 					// retorna uma confirmação
