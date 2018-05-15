@@ -16,6 +16,7 @@ numero (INT)
 complemento (VARCHAR 128)
 cep (VARCHAR 128)
 estado (VARCHAR 9)
+comprovante_bancario (text)
 
 
 #DADOS PRORIEDADE
@@ -24,7 +25,6 @@ nome (VARCHAR 256)
 contato (VARCHAR 256)
 telefone_propriedade (VARCHAR 14)
 foto_propriedade (text)
-comprovante_bancario (text)
 latitude (VARCHAR 28)
 longitude (VARCHAR 28)
 altitude (VARCHAR 28)

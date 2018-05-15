@@ -22,17 +22,21 @@
           <div class="w3-display-middle w3-card-2 w3-round w3-white w3-padding w3-padding-32">
             <h4>Fale com nosso Corretor</h4>
             <hr>
-            <div class="w3-margin-top">
-              <input type="text" class="w3-input w3-border" name="" placeholder="Nome Completo">
-            </div>
-            <div class="w3-margin-top">
-              <input type="text" class="w3-input w3-border" name="" placeholder="E-mail">
-            </div>
-            <div class="w3-margin-top">
-              <input type="text" class="w3-input w3-border" name="" placeholder="Telefone">
-            </div>
-            <hr>
-            <button class="w3-button w3-block w3-green w3-margin-top w3-round hover-btn">Quero falar com um corretor</button>
+            <form id="solicitarContato" method="post" action="">
+              <div class="w3-margin-top">
+                <input type="text" class="w3-input w3-border" id="nome_contato" name="nome_contato" placeholder="Informe seu nome" required>
+              </div>
+              <div class="w3-margin-top">
+                <input type="text" class="w3-input w3-border" id="email" name="email" placeholder="E-mail" required>
+              </div>
+              <div class="w3-margin-top">
+                <input type="text" class="w3-input w3-border" id="telefone" name="telefone" placeholder="Telefone" required>
+              </div>
+              <hr>
+              <button class="btnEnviar w3-button w3-block w3-green w3-margin-top w3-round hover-btn">
+                Quero falar com um corretor
+              </button>
+            </form>
           </div>  
         </div>
       </div>
@@ -121,7 +125,7 @@
 </div>
 
 <div class="w3-container w3-margin-top w3-padding w3-center" style="margin: 0 5%">
-  <h4 class="w3-padding-32">Missão, Visão e Valor</h4>
+  <h4 class="w3-padding-64">Missão, Visão e Valor</h4>
   <div class="w3-row-padding">
     <div class="w3-col m4 w3-padding">
       <div class="w3-card w3-round w3-white w3-padding w3-padding-32 card-info">
@@ -155,36 +159,47 @@
 
 
 <br>
-<div class="w3-display-container w3-margin-top w3-center w3-green container-empresa">
+<div class="w3-display-container w3-margin-top w3-center w3-green container-empresa" style="margin-bottom: 0">
   <div class="w3-display-middle">
     <i class="fa fa-home fa-3x"></i>
     <h2>Fale Conosco</h2>
   </div>
 </div>
-
-<br>
-<div class="w3-container w3-margin-top w3-padding" style="margin-bottom: 128px">
-  <div class="w3-row-padding">
-    <div class="w3-half w3-padding-large w3-center">
-      <h4>Endereço</h4>
-      <p>
+<div class="w3-display-container">
+  <div class="container-map w3-card w3-white">
+    <div class="w3-card w3-round card-map">
+      <h3 class="w3-text-green">Endereço</h3>
+      <p class="w3-large">
         Av: Oliveira Rezende, 751 Braz <br>
         São Sebastião do Paraíso – MG 37950-000
       </p>
-      <h4>E-mail</h4>
-      <p>
+      <h3 class="w3-text-green">E-mail</h3>
+      <p class="w3-large">
         contato@souzacafes.com.br
       </p>
-      <h4>Telefone</h4>
-      <p>
+      <h3 class="w3-text-green">Telefone</h3>
+      <p class="w3-large">
         (35) 3535-1805
       </p>
     </div>
-    <div class="w3-half w3-padding-large w3-center">
-      <h4>Localização</h4>
-      <p>
-
-      </p>
-    </div>
+    <div id="map"></div>
   </div>
 </div>
+
+<script>
+  function initMap() {
+    var uluru = {lat: -20.913754, lng: -46.998136};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 18,
+      center: uluru
+    });
+    var marker = new google.maps.Marker({
+      position: uluru,
+      map: map
+    });
+  }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAt7EhKe2GKq4NV-p9mdrgRH07pGGxVmGA&callback=initMap">
+</script>
+<script type="text/javascript" src="<?=base_url("assets/js/site-principal/contato.js")?>"></script>

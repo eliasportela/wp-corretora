@@ -42,10 +42,8 @@
 <script>
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
-
 // Get the DIV with overlay effect
 var overlayBg = document.getElementById("myOverlay");
-
 // Toggle between showing and hiding the sidebar, and add overlay effect
 function w3_open() {
     if (mySidebar.style.display === 'block') {
@@ -63,21 +61,6 @@ function w3_close() {
     overlayBg.style.display = "none";
 }
 </script>
-<script type="text/javascript" src="<?php echo base_url('assets/vendor/jquery/jquery.Jcrop.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/vendor/dropzone.min.js');?>"></script>
-
-<!-- JS GERAL -->
-<script type="text/javascript" src="<?php echo base_url('assets/js/commons/main.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/commons/main.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/vendor/sweetalert-master/dist/sweetalert.min.js');?>"></script>
-
-<!-- JS DASHBOARD -->
-<script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/user/main.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/imovel/main.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/imovel/cidade.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/imovel/bairro.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/site/main.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/imovel/perfil-imovel.js');?>"></script>
 
 </body>
 </html>

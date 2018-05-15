@@ -40,7 +40,7 @@ class Crud_model extends CI_Model
 			return $result[0];
 		}else{
 			return false;
-			}
+		}
 	}
 
 	public function ReadPar($table,$p){
@@ -50,7 +50,7 @@ class Crud_model extends CI_Model
 			return $result;
 		}else{
 			return false;
-			}
+		}
 	}
 
 	public function ReadAll($table){
@@ -60,7 +60,7 @@ class Crud_model extends CI_Model
 			return $result;
 		}else{
 			return false;
-			}
+		}
 	}
 
 	function Update($table,$data,$p)
@@ -71,7 +71,7 @@ class Crud_model extends CI_Model
 			return true;
 		}else{
 			return false;
-			}
+		}
 	}
 
 	function Delete($table,$p)
@@ -82,7 +82,7 @@ class Crud_model extends CI_Model
 			return true;
 		}else{
 			return false;
-			}
+		}
 	}
 
 	public function Query($sql){
@@ -92,7 +92,7 @@ class Crud_model extends CI_Model
 			return $result;
 		}else{
 			return false;
-			}
+		}
 	}
 
 }

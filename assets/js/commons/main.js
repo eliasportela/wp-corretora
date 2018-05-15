@@ -11,3 +11,10 @@ function alertError(ds) {
     $('#alertError').css("display","block");
     $('#descricaoAlertError').html(ds);   
 }
+
+function requestBtn(){
+	$('.btnEnviar').html('<i class="fa fa-spinner fa-pulse"></i> Enviando solicitação..');
+}
+function requestBtnSuccess(ds){
+	$('.btnEnviar').html(ds);
+}
