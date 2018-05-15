@@ -71,13 +71,16 @@ h6{
 
           <div class="w3-col m12 w3-margin-top">Correspondência</div>
           
-          <div class="w3-col m5 w3-margin-top">
+          <div class="w3-col m4 w3-margin-top">
             <input type="text" class="w3-input w3-border" placeholder="Endereço" name="">
           </div>
-          <div class="w3-col m3 w3-margin-top">
+          <div class="w3-col m2 w3-margin-top">
             <input type="text" class="w3-input w3-border" placeholder="Número" name="">
           </div>
-          <div class="w3-col m4 w3-margin-top">
+          <div class="w3-col m3 w3-margin-top">
+            <input type="text" class="w3-input w3-border" placeholder="Bairro" name="">
+          </div>
+          <div class="w3-col m3 w3-margin-top">
             <input type="text" class="w3-input w3-border" placeholder="Complemento" name="">
           </div>
           <div class="w3-col m4 w3-margin-top">
@@ -160,6 +163,28 @@ h6{
           </div>
         </div>
         <div class="w3-row-padding">
+          <div class="w3-col l4 w3-margin-top">
+            <label>Endereço</label>
+            <input type="text" class="w3-input w3-border" placeholder="Ex: Rodovia Ronan Rocha">
+          </div>
+          <div class="w3-col l2 w3-margin-top">
+            <label>Número/KM</label>
+            <input type="text" class="w3-input w3-border" placeholder="Ex: KM 200">
+          </div>
+          <div class="w3-col l3 w3-margin-top">
+            <label>Estado</label>
+            <select class="w3-select w3-form">
+              <option>Selecione</option>
+            </select>
+          </div>
+          <div class="w3-col l3 w3-margin-top">
+            <label>Cidade</label>
+            <select class="w3-input w3-border" disabled>
+              <option>Selecione o estado</option>
+            </select>
+          </div>
+        </div>
+        <div class="w3-row-padding">
           <div class="w3-col l3 w3-margin-top">
             <label>Latitude</label>
             <input type="text" class="w3-input w3-border" placeholder="Ex: 1.4324">
@@ -191,6 +216,10 @@ h6{
           <div class="w3-col l3 w3-margin-top">
             <label>Prod. media Café (ha)</label>
             <input type="text" class="w3-input w3-border" placeholder="">
+          </div>
+          <div class="w3-col l12 w3-margin-top">
+            <label>Observações</label>
+            <textarea class="w3-input w3-border"></textarea>
           </div>
           <div class="w3-col l12 w3-margin-top">
             <b>Possui*</b>
@@ -311,8 +340,8 @@ h6{
               </tr>
               <tr>
                 <td>
-                  <input type="number" value="2018" class="w3-input w3-border" name="" min="1900" max="2099">
-                  <input type="number" value="2019" class="w3-input w3-border w3-margin-top" name="" min="1900" max="2099">
+                  <input type="number" value="2018" class="w3-input w3-border" name="" min="1900" max="2099" style="width: 45%;display: inline-block">
+                  <input type="number" value="2019" class="w3-input w3-border w3-margin-top" name="" min="1900" max="2099" style="width: 45%;display: inline-block">
                 </td>
                 <td>
                   <input type="number" class="w3-input w3-border" placeholder="Quantidade de sacas" name="">
@@ -328,7 +357,7 @@ h6{
               </tr>
             </tbody>
           </table>
-          <button class="w3-button w3-black w3-right" style="margin:12px 43px 0"><i class="fa fa-plus"></i>Adicionar safra</button>
+          <button class="w3-button w3-gray w3-right w3-block" style="margin:12px 0"><i class="fa fa-plus"></i> Adicionar safra</button>
         </div>
         <div class="w3-container w3-margin-bottom">
           <div class="w3-padding-16">
@@ -361,8 +390,8 @@ h6{
               </tr>
               <tr>
                 <td>
-                  <input type="number" value="2018" class="w3-input w3-border" name="" min="1900" max="2099">
-                  <input type="number" value="2019" class="w3-input w3-border w3-margin-top" name="" min="1900" max="2099">
+                  <input type="number" value="2018" class="w3-input w3-border" name="" min="1900" max="2099" style="width: 45%;display: inline-block;%">
+                  <input type="number" value="2019" class="w3-input w3-border w3-margin-top" name="" min="1900" max="2099" style="width: 45%;display: inline-block;">
                 </td>
                 <td>
                   <select class="w3-select w3-border">
@@ -387,7 +416,7 @@ h6{
               </tr>
             </tbody>
           </table>
-          <button class="w3-button w3-black w3-right" style="margin:12px 43px 0"><i class="fa fa-plus"></i>Adicionar safra</button>
+          <button class="w3-button w3-gray w3-right w3-block" style="margin:12px 0"><i class="fa fa-plus"></i> Adicionar safra</button>
         </div>
       </div>
     </form>
