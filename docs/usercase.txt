@@ -1,22 +1,24 @@
 #DADOS PRODUTOR
 id_cliente (INT)
-nome (VARCHAR 128)
-cpf (VARCHAR 11)
-cnpj (VARCHAR 14)
-inscricao_estadual (INT 9)
+nome_cliente (VARCHAR 128)
+tipo_pessoa (INT)
+cpf_cnpj (VARCHAR 16)
+rg_inscricao_estadual (INT 16)
 data_nascimento (TIME)
 escolaridade  (VARCHAR 64)
 membros_familia (INT)
 email (VARCHAR 128)
 telefone (VARCHAR 14)
-foto_cliente (text)
+foto_cliente (varchar 256)
 #correspondencia
 endereco (VARCHAR 128) 
 numero (INT)
 complemento (VARCHAR 128)
 cep (VARCHAR 128)
-estado (VARCHAR 9)
-comprovante_bancario (text)
+bairro (VARCHAR 64)
+cidade (INT)
+comprovante_bancario (VARCHAR 256)
+fg_ativo (INT)
 
 
 #DADOS PRORIEDADE
