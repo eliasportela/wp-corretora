@@ -24,9 +24,18 @@ $route['admin/remover-usuario'] = 'User/RemoverUser';
 
 #Produtores
 $route['admin/produtor'] = 'Produtor';
-$route['admin/produtor/cadastro'] = 'Produtor/Register';
-$route['admin/editar-produtor'] = 'Produtor/Edit';
-$route['admin/remover-produtor'] = 'Produtor/Remove';
+$route['admin/produtor/cadastro'] = 'Produtor/Cadastro';
+
+$route['admin/api/produtor']['get'] = 'Produtor/Get';
+$route['admin/api/produtor']['post'] = 'Produtor/Register';
+$route['admin/api/produtor/editar/(:num)'] = 'Produtor/Edit';
+$route['admin/api/produtor/remover/(:num)'] = 'Produtor/Remove';
+
+#Propriedades
+$route['admin/api/propriedade/(:num)']['get'] = 'Propriedade';
+$route['admin/api/propriedade/']['post'] = 'Propriedade/Register';
+$route['admin/api/propriedade/(:num)']['put'] = 'Propriedade/Edit';
+$route['admin/api/propriedade/(:num)']['delete'] = 'Propriedade/Remove';
 
 #Contato
 $route['admin/contatos'] = 'Contato';

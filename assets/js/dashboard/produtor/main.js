@@ -1,117 +1,91 @@
-var idGaleriaImovel = 0;
-
 jQuery(document).ready(function(){
 
 	//Inserir Propriedade
 	jQuery('#inserirPropriedade').submit(function(){
-			
-		request('Inserindo os dados!');
-		var dadosajax = {
-					
-			'tipoImovel': $("#tipoImovel").val(),
-			'finalidadeImovel': $("#finalidadeImovel").val(),
-			'precoImovel': $("#precoImovel").val(),
-			'cepImovel': $("#cepImovel").val(),
-			'cidadeImovel': $("#cidadeImovel").val(),
-			'bairroImovel': $("#bairroImovel").val(),
-			'logradouroImovel': $("#logradouroImovel").val(),
-			'descricaoLogradouroImovel' : $("#descricaoLogradouroImovel").val(),
-			'numeroImovel': $("#numeroImovel").val(),
-			'complementoImovel': $("#complementoImovel").val()
-		
-		};
+		request('Inserindo Prorpriedade!');
+		var dadosajax = new FormData(this);
+		//console.log(dadosajax);
+		pageurl = base_urla + 'admin/api/cadastro-propriedade';
 
-		console.log(dadosajax);
-		
-		pageurl = base_urla + 'admin/cadastro-imovel';
-			
-			jQuery.ajax({
-				type: "POST",
-				url: pageurl,
-				data: dadosajax,
-				success: function(result)
-				{
-					console.log($.trim(result));
-					//se foi inserido com sucesso
-					if ($.trim(result) == '1') {
+		$.ajax({
+			url: pageurl,
+			type: 'POST',
+			data:  dadosImagemImovel,
+			mimeType:"multipart/form-data",
+			contentType: false,
+			cache: false,
+			processData:false,
+			success: function(data, textStatus, jqXHR)
+			{
+	             // Em caso de sucesso faz isto...
+	             requestSuccess();
+	             swal({
+	             	title: 'Sucesso!',
+	             	text: 'Imagem alterada com sucesso!!',
+	             	type: 'success'
+	             },function(){
+	             	console.log(data);
+	             	buscarImovelId(data);
+	             	$("#fuiAlterado").val(1);
+	             	$('#modalSelecionarImagem').css('display','none');
+	             });
+	        },
+	        error: function(jqXHR, textStatus, errorThrown) 
+	        {
+	         	requestSuccess();
+	         	console.log(textStatus);
+	         	swal("Erro!","Erro desconhecido","error");
+	        }          
+	    });
 
-						// Deu certo cara :D
-						requestSuccess();
-
-						swal({
-							title: 'Sucesso!',
-						  	text: 'Dados inseridos com sucesso!!',
-						  	type: 'success'
-						},function(){
-							location.reload();
-						});
-
-
-					}else{
-						swal("Erro!","Erro desconhecido","error");
-					}
-				},
-				error: function(result)
-				{	
-					console.log(result);
-					var res = result.readyState;
-					if (res == 4){
-						swal("Erro!","Recarregue a página e tente Novamente","error");
-					}else{
-						swal("Erro!","Erro ao enviar requisão ao servidor. Tente Novamente!","error");
-					}
-				}
-
-			});
-			
-			return false;
+		return false;
 	});
 
 
 	//Editar Prorpriedade
 	jQuery('#editarPropriedade').submit(function(){
-			
+
 		var dadosImagemImovel = new FormData(this);
 		pageurl = base_urla + 'admin/imagem-perfil-imovel';
 
 		if (parseInt($('#wcrop').val())) { // verificca se foi selecionado uma area de corte
 			request('Enviando a Imagem!');
 			$.ajax({
-			    url: pageurl,
-			    type: 'POST',
-			    data:  dadosImagemImovel,
-			    mimeType:"multipart/form-data",
-			    contentType: false,
-			    cache: false,
-			    processData:false,
-			    success: function(data, textStatus, jqXHR)
-			        {
+				url: pageurl,
+				type: 'POST',
+				data:  dadosImagemImovel,
+				mimeType:"multipart/form-data",
+				contentType: false,
+				cache: false,
+				processData:false,
+				success: function(data, textStatus, jqXHR)
+				{
 			             // Em caso de sucesso faz isto...
 			             requestSuccess();
 			             swal({
-								title: 'Sucesso!',
-							  	text: 'Imagem alterada com sucesso!!',
-							  	type: 'success'
-							},function(){
-								console.log(data);
-							  	buscarImovelId(data);
-							  	$("#fuiAlterado").val(1);
-								$('#modalSelecionarImagem').css('display','none');
-							});
-			        },
-			    error: function(jqXHR, textStatus, errorThrown) 
-			        {
-			        	requestSuccess();
-			        	console.log(textStatus);
-			            swal("Erro!","Erro desconhecido","error");
-			        }          
-			    });
+			             	title: 'Sucesso!',
+			             	text: 'Imagem alterada com sucesso!!',
+			             	type: 'success'
+			             },function(){
+			             	console.log(data);
+			             	buscarImovelId(data);
+			             	$("#fuiAlterado").val(1);
+			             	$('#modalSelecionarImagem').css('display','none');
+			             });
+			         },
+			         error: function(jqXHR, textStatus, errorThrown) 
+			         {
+			         	requestSuccess();
+			         	console.log(textStatus);
+			         	swal("Erro!","Erro desconhecido","error");
+			         }          
+			     });
 		}else{
 			swal("Erro!!","Selecione a área de corte para continuar!","error");
-		
+
 		}
 
-			
+
 		return false;
 	});
 
@@ -121,46 +95,46 @@ jQuery(document).ready(function(){
 //Remover Prorpriedade
 function deletarPropriedade() {
 	swal({
-	  title: "Tem certeza?",
-	  text: "Ao excluir este imóvel ele não poderá mais ser recuperado!",
-	  type: "warning",
-	  showCancelButton: true,
-	  confirmButtonColor: "#DD6B55",
-	  confirmButtonText: "Sim, Excluir!",
-	  closeOnConfirm: false
+		title: "Tem certeza?",
+		text: "Ao excluir este imóvel ele não poderá mais ser recuperado!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Sim, Excluir!",
+		closeOnConfirm: false
 	},
 	function(){
-	  	var dadosDeletar = {
+		var dadosDeletar = {
 			'id' : $("#idImovel").val()
 		};
 		
 		pageurl = base_urla+ 'admin/remover-imovel';
-			
-			jQuery.ajax({
-				type: "GET",
-				url: pageurl,
-				data: dadosDeletar,
-				success: function(result)
-				{
-					swal({
-						title: "Sucesso!",
-					  	text: "Imóvel deletado com sucesso!",
-					  	type: "success",
-					  	closeOnConfirm: false
-					},
-					function(){
-					  location.reload();
-					});
+
+		jQuery.ajax({
+			type: "GET",
+			url: pageurl,
+			data: dadosDeletar,
+			success: function(result)
+			{
+				swal({
+					title: "Sucesso!",
+					text: "Imóvel deletado com sucesso!",
+					type: "success",
+					closeOnConfirm: false
+				},
+				function(){
+					location.reload();
+				});
 
 				
-				},
-				error: function(result)
-				{	
-					swal("Erro!","Erro ao enviar requisão ao servidor. Tente Novamente!","error");
-				}
+			},
+			error: function(result)
+			{	
+				swal("Erro!","Erro ao enviar requisão ao servidor. Tente Novamente!","error");
+			}
 
-			});
-	  	
+		});
+
 	});
 }
 
@@ -187,7 +161,7 @@ function buscarPropriedadeId(id){
 	var selector = '';//$('#bairroImovel');
 	//fazendo a requisicao
 	$.get(base_urla + 'api/imovel?id='+imovel, function(res) { 
-       
+
 		data = JSON.parse(res);
        	//passando os valores
        	$('#imgImovelEditar').attr('src', base_urla + 'assets/img/imoveis/' + data[0].img_imovel);
@@ -221,11 +195,11 @@ function buscarPropriedadeId(id){
        	$('#n_banheiro').val(data[0].n_banheiro);
        	$('#url_maps').val(data[0].url_maps);
 
-    })
-    .done(function(){
-    	requestSuccess();
-    	$('#bairroImovelEditar').val(data[0].id_bairro).change();
-    });
+       })
+	.done(function(){
+		requestSuccess();
+		$('#bairroImovelEditar').val(data[0].id_bairro).change();
+	});
 }
 
 //ESta funcao recarrega a pagina principal, caso houver alguma alteracao em um dos imoveis
