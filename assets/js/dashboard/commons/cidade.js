@@ -1,5 +1,28 @@
-console.log("estado");
+function getCidades(par1,par2) {
+	var estado = $("#"+par1);
+	var selector = $("#"+par2);
+	var url = base_urla + 'admin/api/cidade?id=';
+	console.log(par1,par2);
 
-function getCidades(estado) {
-	console.log(estado);
+	selector.html("<option>Buscando cidades...</option>");
+	selector.prop("disabled","true");
+
+	if (estado == 0) {
+		selector.html("<option>Selecione o Estado</option>");
+		return;
+	}
+
+	$.get(url+estado.val(), function(res) { 
+       	data = JSON.parse(res);
+       	selector.empty();
+       	data.forEach(function(obj){
+	       var option = $('<option>');
+		   option.val(obj.id_cidade);
+		   option.text(obj.nome_cidade);
+		   selector.append(option);
+    	});
+    })
+    .done(function(){
+    	selector.removeAttr("disabled");
+    });
 }

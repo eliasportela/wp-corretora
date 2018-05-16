@@ -20,7 +20,7 @@ h6{
     <div class="w3-padding" style="margin:0 -16px">
       <div style="margin: 0 10px">
         <a class="w3-button w3-black" href="<?=base_url('admin/produtor')?>"><i class="fa fa-chevron-left"></i> Voltar</a>
-        <a class="w3-button w3-black" href="<?=base_url('admin/produtor')?>"><i class="fa fa-eraser"></i> Limpar Campos</a>
+        <a class="w3-button w3-black" href="<?=base_url('admin/produtor/cadastro')?>"><i class="fa fa-eraser"></i> Limpar Campos</a>
         <a class="w3-button w3-black w3-right" href="<?=base_url('admin/produtor')?>"><i class="fa fa-check"></i> Salvar</a>
       </div>
       <br>
@@ -85,17 +85,17 @@ h6{
           </div>
           <div class="w3-col m4 w3-margin-top">
             <label>Estado</label>
-            <select class="w3-select w3-border">
-              <option>Selecione</option>
+            <select class="w3-select w3-border" onchange="getCidades('selectEstados','selectCidades')" id="selectEstados">
+              <option value="0">Selecione</option>
               <?php foreach ($estados as $estado):?>
-                <option value="<?=$estado->id_estado?>" onchange="getCidades(<?=$estado->id_estado?>)"><?=$estado->nome_estado?></option>
+                <option value="<?=$estado->id_estado?>"><?=$estado->nome_estado?></option>
               <?php endforeach;?>
             </select>
           </div>
           <div class="w3-col m4 w3-margin-top">
             <label>Cidade</label>
-            <select class="w3-select w3-border" disabled>
-              <option>Selecione o Estado</option>
+            <select class="w3-select w3-border" id="selectCidades" disabled="">
+              <option value="0">Selecione o Estado</option>
             </select>
           </div>
           <div class="w3-col m4 w3-margin-top">
@@ -130,7 +130,7 @@ h6{
           </table>
         </div>
         <div class="container-btn-material">
-          <button onclick="window.location.href='<?=base_url("admin/produtor/cadastro")?>'" class="w3-button w3-circle w3-black btn-material"><i class="fa fa-plus"></i></button>  
+          <button onclick="modalPropriedade()" class="w3-button w3-circle w3-black btn-material"><i class="fa fa-plus"></i></button>  
         </div>
       </div>
       
@@ -138,13 +138,13 @@ h6{
   </div>
 </div>
 
-<div id="cadastroPropriedade" class="w3-modal" style="padding-top: 50px">
+<div id="modalPropriedade" class="w3-modal" style="padding-top: 50px">
   <div class="w3-modal-content w3-card-4 w3-animate-left">
     <form class="w3-container" method="POST" action="" id="inserirImovel1">
       <div class="w3-container w3-padding-16 w3-large w3-border-bottom">
         <i class="fa fa-building"></i> Cadastro de Propriedade  
       </div>
-      <div class="w3-section" style="height: 65vh;overflow: auto;">
+      <div class="w3-section" >
         <div class="w3-row-padding">
           <div class="w3-col l2 w3-margin-top">
             <label>Tipo</label>
