@@ -87,6 +87,9 @@ h6{
             <label>Estado</label>
             <select class="w3-select w3-border">
               <option>Selecione</option>
+              <?php foreach ($estados as $estado):?>
+                <option value="<?=$estado->id_estado?>" onchange="getCidades(<?=$estado->id_estado?>)"><?=$estado->nome_estado?></option>
+              <?php endforeach;?>
             </select>
           </div>
           <div class="w3-col m4 w3-margin-top">
@@ -434,7 +437,8 @@ h6{
 </div>
 
 <script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/produtor/main.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/commons/cidade.js');?>"></script>
 
 <script type="text/javascript">
-  $("#cadastroPropriedade").css("display","block")
+  //$("#cadastroPropriedade").css("display","block")
 </script>

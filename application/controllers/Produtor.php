@@ -120,6 +120,12 @@ public function Register() {
 	if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)){	
 		
 		$data["produtores"] = false;
+		$data["estados"] = false;
+
+		//getestados
+		$data["estados"] = $this->Crud_model->ReadAll("estado");
+
+
 		$header['title'] = "Dash | Produtor";
 		$menu['id_page'] = 3;
 

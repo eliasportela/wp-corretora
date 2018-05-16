@@ -33,5 +33,8 @@ $route['admin/contatos'] = 'Contato';
 $route['admin/notificacao-contato'] = 'Contato/NotificacaoContato';
 $route['admin/visualizacao-contato'] = 'Contato/VisualizacaoContato';
 
+#Util
+$route['admin/api/cidade'] = 'Util/GetCidades';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
