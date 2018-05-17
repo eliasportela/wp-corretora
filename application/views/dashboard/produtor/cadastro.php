@@ -113,7 +113,7 @@ h6{
         </span>
       </div>
       <div class="w3-responsive w3-card w3-margin-bottom">
-        <div class="w3-white" style="height: 30vh;overflow: auto;">
+        <div class="w3-white" style="min-height: 40vh;overflow: auto;">
           <table class="w3-table w3-bordered w3-centered">
             <thead>
               <tr class="w3-black">

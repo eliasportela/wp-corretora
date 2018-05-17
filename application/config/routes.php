@@ -26,7 +26,7 @@ $route['admin/remover-usuario'] = 'User/RemoverUser';
 $route['admin/produtor'] = 'Produtor';
 $route['admin/produtor/cadastro'] = 'Produtor/Cadastro';
 
-$route['admin/api/produtor']['get'] = 'Produtor/Get';
+$route['admin/api/produtor/(:num)']['get'] = 'Produtor/Get';
 $route['admin/api/produtor']['post'] = 'Produtor/Register';
 $route['admin/api/produtor/editar/(:num)'] = 'Produtor/Edit';
 $route['admin/api/produtor/remover/(:num)'] = 'Produtor/Remove';

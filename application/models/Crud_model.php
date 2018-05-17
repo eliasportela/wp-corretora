@@ -95,4 +95,14 @@ class Crud_model extends CI_Model
 		}
 	}
 
+	public function Count($table){
+		$query = $this->db->query("SELECT count(*) as total FROM $table WHERE fg_ativo = 1");
+		$result = $query->result();
+		if($result){
+			return $result[0];
+		}else{
+			return false;
+		}
+	}	
+
 }

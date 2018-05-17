@@ -29,7 +29,6 @@ class Produtor extends CI_Controller {
 	}
 }
 
-	//Inserindo registros
 public function Cadastro() {
 
 	$nivel_user = 1; //Nivel requirido para visualizar a pagina
@@ -56,28 +55,70 @@ public function Cadastro() {
 
 }
 
+//Select com Paginacao
+public function Get(){
+	$ref = $this->uri->segment(4);
+	$page = $ref * 20 - 20;
+	
+	$res = $this->Crud_model->Count('produtor');
+	$qtd = 0;
+
+	if ($res->total > 20):
+		$qtd = intdiv($res->total,20);
+	elseif($res->total > 0):
+		$qtd = 1;
+	endif;
+
+	if ($ref > 0):
+		$sql = "SELECT * FROM produtor LIMIT 20 OFFSET $page";
+		$res = $this->Crud_model->Query($sql);
+		if ($res):
+			$json = json_encode($res,JSON_UNESCAPED_UNICODE);
+			echo '{"pages":'.$qtd.',"result":'.$json.'}';
+			return;
+		endif;
+	else:
+		$this->output->set_status_header('500');
+	endif;
+}
+
 //Inserindo registros
 public function Register() {
 
 	$nivel_user = 1;
 
-	if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)):
+	//if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)):
 		$dataRegister = $this->input->post();
+		//die(var_dump($dataRegister));
 		if ($dataRegister):
 			$dataModel = array(
-				'produtor' => $dataRegister['produtor'],
-				'produtor' => $dataRegister['produtor'],
-				'produtor' => $dataRegister['produtor']
-			);
+				'nome_produtor' => trim($dataRegister['nome_produtor']),
+				'id_tipo_pessoa' => trim($dataRegister['id_tipo_pessoa']),
+				'cpf_cnpj' => trim($dataRegister['cpf_cnpj']),
+				'rg_inscricao_estadual' => trim($dataRegister['rg_inscricao_estadual']),
+				'data_nascimento' => trim($dataRegister['data_nascimento']),
+				'escolaridade' => trim($dataRegister['escolaridade']),
+				'membros_familia' => trim($dataRegister['membros_familia']),
+				'email' => trim($dataRegister['email']),
+				'telefone' => trim($dataRegister['telefone']),
+				'foto_produtor' => trim($dataRegister['foto_produtor']),
+				'endereco' => trim($dataRegister['endereco']),
+				'numero' => trim($dataRegister['numero']),
+				'complemento' => trim($dataRegister['complemento']),
+				'cep' => trim($dataRegister['cep']),
+				'bairro' => trim($dataRegister['bairro']),
+				'id_cidade' => trim($dataRegister['id_cidade']),
+				'comprovante_bancario' => trim($dataRegister['comprovante_bancario']),
+				'certificados' => trim($dataRegister['certificados']));
 			$res = $this->Crud_model->Insert('produtor',$dataModel);
 			if($res):
 				$this->output->set_status_header('200');
 				return;
 			endif;
 		endif;
-	else:
-		$this->output->set_status_header('400');
-	endif;
+	//else:
+		//$this->output->set_status_header('400');
+	//endif;
 
 }
 
