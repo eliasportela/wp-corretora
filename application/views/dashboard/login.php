@@ -10,13 +10,13 @@
         <div class="w3-display-container w3-text-white">
           <div class="w3-center" style="width: 100%">
             <img class="w3-image" width="250" src="<?=base_url("assets/img/icon.svg")?>">
-            <h1><b>WP Corretora</b></h1>
-            <p><b>O melhor sistema para sua corretora de café</b></p>
+            <h1 style="margin-top: -15px"><b>WP Corretora</b></h1>
+            <p style=""><b>O melhor sistema para sua corretora de café</b></p>
           </div>
         </div>
       </div>
       <div class="w3-col l6">
-        <div class="w3-card-4 w3-round w3-white w3-padding w3-padding-16" style="width: 80%;float: right;">
+        <div class="w3-card-4 w3-round w3-white w3-padding w3-padding-16" style="width: 65%;margin-left: 20%">
           <h4>Acesso ao Dashboard</h4>
           <br>
           <form method="POST" action="<?php echo base_url('login') ?>">
