@@ -142,13 +142,16 @@ function deletarPropriedade() {
 function modalPropriedade(id) {
 	//Buscar imovel pela ID
 	//buscarPropriedadeId(id);
+	$('html').css("overflow","hidden");
+	$('#modalPropriedade').css("z-index","5");
 	$('#modalPropriedade').css("display","block");
 }
 
 //Modal Editar Propriedade
 function editarPropriedade(id) {
 	//Buscar imovel pela ID
-	buscarPropriedadeId(id);
+	//buscarPropriedadeId(id);
+	$('html').css("overflow","hidden");
 	$('#modalEdicaoImovel').css("display","block");
 }
 

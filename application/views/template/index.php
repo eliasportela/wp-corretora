@@ -165,24 +165,29 @@
     <h2>Fale Conosco</h2>
   </div>
 </div>
-<div class="w3-display-container">
-  <div class="container-map w3-card w3-white">
-    <div class="w3-card w3-round card-map">
-      <h3 class="w3-text-green">Endereço</h3>
-      <p class="w3-large">
-        Av: Oliveira Rezende, 751 Braz <br>
-        São Sebastião do Paraíso – MG 37950-000
-      </p>
-      <h3 class="w3-text-green">E-mail</h3>
-      <p class="w3-large">
-        contato@souzacafes.com.br
-      </p>
-      <h3 class="w3-text-green">Telefone</h3>
-      <p class="w3-large">
-        (35) 3535-1805
-      </p>
-    </div>
+<div class="w3-row-padding w3-padding-16" style="margin: 64px 5%">
+  <div class="w3-col l9">
     <div id="map"></div>
+  </div>
+  <div class="w3-col l3">
+    <div class="w3-display-container w3-card w3-round w3-white w3-padding w3-padding-16" style="height: 70vh">
+      <h4 class="w3-text-green"><b>Souza Cafés</b></h4>
+      <div class="w3-display-middle" style="width: 90%">
+        <h4 class="w3-text-green"><b>Endereço</b></h4>
+        <p>
+          <i class="fa fa-map-marker w3-text-green"></i> Av: Oliveira Rezende, 751 Braz <br>
+          São Sebastião do Paraíso – MG 37950-000
+        </p>
+        <h4 class="w3-text-green"><b>E-mail</b></h4>
+        <p>
+          <i class="fa fa-envelope w3-text-green"></i> contato@souzacafes.com.br
+        </p>
+        <h4 class="w3-text-green"><b>Telefone</b></h4>
+        <p>
+          <i class="fa fa-phone w3-text-green" ></i> (35) 3535-1805
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 

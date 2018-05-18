@@ -138,7 +138,7 @@ h6{
   </div>
 </div>
 
-<div id="modalPropriedade" class="w3-modal" style="padding-top: 50px">
+<div id="modalPropriedade" class="w3-modal" style="padding: 50px 0">
   <div class="w3-modal-content w3-card-4 w3-animate-left">
     <form class="w3-container" method="POST" action="" id="inserirImovel1">
       <div class="w3-container w3-padding-16 w3-large w3-border-bottom">
