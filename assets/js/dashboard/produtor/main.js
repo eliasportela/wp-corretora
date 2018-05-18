@@ -1,7 +1,8 @@
 jQuery(document).ready(function(){
 
 	//Inserir Propriedade
-	jQuery('#inserirPropriedade').submit(function(){
+	jQuery('#inserirProdutor').submit(function(){
+		
 		request('Inserindo Prorpriedade!');
 		var dadosajax = new FormData(this);
 		//console.log(dadosajax);
@@ -21,20 +22,18 @@ jQuery(document).ready(function(){
 	             requestSuccess();
 	             swal({
 	             	title: 'Sucesso!',
-	             	text: 'Imagem alterada com sucesso!!',
+	             	text: 'Produtor inserido com sucesso!',
 	             	type: 'success'
 	             },function(){
-	             	console.log(data);
-	             	buscarImovelId(data);
-	             	$("#fuiAlterado").val(1);
-	             	$('#modalSelecionarImagem').css('display','none');
+
+	             	buscarProdutor(data);
 	             });
 	        },
 	        error: function(jqXHR, textStatus, errorThrown) 
 	        {
 	         	requestSuccess();
 	         	console.log(textStatus);
-	         	swal("Erro!","Erro desconhecido","error");
+	         	swal("Erro!","Erro ao inserir. Tente Novamente mais tarde!","error");
 	        }          
 	    });
 

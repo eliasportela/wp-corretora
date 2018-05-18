@@ -28,7 +28,7 @@ $route['admin/produtor/cadastro'] = 'Produtor/Cadastro';
 
 $route['admin/api/produtor/(:num)']['get'] = 'Produtor/Get';
 $route['admin/api/produtor']['post'] = 'Produtor/Register';
-$route['admin/api/produtor/editar/(:num)'] = 'Produtor/Edit';
+$route['admin/api/produtor/editar/(:num)']['post'] = 'Produtor/Edit';
 $route['admin/api/produtor/remover/(:num)'] = 'Produtor/Remove';
 
 #Propriedades
