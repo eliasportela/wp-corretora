@@ -1,3 +1,10 @@
+#titleSite{
+	position: fixed;
+	color: #fff;
+	z-index: 6;
+	font-weight: bold;
+	padding: 16px
+}
 .text {
 	color: #777;
 }
@@ -9,8 +16,8 @@
 }
 .container-banner{
 	height: 100vh;
-    position: relative;
-    overflow: hidden;
+	position: relative;
+	overflow: hidden;
 }
 .image-banner{
 	width: 100%;
@@ -48,10 +55,10 @@
 	font-size: 18px
 }
 #map {
-   width: 100%;
-   height: 70vh;
-   background-color: grey;
- }	
+	width: 100%;
+	height: 70vh;
+	background-color: grey;
+}	
 
 /*TABELAS WEGETS*/
 .na-cotacoes{
@@ -64,7 +71,7 @@ tr.na-rotulo{
 	height: 65px!important
 }
 td > a > img {
-    display: none;
+	display: none;
 }
 .na-cotacoes .na-tabela .linhapar{
 	background-color: #FFF!important;

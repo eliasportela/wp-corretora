@@ -1,8 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+
 class Produtor extends CI_Controller {
-		
+
 	function __construct(){
 		parent::__construct();
 		$this->load->library(['form_validation','upload','image_lib']);
@@ -40,7 +43,7 @@ class Produtor extends CI_Controller {
 			
 			//Estados
 			$data["estados"] = $this->Crud_model->ReadAll("estado");
-
+			$data["t_pessoas"] = $this->Crud_model->ReadAll("tipo_pessoa");
 
 			$header['title'] = "Dash | Produtor";
 			$menu['id_page'] = 3;
@@ -65,13 +68,16 @@ class Produtor extends CI_Controller {
 		$qtd = 0;
 
 		if ($res->total > 20):
-			$qtd = intdiv($res->total,20);
+			$qtd = round($res->total/20);
 		elseif($res->total > 0):
 			$qtd = 1;
 		endif;
 
 		if ($ref > 0):
-			$sql = "SELECT * FROM produtor LIMIT 20 OFFSET $page";
+			$sql = "SELECT * FROM produtor p 
+			INNER JOIN cidade c ON (p.id_cidade = c.id_cidade)
+			INNER JOIN tipo_pessoa t ON (p.id_tipo_pessoa = t.id_tipo_pessoa) 
+			LIMIT 20 OFFSET $page";
 			$res = $this->Crud_model->Query($sql);
 			if ($res):
 				$json = json_encode($res,JSON_UNESCAPED_UNICODE);
@@ -87,10 +93,50 @@ class Produtor extends CI_Controller {
 	public function Register() {
 
 		$nivel_user = 1;
-
+		$foto_name = null;
+		$comprovante_name = null;
+		
 		//if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)):
+
 		$dataRegister = $this->input->post();
 		if ($dataRegister AND $dataRegister['nome_produtor'] != NULL):
+			
+			//Config ambiente de upload
+			$this->load->library('upload');
+			$path = './uploads/docs/';
+			$config['upload_path'] = $path;
+			$config['allowed_types'] = 'pdf|jpg|jpeg|png';
+			$config['max_size'] = '5000';
+			$config['encrypt_name']  = TRUE;
+			$this->upload->initialize($config);
+
+			//verifica se o path é válido, se não for cria o diretório
+			if (!is_dir($path)) {
+				mkdir($path, 0777, $recursive = true);
+			}
+
+			if ($dataRegister['foto_file'] != null) {
+				if (!$this->upload->do_upload('foto_file')) {
+					$data['error'] = $this->upload->display_errors(null,null);
+					die(var_dump($data['error']));
+					return;
+				} else {
+					$dadosImagem = $this->upload->data();
+					$foto_name = $dadosImagem['file_name'];
+				}
+			}
+			
+			if ($dataRegister['comprovante_file'] != null) {
+				if (!$this->upload->do_upload('comprovante_file')) {
+					$data['error'] = $this->upload->display_errors(null,null);
+					die(var_dump($data['error']));
+					return;
+				} else {
+					$dadosImagem = $this->upload->data();
+					$comprovante_name = $dadosImagem['file_name'];
+				}
+			}
+
 			$dataModel = array(
 				'nome_produtor' => trim($dataRegister['nome_produtor']),
 				'id_tipo_pessoa' => trim($dataRegister['id_tipo_pessoa']),
@@ -101,14 +147,14 @@ class Produtor extends CI_Controller {
 				'membros_familia' => trim($dataRegister['membros_familia']),
 				'email' => trim($dataRegister['email']),
 				'telefone' => trim($dataRegister['telefone']),
-				'foto_produtor' => trim($dataRegister['foto_produtor']),
+				'foto_produtor' => $foto_name,
 				'endereco' => trim($dataRegister['endereco']),
 				'numero' => trim($dataRegister['numero']),
 				'complemento' => trim($dataRegister['complemento']),
 				'cep' => trim($dataRegister['cep']),
 				'bairro' => trim($dataRegister['bairro']),
 				'id_cidade' => trim($dataRegister['id_cidade']),
-				'comprovante_bancario' => trim($dataRegister['comprovante_bancario']),
+				'comprovante_bancario' => $comprovante_name,
 				'certificados' => trim($dataRegister['certificados']));
 			$res = $this->Crud_model->Insert('produtor',$dataModel);
 			if($res):

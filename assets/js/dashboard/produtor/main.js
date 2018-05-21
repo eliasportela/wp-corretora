@@ -1,17 +1,19 @@
 jQuery(document).ready(function(){
 
+	//Buscando Produtores
+	getProdutores(1);
+
 	//Inserir Propriedade
 	jQuery('#inserirProdutor').submit(function(){
 		
-		request('Inserindo Prorpriedade!');
 		var dadosajax = new FormData(this);
 		//console.log(dadosajax);
-		pageurl = base_urla + 'admin/api/cadastro-propriedade';
+		pageurl = base_urla + 'admin/api/produtor';
 
 		$.ajax({
 			url: pageurl,
 			type: 'POST',
-			data:  dadosImagemImovel,
+			data:  dadosajax,
 			mimeType:"multipart/form-data",
 			contentType: false,
 			cache: false,
@@ -19,21 +21,11 @@ jQuery(document).ready(function(){
 			success: function(data, textStatus, jqXHR)
 			{
 	             // Em caso de sucesso faz isto...
-	             requestSuccess();
-	             swal({
-	             	title: 'Sucesso!',
-	             	text: 'Produtor inserido com sucesso!',
-	             	type: 'success'
-	             },function(){
-
-	             	buscarProdutor(data);
-	             });
+	             console.log(jqXHR);
 	        },
 	        error: function(jqXHR, textStatus, errorThrown) 
 	        {
-	         	requestSuccess();
-	         	console.log(textStatus);
-	         	swal("Erro!","Erro ao inserir. Tente Novamente mais tarde!","error");
+	         	console.log(jqXHR);
 	        }          
 	    });
 
@@ -81,10 +73,7 @@ jQuery(document).ready(function(){
 			     });
 		}else{
 			swal("Erro!!","Selecione a área de corte para continuar!","error");
-
 		}
-
-
 		return false;
 	});
 
@@ -146,14 +135,6 @@ function modalPropriedade(id) {
 	$('#modalPropriedade').css("display","block");
 }
 
-//Modal Editar Propriedade
-function editarPropriedade(id) {
-	//Buscar imovel pela ID
-	//buscarPropriedadeId(id);
-	$('html').css("overflow","hidden");
-	$('#modalEdicaoImovel').css("display","block");
-}
-
 function buscarPropriedadeId(id){
 
 	request('carregando o Imóvel');
@@ -196,7 +177,6 @@ function buscarPropriedadeId(id){
        	$('#n_cozinha').val(data[0].n_cozinha);
        	$('#n_banheiro').val(data[0].n_banheiro);
        	$('#url_maps').val(data[0].url_maps);
-
        })
 	.done(function(){
 		requestSuccess();
@@ -204,13 +184,40 @@ function buscarPropriedadeId(id){
 	});
 }
 
-//ESta funcao recarrega a pagina principal, caso houver alguma alteracao em um dos imoveis
-function recarregarImoveis(){
-	if ($("#fuiAlterado").val() == 1) {
-		location.reload();
-	}else{
-		$("#cadastroImovel").css('display','none');
-		$("#modalEdicaoImovel").css('display','none');
-	}
+// Select produtores
+function getProdutores(page){
+	var selector = $("#produtores");
+	var url = base_urla + 'admin/api/produtor/' + page;
+	$.get(url, function(res) { 
+		data = JSON.parse(res);
+		data.result.forEach(function(obj){
+			var tr = $('<tr>');
+			var col = "";
+			col += "<td>"+obj.nome_produtor+"</td>"
+			col += "<td>"+obj.nome_tipo_pessoa+"</td>"
+			col += "<td>"+obj.email+"</td>"
+			col += "<td>"+obj.nome_cidade+"</td>"
+			col += "<td>"+"<button class='w3-button'><i class='fa fa-eye'></i></button</td>"
+			tr.append(col);
+		   	selector.append(tr);
+    	});
+    })
+    .done(function(){
+    	//selector.removeAttr("disabled");
+    });
 }
 
+//Mudar doc do tiipo de pessoa
+function selectTipoPessoa(){
+	var tipo = $("#tipo_pessoa").val();
+	//pessoa fisica
+	if (tipo == 1) {
+		$("#label-cpf_cnpj").html("CPF");
+		$("#label-ie_rg").html("RG");
+	}
+	//pessoa juridica
+	else{
+		$("#label-cpf_cnpj").html("CNPJ");
+		$("#label-ie_rg").html("Inscrição Estadual");
+	}
+}

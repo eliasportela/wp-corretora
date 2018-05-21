@@ -39,6 +39,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 </div>
 
 <!-- Navbar (sit on top) -->
+<div class="w3-container" id="titleSite">
+  <span class="">SOUZA CAFÉS</span>
+</div>
 <div class="w3-container w3-padding menuDesktop w3-hide-small">
   <div class="w3-bar w3-wide">
     <div class="w3-center">

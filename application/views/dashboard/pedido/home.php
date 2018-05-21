@@ -15,6 +15,7 @@
   <!-- Header -->
   <header class="w3-container w3-cell-row" style="padding-top:22px">
     <span class="w3-xlarge"><i class="fa fa fa-phone fa-fw"></i><b> Contatos</b></span>
+    <br class="w3-hide-large">
     <a class="w3-button w3-black w3-right" href="<?=base_url('admin/contatos')?>">Limpar Filtros</a>
     <a class="w3-button w3-black w3-right" style="margin-right: 12px" href="#" onclick="location.reload();">Atualizar página</a>
   </header>

@@ -18,20 +18,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <script type="text/javascript" src="<?php echo base_url('assets/vendor/jquery/jquery.min.js');?>"></script>
 <body class="w3-light-grey">
 
-<div class="w3-bar w3-top w3-large <?= $login = isset($tela_login) ? "w3-text-white" : "w3-black" ?>" style="z-index:4">
-  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
-  <a href="<?=base_url()?>" class="w3-bar-item w3-left">WP Corretora</a>
-  <span class="w3-bar-item w3-right"><a href="<?=base_url('logout')?>"><i class="fa fa-sign-out" title="Sair"></i></span></a></span>
-  
-  <?php if ($this->session->userdata('logged')) { ?>
-  
-  <a class="w3-bar-item w3-right" title="Nova notificação de contato" href="<?=base_url('admin/pedidos')?>">
-  	<i class="fa fa-bell"></i> 
-  	<span id="qtdContato"></span>
-  </a>
-  <?php } ?>
-  
-</div>
+	<div class="w3-bar w3-top w3-large <?= $login = isset($tela_login) ? "w3-text-white" : "w3-black" ?>" style="z-index:4;padding: 5px">
+		<a href="<?=base_url('admin')?>" class="w3-bar-item w3-left w3-hide-small">WP Corretora</a>
+		<?php if ($this->session->userdata('logged')): ?>
+			<button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+			<span class="w3-bar-item w3-right"><a href="<?=base_url('logout')?>"><i class="fa fa-sign-out" title="Sair"></i></span></a></span>
+			<a class="w3-bar-item w3-right" title="Nova notificação de contato" href="<?=base_url('admin/contatos')?>">
+				<i class="fa fa-bell"></i> 
+				<span id="qtdContato"></span>
+			</a>
+		<?php endif; ?>		
+	</div>
 
 
 

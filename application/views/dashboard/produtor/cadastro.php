@@ -12,44 +12,47 @@ h6{
 </style>
 
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
-  <!-- Header -->
   <header class="w3-container w3-cell-row" style="padding-top:22px">
-    <span class="w3-xlarge"><i class="fa fa fa-user fa-fw"></i><b> Cadastro de Produtor</b></span>
+    <span class="w3-large"><i class="fa fa fa-user fa-fw"></i><b> Produtores > Cadastro de Produtor</b></span>
   </header>
   <div style="margin: 0 16px">
     <form method="POST" action="" id="inserirProdutor">
       <div class="w3-padding" style="margin:0 -16px">
-        <div style="margin: 0 10px">
+        <div>
           <a class="w3-button w3-black" href="<?=base_url('admin/produtor')?>"><i class="fa fa-chevron-left"></i> Voltar</a>
-          <a class="w3-button w3-black" href="<?=base_url('admin/produtor/cadastro')?>"><i class="fa fa-eraser"></i> Limpar Campos</a>
-          <a class="w3-button w3-black w3-right" href="<?=base_url('admin/produtor')?>"><i class="fa fa-check"></i> Salvar</a>
+          <button class="w3-button w3-black w3-right" type="submit" ><i class="fa fa-check"></i> Salvar</button>
         </div>
         <br>
         <div class="w3-responsive w3-card w3-white w3-padding-32">
           <div class="w3-row-padding">
             <div class="w3-col m12">Dados Pessoais</div>
-            <div class="w3-col m4 w3-margin-top">
-              <input type="text" class="w3-input w3-border" placeholder="Nome" name="nome_produtor">
+            <div class="w3-col m3 w3-margin-top">
+              <input type="text" class="w3-input w3-border" placeholder="Nome" name="nome_produtor" required>
             </div>
-            <div class="w3-col m4 w3-margin-top">
+            <div class="w3-col m3 w3-margin-top">
               <input type="text" class="w3-input w3-border" placeholder="E-mail" name="email">
             </div>
-            <div class="w3-col m4 w3-margin-top">
+            <div class="w3-col m3 w3-margin-top">
+              <input type="text" class="w3-input w3-border" placeholder="Certificados" name="certificados">
+            </div>
+            <div class="w3-col m3 w3-margin-top">
               <input type="text" class="w3-input w3-border" placeholder="Telefone" name="telefone">
             </div>
             <div class="w3-col m3 w3-margin-top">
               <label>Tipo de Pessoa</label>
-              <select class="w3-select w3-white w3-border" name="id_tipo_pessoa">
-                <option>Selecione</option>
+              <select class="w3-select w3-white w3-border" id="tipo_pessoa" name="id_tipo_pessoa" required onchange="selectTipoPessoa()">
+                <?php foreach ($t_pessoas as $p):?>
+                  <option value="<?=$p->id_tipo_pessoa?>"><?=$p->nome_tipo_pessoa?></option>
+                <?php endforeach; ?>
               </select>
             </div>
             <div class="w3-col m3 w3-margin-top">
-              <label>CPF / CNPJ</label>
-              <input type="number" class="w3-input w3-border" placeholder="CPF / CNPJ" name="cpf_cnpj">
+              <label id="label-cpf_cnpj">CPF</label>
+              <input type="number" class="w3-input w3-border" placeholder="Documento do produtor" name="cpf_cnpj">
             </div>
             <div class="w3-col m3 w3-margin-top">
-              <label>RG / Inscrição Estadual</label>
-              <input type="number" class="w3-input w3-border" placeholder="Inscrição Estadual" name="rg_inscricao_estadual">
+              <label id="label-ie_rg">RG</label>
+              <input type="number" class="w3-input w3-border" placeholder="Documento do produtor" name="rg_inscricao_estadual">
             </div>
             <div class="w3-col m3 w3-margin-top">
               <label>Numéros de dependentes</label>
@@ -62,7 +65,15 @@ h6{
             <div class="w3-col m3 w3-margin-top">
               <label>Escolaridade</label>
               <select class="w3-select w3-white w3-border" name="escolaridade">
-                <option>Selecione</option>
+                <option value="0">Não Informado</option>
+                <option value="1">Analfabeto</option>
+                <option value="2">Educação infantil</option>
+                <option value="3">Fundamental</option>
+                <option value="4">Médio</option>
+                <option value="5">Superior (Graduação)</option>
+                <option value="6">Pós-graduação </option>
+                <option value="7">Mestrado</option>
+                <option value="8">Doutorado.</option>
               </select>
             </div>
             <div class="w3-col m3 w3-margin-top">
@@ -101,7 +112,7 @@ h6{
             </div>
             <div class="w3-col m4 w3-margin-top">
               <label>Cidade</label>
-              <select class="w3-select w3-border" id="selectCidades" name="id_cidade" disabled="">
+              <select class="w3-select w3-border" id="selectCidades" name="id_cidade" disabled="" required>
                 <option value="0">Selecione o Estado</option>
               </select>
             </div>
@@ -111,38 +122,36 @@ h6{
             </div>
           </div>
         </div>
-
-        <br>
-        <div style="margin-bottom: 20px">
-          <span class="w3-large w3-padding">
-            <i class="fa fa-building"></i>
-            Propriedades
-          </span>
-        </div>
-        <div class="w3-responsive w3-card w3-margin-bottom">
-          <div class="w3-white" style="min-height: 40vh;overflow: auto;">
-            <table class="w3-table w3-bordered w3-centered">
-              <thead>
-                <tr class="w3-black">
-                  <th>Data</th>
-                  <th>Nome</th>
-                  <th>E-mail</th>
-                  <th>Telefone</th>
-                  <th>Opções</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="container-btn-material">
-            <button onclick="modalPropriedade()" class="w3-button w3-circle w3-black btn-material"><i class="fa fa-plus"></i></button>  
-          </div>
-        </div>
-        
       </div>
     </form>
+    <br>
+    <div>
+      <span class="w3-large w3-padding">
+        <i class="fa fa-building"></i>
+        Propriedades
+      </span>
+      <button class="w3-button w3-black w3-right" onclick="modalPropriedade()">
+        <i class="fa fa-plus"></i>
+        Nova Propriedade
+      </button>
+    </div>
+    <br>
+    <div class="w3-responsive w3-card w3-margin-bottom">
+      <table class="w3-table w3-white w3-bordered w3-centered" style="min-height: 12vh">
+        <thead>
+          <tr class="w3-black">
+            <th>Data</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 

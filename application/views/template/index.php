@@ -16,9 +16,13 @@
               <i class="fa fa-home"></i>
               Sobre nós
             </a>
+            <button class="w3-button hover-btn w3-block w3-green w3-round w3-margin-top" onclick="$('#modal-contato').css('display','block')">
+              <i class="fa fa-phone"></i>
+              Solicitar contato
+            </a>
           </div>
         </div>
-        <div class="w3-col l6 w3-display-container col-home">
+        <div class="w3-col l6 w3-display-container col-home w3-hide-small">
           <div class="w3-display-middle w3-card-2 w3-round w3-white w3-padding w3-padding-32">
             <h4>Fale com nosso Corretor</h4>
             <hr>
@@ -44,11 +48,10 @@
   </div>
 </header>
 
-<div class="w3-padding w3-center w3-display-container" id="cotacoes" style="height: 100vh">
-  <div class="w3-display-middle" style="width: 80%">
+<div class="w3-padding w3-center" id="cotacoes">
+  <div>
     <div class="w3-container">
       <h3 class="w3-padding-16">COTAÇÕES DO CAFÉ</h3>
-      <hr>
     </div>
     <div class="w3-row-padding w3-padding-16">
       <div class="w3-col l4">
@@ -161,7 +164,7 @@
 <br>
 <div class="w3-display-container w3-margin-top w3-center w3-green container-empresa" style="margin-bottom: 0">
   <div class="w3-display-middle">
-    <i class="fa fa-home fa-3x"></i>
+    <i class="fa fa-phone fa-3x"></i>
     <h2>Fale Conosco</h2>
   </div>
 </div>
@@ -169,7 +172,7 @@
   <div class="w3-col l9">
     <div id="map"></div>
   </div>
-  <div class="w3-col l3">
+  <div class="w3-col l3 col-contato">
     <div class="w3-display-container w3-card w3-round w3-white w3-padding w3-padding-16" style="height: 70vh">
       <h4 class="w3-text-green"><b>Souza Cafés</b></h4>
       <div class="w3-display-middle" style="width: 90%">
@@ -190,6 +193,32 @@
     </div>
   </div>
 </div>
+
+<div id="modal-contato" class="w3-modal" style="padding-top: 70px!important">
+  <div class="w3-modal-content w3-card-4 w3-round w3-animate-left w3-padding w3-padding-32 w3-display-container">
+    <div class="w3-display-topright" style="padding: 8px">
+      <i onclick="document.getElementById('modal-contato').style.display='none'" class="fa fa-remove w3-button w3-transparent"></i>
+    </div>
+    <h4 class="w3-center">Fale com nosso Corretor</h4>
+    <hr>
+    <form id="solicitarContato" method="post" action="">
+      <div class="w3-margin-top">
+        <input type="text" class="w3-input w3-border" id="nome_contato" name="nome_contato" placeholder="Informe seu nome" required>
+      </div>
+      <div class="w3-margin-top">
+        <input type="text" class="w3-input w3-border" id="email" name="email" placeholder="E-mail" required>
+      </div>
+      <div class="w3-margin-top">
+        <input type="text" class="w3-input w3-border" id="telefone" name="telefone" placeholder="Telefone" required>
+      </div>
+      <hr>
+      <button class="btnEnviar w3-button w3-block w3-green w3-margin-top w3-round hover-btn">
+        Enviar Solicitação
+      </button>
+    </form>
+  </div>
+</div>
+
 
 <script>
   function initMap() {
