@@ -32,10 +32,10 @@ $route['admin/api/produtor/editar/(:num)']['post'] = 'Produtor/Edit';
 $route['admin/api/produtor/remover/(:num)'] = 'Produtor/Remove';
 
 #Propriedades
-$route['admin/api/propriedade/(:num)']['get'] = 'Propriedade';
-$route['admin/api/propriedade/']['post'] = 'Propriedade/Register';
-$route['admin/api/propriedade/(:num)']['put'] = 'Propriedade/Edit';
-$route['admin/api/propriedade/(:num)']['delete'] = 'Propriedade/Remove';
+$route['admin/api/propriedade/(:num)']['get'] = 'Propriedade/Get';
+$route['admin/api/propriedade/(:num)']['post'] = 'Propriedade/Register';
+$route['admin/api/propriedade/editar/(:num)']['post'] = 'Propriedade/Edit';
+$route['admin/api/propriedade/remover/(:num)']['get'] = 'Propriedade/Remove';
 
 #Contato
 $route['admin/contatos'] = 'Contato';
