@@ -39,6 +39,9 @@
 </div>
 <!-- End page content -->
 
+<script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/commons/cidade.js');?>"></script>
+
+
 <script>
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");

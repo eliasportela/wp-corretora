@@ -21,7 +21,7 @@ h6{
   <header class="w3-container w3-cell-row" style="padding-top:22px">
     <span class="w3-xlarge"><i class="fa fa fa-user fa-fw"></i><b> Produtor</b></span>
     <button onclick="window.location.href='<?=base_url("admin/produtor/cadastro")?>'" class="w3-button w3-round w3-black w3-right"><i class="fa fa-plus"></i> Cadastrar Produtor</button>  
-    <button class="w3-button w3-black w3-right" style="margin-right: 12px" onclick="getProdutores(1)">Limpar Filtros</button>
+    <button class="w3-button w3-black w3-right" style="margin-right: 12px" onclick="limparSearch(1)">Limpar Filtros</button>
   </header>
   <div class="w3-panel">
     <div class="w3-row-padding" style="margin:0 -16px">

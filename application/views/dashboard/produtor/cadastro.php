@@ -167,7 +167,7 @@ h6{
         <div class="w3-row-padding">
           <div class="w3-col l2 w3-margin-top">
             <label>Tipo</label>
-            <select class="w3-select w3-border" name="id_tipo_propriedade">
+            <select class="w3-select w3-border w3-white" name="id_tipo_propriedade">
               <option>Fazenda</option>
               <option>Sítio</option>
               <option>Chácara</option>
@@ -197,13 +197,13 @@ h6{
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Estado</label>
-            <select class="w3-select w3-form">
+            <select class="w3-select w3-form w3-white">
               <option>Selecione</option>
             </select>
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Cidade</label>
-            <select class="w3-input w3-border" disabled name="id_cidade">
+            <select class="w3-input w3-border w3-white" disabled name="id_cidade">
               <option>Selecione o estado</option>
             </select>
           </div>
@@ -349,39 +349,22 @@ h6{
                 <th>Opções</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="tabelaSafra">
               <tr>
-                <td>2018 / 2019</td>
-                <td>600</td>
-                <td>
+                <td style="width: 40%">2018 / 2019</td>
+                <td style="width: 30%">600</td>
+                <td style="width: 30%">
                   <button class="w3-button w3-black w3-round">
                     <i class="fa fa-edit"></i>
                   </button>
                   <button class="w3-button w3-red w3-round">
                     <i class="fa fa-trash-o"></i>
                   </button>
-                </td> 
-              </tr>
-              <tr>
-                <td>
-                  <input type="number" value="2018" class="w3-input w3-border" name="" min="1900" max="2099" style="width: 45%;display: inline-block">
-                  <input type="number" value="2019" class="w3-input w3-border w3-margin-top" name="" min="1900" max="2099" style="width: 45%;display: inline-block">
                 </td>
-                <td>
-                  <input type="number" class="w3-input w3-border" placeholder="Quantidade de sacas" name="">
-                </td>
-                <td>
-                  <button class="w3-button w3-border w3-round">
-                    <i class="fa fa-times"></i>
-                  </button>
-                  <button class="w3-button w3-black w3-round">
-                    <i class="fa fa-check"></i>
-                  </button>
-                </td> 
               </tr>
             </tbody>
           </table>
-          <button class="w3-button w3-gray w3-right w3-block" style="margin:12px 0"><i class="fa fa-plus"></i> Adicionar safra</button>
+          <button class="w3-button w3-gray w3-right w3-block" type="button" id="btnAddSafra" style="margin:12px 0" onclick="addSafra()"><i class="fa fa-plus"></i> Adicionar safra</button>
         </div>
         <div class="w3-container w3-margin-bottom">
           <div class="w3-padding-16">
@@ -390,14 +373,14 @@ h6{
           <table class="w3-table w3-bordered w3-centered">
             <thead>
               <tr class="w3-black">
-                <th>Ano</th>
-                <th>Variedade</th>
-                <th>Área Plantanda</th>
-                <th>Prod. Média</th>
-                <th>Opções</th>
+                <th style="width: 30%">Ano</th>
+                <th style="width: 20%">Variedade</th>
+                <th style="width: 15%">Área Plantanda</th>
+                <th style="width: 15%">Prod. Média</th>
+                <th style="width: 20%">Opções</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="tabelaSafraCafe">
               <tr>
                 <td>2018 /2019</td>
                 <td>Café Arábica</td>
@@ -412,35 +395,9 @@ h6{
                   </button>
                 </td>
               </tr>
-              <tr>
-                <td>
-                  <input type="number" value="2018" class="w3-input w3-border" name="" min="1900" max="2099" style="width: 45%;display: inline-block;%">
-                  <input type="number" value="2019" class="w3-input w3-border w3-margin-top" name="" min="1900" max="2099" style="width: 45%;display: inline-block;">
-                </td>
-                <td>
-                  <select class="w3-select w3-border">
-                    <option value="2">Café Arábica</option>
-                    <option value="1">Outros</option>
-                  </select>
-                </td>
-                <td>
-                  <input type="number" class="w3-input w3-border" placeholder="Área" name="">
-                </td>
-                <td>
-                  <input type="number" class="w3-input w3-border" placeholder="Média de Sacas" name="">
-                </td>
-                <td>
-                  <button class="w3-button w3-border w3-round">
-                    <i class="fa fa-times"></i>
-                  </button>
-                  <button class="w3-button w3-black w3-round">
-                    <i class="fa fa-check"></i>
-                  </button>
-                </td> 
-              </tr>
             </tbody>
           </table>
-          <button class="w3-button w3-gray w3-right w3-block" style="margin:12px 0"><i class="fa fa-plus"></i> Adicionar safra</button>
+          <button class="w3-button w3-gray w3-right w3-block" type="button" style="margin:12px 0" onclick="addSafraCafe()"><i class="fa fa-plus"></i> Adicionar safra</button>
         </div>
       </div>
     </form>
@@ -457,8 +414,7 @@ h6{
   </div>
 </div>
 
-<script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/produtor/main.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/commons/cidade.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/propriedade/propriedade.js');?>"></script>
 
 <script type="text/javascript">
   //$("#cadastroPropriedade").css("display","block")

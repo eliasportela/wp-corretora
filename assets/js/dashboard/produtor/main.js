@@ -90,19 +90,6 @@ jQuery(document).ready(function(){
 var PAGEID = 1;
 var PAGEQTD = 1;
 
-//Modal Propriedade
-function modalPropriedade() {
-	$('html').css("overflow","hidden");
-	$('#modalPropriedade').css("z-index","5");
-	$('#modalPropriedade').css("display","block");
-}
-
-function closeModalPropriedade() {
-	$('html').css("overflow","auto");
-	$('#modalPropriedade').css("display","none");
-}
-
-
 // Select produtores
 function getProdutores(page){
 	var selector = $("#produtores");
