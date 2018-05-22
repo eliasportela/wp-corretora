@@ -40,7 +40,7 @@ h6{
             </div>
             <div class="w3-col m3 w3-margin-top">
               <label>Tipo de Pessoa</label>
-              <select class="w3-select w3-white w3-border" id="tipo_pessoa" name="id_tipo_pessoa" required onchange="selectTipoPessoa()">
+              <select class="w3-select w3-white w3-border" id="tipo_pessoa" name="id_tipo_pessoa" onchange="selectTipoPessoa()">
                 <?php foreach ($t_pessoas as $p):?>
                   <option value="<?=$p->id_tipo_pessoa?>"><?=$p->nome_tipo_pessoa?></option>
                 <?php endforeach; ?>
@@ -60,7 +60,7 @@ h6{
             </div>
             <div class="w3-col m3 w3-margin-top">
               <label>Data Nascimento</label>
-              <input type="date" class="w3-input w3-border" placeholder="Data Nascimento" name="data_nascimento">
+              <input type="date" class="w3-input w3-border" placeholder="Data Nascimento" name="data_nascimento" required>
             </div>
             <div class="w3-col m3 w3-margin-top">
               <label>Escolaridade</label>
@@ -78,25 +78,23 @@ h6{
             </div>
             <div class="w3-col m3 w3-margin-top">
               <label>Foto</label>
-              <label class="w3-button w3-black w3-block" for="foto">Enviar Foto</label>
-              <input type="file" id="foto" class="w3-input w3-border" placeholder="Foto Cliente" name="foto_file" style="display: none;">
+              <input type="file" id="foto" class="w3-input" placeholder="Foto Cliente" name="foto_file">
             </div>
             <div class="w3-col m3 w3-margin-top">
               <label>Comprovante Bancário</label>
-              <label class="w3-button w3-black w3-block" for="comprovante">Enviar Comprovante</label>
-              <input type="file" id="comprovante" class="w3-input w3-border" placeholder="Foto Cliente" name="comprovante_file" style="display: none;">
+              <input type="file" id="comprovante" class="w3-input" placeholder="Foto Cliente" name="comprovante_file">
             </div>
 
             <div class="w3-col m12 w3-margin-top">Correspondência</div>
             
             <div class="w3-col m4 w3-margin-top">
-              <input type="text" class="w3-input w3-border" placeholder="Endereço" name="endereco">
+              <input type="text" class="w3-input w3-border" placeholder="Endereço" name="endereco" required>
             </div>
             <div class="w3-col m2 w3-margin-top">
-              <input type="text" class="w3-input w3-border" placeholder="Número" name="numero">
+              <input type="text" class="w3-input w3-border" placeholder="Número" name="numero" required>
             </div>
             <div class="w3-col m3 w3-margin-top">
-              <input type="text" class="w3-input w3-border" placeholder="Bairro" name="bairro">
+              <input type="text" class="w3-input w3-border" placeholder="Bairro" name="bairro" required>
             </div>
             <div class="w3-col m3 w3-margin-top">
               <input type="text" class="w3-input w3-border" placeholder="Complemento" name="complemento">
@@ -441,7 +439,7 @@ h6{
       </div>
     </form>
     <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-      <button onclick="$('#cadastroPropriedade').css('display','none')" type="button" class="w3-button w3-gray" style="width: 150px">
+      <button onclick="closeModalPropriedade()" type="button" class="w3-button w3-gray" style="width: 150px">
         <i class="fa fa-times"></i>
         Fechar
       </button>

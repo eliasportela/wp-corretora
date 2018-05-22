@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/vendor/sweetalert-master/dist/sweetalert.css');?>">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="<?php echo base_url('assets/vendor/sweetalert-master/dist/sweetalert.min.js');?>"></script>
+
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
@@ -27,7 +29,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 				<i class="fa fa-bell"></i> 
 				<span id="qtdContato"></span>
 			</a>
-		<?php endif; ?>		
+		<?php endif; ?>
 	</div>
 
 

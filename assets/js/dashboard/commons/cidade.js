@@ -7,7 +7,8 @@ function getCidades(par1,par2) {
 	selector.html("<option>Buscando cidades...</option>");
 	selector.prop("disabled","true");
 
-	if (estado == 0) {
+	console.log(estado);
+	if (estado.val() == 0) {
 		selector.html("<option>Selecione o Estado</option>");
 		return;
 	}
@@ -25,4 +26,13 @@ function getCidades(par1,par2) {
     .done(function(){
     	selector.removeAttr("disabled");
     });
+}
+
+function request(ds){
+	$('#request').css("display","block");
+	$('#descricaoRequest').empty();
+	$('#descricaoRequest').append(ds);	
+}
+function requestSuccess(){
+	$('#request').css("display","none");
 }
