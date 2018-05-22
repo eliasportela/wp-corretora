@@ -88,7 +88,7 @@ jQuery(document).ready(function(){
 });
 
 var PAGEID = 1;
-var PAGEQTD = 0;
+var PAGEQTD = 1;
 
 //Modal Propriedade
 function modalPropriedade() {
@@ -109,29 +109,47 @@ function getProdutores(page){
 	var url = base_urla + 'admin/api/produtor/' + page;
 	
 	selector.empty();
+	var nome = "nome="+$("#nomesearch").val();
+	var tipo = "tipo="+$("#tiposearch").val();;
+	var cidade = "cidade="+$("#cidadesearch").val();
+
 	//request("Buscando Dados");
-	$.get(url, function(res) { 
-		data = JSON.parse(res);
-		PAGEQTD = data.pages; 
-		data.result.forEach(function(obj){
-			var tr = $('<tr>');
-			var col = "";
-			col += "<td>"+obj.nome_produtor+"</td>"
-			col += "<td>"+obj.nome_tipo_pessoa+"</td>"
-			col += "<td>"+obj.email+"</td>"
-			col += "<td>"+obj.nome_cidade+"</td>"
-			col += "<td>"+"<button class='w3-button'><i class='fa fa-eye'></i></button</td>"
-			tr.append(col);
-			selector.append(tr);
-		});
+	$.get(url +'?'+nome+'&'+tipo+'&'+cidade, function(res) {
+		if (res) {
+			data = JSON.parse(res);
+			PAGEQTD = data.pages; 
+			data.result.forEach(function(obj){
+				var tr = $('<tr>');
+				var col = "";
+				col += "<td>"+"<i class='fa fa-user'></i></td>"
+				col += "<td>"+obj.nome_produtor+"</td>"
+				col += "<td>"+obj.nome_tipo_pessoa+"</td>"
+				col += "<td>"+obj.email+"</td>"
+				col += "<td>"+obj.nome_cidade+"</td>"
+				tr.append(col);
+				selector.append(tr);
+			});
+			$("#naoencontrado").css("display","none");
+		}else{
+			data = null;
+			$("#naoencontrado").css("display","block");
+		}
 	})
 	.done(function(){
     	if (PAGEID == PAGEQTD) {
-    		$("#btnproximo").css("display","none");
-    	}else if(PAGEID == 1){
-    		$("#btnanterior").css("display","none");
+    		$("#btnproximo").prop("disabled","true");;
+    	}
+    	if(PAGEID == 1){
+    		$("#btnanterior").prop("disabled","true");;
     	}
     });
+}
+
+function limparSearch() {
+	$("#nomesearch").val("");
+	$("#tiposearch").val("");
+	$("#cidadesearch").val("");
+	getProdutores(1);
 }
 
 function pagination(tipo){
@@ -139,12 +157,12 @@ function pagination(tipo){
 		//anterior
 		PAGEID = PAGEID - 1;
 		getProdutores(PAGEID);
-		$("#btnproximo").css("display","block");
+		$("#btnproximo").removeAttr("disabled");
 	}else if(tipo == 1) {
 		//proximo
 		PAGEID = PAGEID + 1;
 		getProdutores(PAGEID);
-		$("#btnanterior").css("display","block");
+		$("#btnanterior").removeAttr("disabled");
 	}
 }
 
