@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 22-Maio-2018 às 15:19
+-- Tempo de geração: 22/05/2018 às 21:22
 -- Versão do servidor: 5.7.21-0ubuntu0.16.04.1
--- PHP Version: 7.0.28-0ubuntu0.16.04.1
+-- Versão do PHP: 7.0.25-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `wpco`
+-- Banco de dados: `wpco`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cidade`
+-- Estrutura para tabela `cidade`
 --
 
 CREATE TABLE `cidade` (
@@ -34,7 +34,7 @@ CREATE TABLE `cidade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `cidade`
+-- Fazendo dump de dados para tabela `cidade`
 --
 
 INSERT INTO `cidade` (`id_cidade`, `nome_cidade`, `id_estado`, `fg_ativo`) VALUES
@@ -5609,7 +5609,7 @@ INSERT INTO `cidade` (`id_cidade`, `nome_cidade`, `id_estado`, `fg_ativo`) VALUE
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `contato`
+-- Estrutura para tabela `contato`
 --
 
 CREATE TABLE `contato` (
@@ -5623,7 +5623,7 @@ CREATE TABLE `contato` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `contato`
+-- Fazendo dump de dados para tabela `contato`
 --
 
 INSERT INTO `contato` (`id_contato`, `nome_contato`, `email`, `telefone`, `data_contato`, `visualizado`, `fg_ativo`) VALUES
@@ -5634,7 +5634,7 @@ INSERT INTO `contato` (`id_contato`, `nome_contato`, `email`, `telefone`, `data_
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `estado`
+-- Estrutura para tabela `estado`
 --
 
 CREATE TABLE `estado` (
@@ -5646,7 +5646,7 @@ CREATE TABLE `estado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `estado`
+-- Fazendo dump de dados para tabela `estado`
 --
 
 INSERT INTO `estado` (`id_estado`, `nome_estado`, `sigla_estado`, `id_pais`, `fg_ativo`) VALUES
@@ -5681,7 +5681,7 @@ INSERT INTO `estado` (`id_estado`, `nome_estado`, `sigla_estado`, `id_pais`, `fg
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `processamento_via_umido`
+-- Estrutura para tabela `processamento_via_umido`
 --
 
 CREATE TABLE `processamento_via_umido` (
@@ -5693,7 +5693,7 @@ CREATE TABLE `processamento_via_umido` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtor`
+-- Estrutura para tabela `produtor`
 --
 
 CREATE TABLE `produtor` (
@@ -5721,7 +5721,7 @@ CREATE TABLE `produtor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `produtor`
+-- Fazendo dump de dados para tabela `produtor`
 --
 
 INSERT INTO `produtor` (`id_produtor`, `nome_produtor`, `id_tipo_pessoa`, `cpf_cnpj`, `rg_inscricao_estadual`, `data_nascimento`, `escolaridade`, `membros_familia`, `email`, `telefone`, `foto_produtor`, `endereco`, `numero`, `complemento`, `cep`, `bairro`, `id_cidade`, `comprovante_bancario`, `certificados`, `dt_cadastro`, `fg_ativo`) VALUES
@@ -5743,7 +5743,7 @@ INSERT INTO `produtor` (`id_produtor`, `nome_produtor`, `id_tipo_pessoa`, `cpf_c
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `propriedade`
+-- Estrutura para tabela `propriedade`
 --
 
 CREATE TABLE `propriedade` (
@@ -5771,9 +5771,9 @@ CREATE TABLE `propriedade` (
   `p_analise_camada_expessura` int(1) NOT NULL,
   `p_sistema_tulhas` int(1) NOT NULL,
   `p_protecao_chuva` int(1) NOT NULL,
-  `id_tipo_terreiro` int(11) NOT NULL,
-  `id_tipo_processamento` int(11) NOT NULL,
-  `id_processamento_via_umido` int(11) NOT NULL,
+  `tipo_terreiro` varchar(64) NOT NULL DEFAULT 'Não Informado',
+  `tipo_processamento` varchar(64) NOT NULL DEFAULT 'Não Informado',
+  `processamento_via_umido` varchar(64) NOT NULL DEFAULT 'Não Informado',
   `logradouro` varchar(128) NOT NULL,
   `numero_km` varchar(16) NOT NULL,
   `id_cidade` int(11) NOT NULL,
@@ -5784,7 +5784,7 @@ CREATE TABLE `propriedade` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `safra_cafe`
+-- Estrutura para tabela `safra_cafe`
 --
 
 CREATE TABLE `safra_cafe` (
@@ -5799,7 +5799,7 @@ CREATE TABLE `safra_cafe` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `safra_geral`
+-- Estrutura para tabela `safra_geral`
 --
 
 CREATE TABLE `safra_geral` (
@@ -5813,7 +5813,7 @@ CREATE TABLE `safra_geral` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo_pessoa`
+-- Estrutura para tabela `tipo_pessoa`
 --
 
 CREATE TABLE `tipo_pessoa` (
@@ -5823,7 +5823,7 @@ CREATE TABLE `tipo_pessoa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `tipo_pessoa`
+-- Fazendo dump de dados para tabela `tipo_pessoa`
 --
 
 INSERT INTO `tipo_pessoa` (`id_tipo_pessoa`, `nome_tipo_pessoa`, `fg_ativo`) VALUES
@@ -5833,7 +5833,7 @@ INSERT INTO `tipo_pessoa` (`id_tipo_pessoa`, `nome_tipo_pessoa`, `fg_ativo`) VAL
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo_processamento`
+-- Estrutura para tabela `tipo_processamento`
 --
 
 CREATE TABLE `tipo_processamento` (
@@ -5845,7 +5845,7 @@ CREATE TABLE `tipo_processamento` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo_terreiro`
+-- Estrutura para tabela `tipo_terreiro`
 --
 
 CREATE TABLE `tipo_terreiro` (
@@ -5857,7 +5857,7 @@ CREATE TABLE `tipo_terreiro` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Estrutura para tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -5870,43 +5870,43 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Fazendo dump de dados para tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `administrativo`, `fg_ativo`) VALUES
 (1, 'Administrador', 'admin', '$2y$10$XC2SLplSTIHdfWttkxQ4i.5xfh34rKNBDmMwD17Dj4EQJ0U6MQQH2', 3, 1);
 
 --
--- Indexes for dumped tables
+-- Índices de tabelas apagadas
 --
 
 --
--- Indexes for table `cidade`
+-- Índices de tabela `cidade`
 --
 ALTER TABLE `cidade`
   ADD PRIMARY KEY (`id_cidade`),
   ADD KEY `id_estado` (`id_estado`);
 
 --
--- Indexes for table `contato`
+-- Índices de tabela `contato`
 --
 ALTER TABLE `contato`
   ADD PRIMARY KEY (`id_contato`);
 
 --
--- Indexes for table `estado`
+-- Índices de tabela `estado`
 --
 ALTER TABLE `estado`
   ADD PRIMARY KEY (`id_estado`);
 
 --
--- Indexes for table `processamento_via_umido`
+-- Índices de tabela `processamento_via_umido`
 --
 ALTER TABLE `processamento_via_umido`
   ADD PRIMARY KEY (`id_processamento_via_umido`);
 
 --
--- Indexes for table `produtor`
+-- Índices de tabela `produtor`
 --
 ALTER TABLE `produtor`
   ADD PRIMARY KEY (`id_produtor`),
@@ -5914,153 +5914,147 @@ ALTER TABLE `produtor`
   ADD KEY `id_cidade` (`id_cidade`);
 
 --
--- Indexes for table `propriedade`
+-- Índices de tabela `propriedade`
 --
 ALTER TABLE `propriedade`
   ADD PRIMARY KEY (`id_propriedade`),
   ADD KEY `id_produtor` (`id_produtor`),
-  ADD KEY `id_tipo_processamento` (`id_tipo_processamento`),
-  ADD KEY `id_processamento_via_umido` (`id_processamento_via_umido`),
-  ADD KEY `id_cidade` (`id_cidade`),
-  ADD KEY `id_tipo_terreiro` (`id_tipo_terreiro`);
+  ADD KEY `id_cidade` (`id_cidade`);
 
 --
--- Indexes for table `safra_cafe`
+-- Índices de tabela `safra_cafe`
 --
 ALTER TABLE `safra_cafe`
   ADD PRIMARY KEY (`id_safra_cafe`),
   ADD KEY `id_propriedade` (`id_propriedade`);
 
 --
--- Indexes for table `safra_geral`
+-- Índices de tabela `safra_geral`
 --
 ALTER TABLE `safra_geral`
   ADD PRIMARY KEY (`id_safra_geral`),
   ADD KEY `id_propriedade` (`id_propriedade`);
 
 --
--- Indexes for table `tipo_pessoa`
+-- Índices de tabela `tipo_pessoa`
 --
 ALTER TABLE `tipo_pessoa`
   ADD PRIMARY KEY (`id_tipo_pessoa`);
 
 --
--- Indexes for table `tipo_processamento`
+-- Índices de tabela `tipo_processamento`
 --
 ALTER TABLE `tipo_processamento`
   ADD PRIMARY KEY (`id_tipo_processamento`);
 
 --
--- Indexes for table `tipo_terreiro`
+-- Índices de tabela `tipo_terreiro`
 --
 ALTER TABLE `tipo_terreiro`
   ADD PRIMARY KEY (`id_tipo_terreiro`);
 
 --
--- Indexes for table `usuario`
+-- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
--- AUTO_INCREMENT for table `cidade`
+-- AUTO_INCREMENT de tabela `cidade`
 --
 ALTER TABLE `cidade`
   MODIFY `id_cidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5565;
 --
--- AUTO_INCREMENT for table `contato`
+-- AUTO_INCREMENT de tabela `contato`
 --
 ALTER TABLE `contato`
   MODIFY `id_contato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT for table `estado`
+-- AUTO_INCREMENT de tabela `estado`
 --
 ALTER TABLE `estado`
   MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 --
--- AUTO_INCREMENT for table `processamento_via_umido`
+-- AUTO_INCREMENT de tabela `processamento_via_umido`
 --
 ALTER TABLE `processamento_via_umido`
   MODIFY `id_processamento_via_umido` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `produtor`
+-- AUTO_INCREMENT de tabela `produtor`
 --
 ALTER TABLE `produtor`
   MODIFY `id_produtor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
--- AUTO_INCREMENT for table `propriedade`
+-- AUTO_INCREMENT de tabela `propriedade`
 --
 ALTER TABLE `propriedade`
   MODIFY `id_propriedade` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `safra_cafe`
+-- AUTO_INCREMENT de tabela `safra_cafe`
 --
 ALTER TABLE `safra_cafe`
   MODIFY `id_safra_cafe` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `safra_geral`
+-- AUTO_INCREMENT de tabela `safra_geral`
 --
 ALTER TABLE `safra_geral`
   MODIFY `id_safra_geral` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tipo_pessoa`
+-- AUTO_INCREMENT de tabela `tipo_pessoa`
 --
 ALTER TABLE `tipo_pessoa`
   MODIFY `id_tipo_pessoa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `tipo_processamento`
+-- AUTO_INCREMENT de tabela `tipo_processamento`
 --
 ALTER TABLE `tipo_processamento`
   MODIFY `id_tipo_processamento` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tipo_terreiro`
+-- AUTO_INCREMENT de tabela `tipo_terreiro`
 --
 ALTER TABLE `tipo_terreiro`
   MODIFY `id_tipo_terreiro` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- Constraints for dumped tables
+-- Restrições para dumps de tabelas
 --
 
 --
--- Limitadores para a tabela `cidade`
+-- Restrições para tabelas `cidade`
 --
 ALTER TABLE `cidade`
   ADD CONSTRAINT `cidade_ibfk_1` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`);
 
 --
--- Limitadores para a tabela `produtor`
+-- Restrições para tabelas `produtor`
 --
 ALTER TABLE `produtor`
   ADD CONSTRAINT `produtor_ibfk_1` FOREIGN KEY (`id_tipo_pessoa`) REFERENCES `tipo_pessoa` (`id_tipo_pessoa`),
   ADD CONSTRAINT `produtor_ibfk_2` FOREIGN KEY (`id_cidade`) REFERENCES `cidade` (`id_cidade`);
 
 --
--- Limitadores para a tabela `propriedade`
+-- Restrições para tabelas `propriedade`
 --
 ALTER TABLE `propriedade`
   ADD CONSTRAINT `propriedade_ibfk_1` FOREIGN KEY (`id_produtor`) REFERENCES `produtor` (`id_produtor`),
-  ADD CONSTRAINT `propriedade_ibfk_2` FOREIGN KEY (`id_tipo_processamento`) REFERENCES `tipo_processamento` (`id_tipo_processamento`),
-  ADD CONSTRAINT `propriedade_ibfk_3` FOREIGN KEY (`id_processamento_via_umido`) REFERENCES `processamento_via_umido` (`id_processamento_via_umido`),
-  ADD CONSTRAINT `propriedade_ibfk_4` FOREIGN KEY (`id_cidade`) REFERENCES `cidade` (`id_cidade`),
-  ADD CONSTRAINT `propriedade_ibfk_5` FOREIGN KEY (`id_tipo_terreiro`) REFERENCES `tipo_terreiro` (`id_tipo_terreiro`);
+  ADD CONSTRAINT `propriedade_ibfk_2` FOREIGN KEY (`id_cidade`) REFERENCES `cidade` (`id_cidade`);
 
 --
--- Limitadores para a tabela `safra_cafe`
+-- Restrições para tabelas `safra_cafe`
 --
 ALTER TABLE `safra_cafe`
   ADD CONSTRAINT `safra_cafe_ibfk_1` FOREIGN KEY (`id_propriedade`) REFERENCES `propriedade` (`id_propriedade`);
 
 --
--- Limitadores para a tabela `safra_geral`
+-- Restrições para tabelas `safra_geral`
 --
 ALTER TABLE `safra_geral`
   ADD CONSTRAINT `safra_geral_ibfk_1` FOREIGN KEY (`id_propriedade`) REFERENCES `propriedade` (`id_propriedade`);

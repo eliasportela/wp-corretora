@@ -1,6 +1,6 @@
 jQuery(document).ready(function(){
 
-	jQuery('#inserirProdutor').submit(function(){
+	jQuery('#inserirPropriedade').submit(function(){
 		
 		if ($("#selectCidades").val() == 0) {
 			swal("","Selecione a cidade do produtor","warning");
@@ -71,17 +71,17 @@ function addSafraCafe(){
 	var selector = $("#tabelaSafraCafe");
 	var col = "";
 	col += '<td>'+
-	'<input type="number" value="2018" class="w3-input w3-border" name="safraAnoInicio[]" min="1900" max="2099" style="width: 45%;display: inline-block;margin-right:3px" required>'+
-	'<input type="number" value="2019" class="w3-input w3-border" name="safraAnoFim[]" min="1900" max="2099" style="width: 45%;display: inline-block" required>'+
+	'<input type="number" value="2018" class="w3-input w3-border" name="safraCafeAnoInicio[]" min="1900" max="2099" style="width: 45%;display: inline-block;margin-right:3px" required>'+
+	'<input type="number" value="2019" class="w3-input w3-border" name="safraCafeAnoFim[]" min="1900" max="2099" style="width: 45%;display: inline-block" required>'+
 	'</td>';
 	col += '<td>'+
-	'<select class="w3-select w3-border w3-white">'+
+	'<select class="w3-select w3-border w3-white" name="safraCafeVariedade[]">'+
 	'<option value="2">Café Arábica</option>'+
 	'<option value="1">Outros</option>'+
 	'</select>'+
 	'</td>';
-	col += '<td><input type="number" class="w3-input w3-border" placeholder="Área" name=""></td>';
-	col += '<td><input type="number" class="w3-input w3-border" placeholder="Média de Sacas" name=""></td>';
+	col += '<td><input type="number" class="w3-input w3-border" placeholder="Área" name="safraCafeArea[]"></td>';
+	col += '<td><input type="number" class="w3-input w3-border" placeholder="Média de Sacas" name="safraCafeQtd[]"></td>';
 	col += '<td>'+
 	'<button class="w3-button w3-border w3-round" type="button" onclick="removeSafraCafe('+SAFRACAFE+')">'+
 	'<i class="fa fa-times"></i> Remover'+

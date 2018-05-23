@@ -158,7 +158,7 @@ h6{
 
 <div id="modalPropriedade" class="w3-modal" style="padding: 50px 0">
   <div class="w3-modal-content w3-card-4 w3-animate-left">
-    <form class="w3-container" method="POST" action="" id="inserirImovel1">
+    <form method="POST" action="" id="inserirPropriedade">
       <div class="w3-container w3-padding-16 w3-large w3-border-bottom">
         <i class="fa fa-building"></i> Cadastro de Propriedade  
         <span class="w3-right" onclick="closeModalPropriedade()" style="cursor: pointer;"><i class="fa fa-times"></i></span>
@@ -175,7 +175,7 @@ h6{
           </div>
           <div class="w3-col l4 w3-margin-top">
             <label>Nome da Propriedade</label>
-            <input type="text" class="w3-input w3-border" placeholder="Nome da Propriedade" name="nome_propriedade">
+            <input type="text" class="w3-input w3-border" placeholder="Nome da Propriedade" name="nome_propriedade" required>
           </div>
           <div class="w3-col l4 w3-margin-top">
             <label>Contatos na Propriedade</label>
@@ -188,8 +188,8 @@ h6{
         </div>
         <div class="w3-row-padding">
           <div class="w3-col l4 w3-margin-top">
-            <label>Endereço</label>
-            <input type="text" class="w3-input w3-border" placeholder="Ex: Rodovia Ronan Rocha" name="logradouro">
+            <label>Logradouro</label>
+            <input type="text" class="w3-input w3-border" placeholder="Ex: Rodovia Ronan Rocha" name="logradouro" required>
           </div>
           <div class="w3-col l2 w3-margin-top">
             <label>Número/KM</label>
@@ -197,13 +197,16 @@ h6{
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Estado</label>
-            <select class="w3-select w3-form w3-white">
-              <option>Selecione</option>
+            <select class="w3-select w3-border" onchange="getCidades('selectPropEstados','selectPropCidades')" id="selectPropEstados">
+              <option value="0">Selecione</option>
+              <?php foreach ($estados as $estado):?>
+                <option value="<?=$estado->id_estado?>"><?=$estado->nome_estado?></option>
+              <?php endforeach;?>
             </select>
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Cidade</label>
-            <select class="w3-input w3-border w3-white" disabled name="id_cidade">
+            <select class="w3-input w3-border" id="selectPropCidades" name="id_cidade" required disabled>
               <option>Selecione o estado</option>
             </select>
           </div>
@@ -314,7 +317,7 @@ h6{
           </div>
           <div class="w3-col l4 w3-margin-top">
             <label>Tipo de Terreiro</label>
-            <select class="w3-select w3-border" name="id_tipo_terreiro">
+            <select class="w3-select w3-border" name="tipo_terreiro">
               <option value="">Não Informado</option>
               <option value="1">Sim</option>
               <option value="0">Não</option>
@@ -322,7 +325,7 @@ h6{
           </div>
           <div class="w3-col l4 w3-margin-top">
             <label>Tipo de Processamento</label>
-            <select class="w3-select w3-border" name="id_tipo_processamento">
+            <select class="w3-select w3-border" name="tipo_processamento">
               <option value="">Não Informado</option>
               <option value="1">Sim</option>
               <option value="0">Não</option>
@@ -330,7 +333,7 @@ h6{
           </div>
           <div class="w3-col l4 w3-margin-top">
             <label>Processamento via úmido</label>
-            <select class="w3-select w3-border" name="id_processamento_via_umido">
+            <select class="w3-select w3-border" name="processamento_via_umido">
               <option value="">Não Informado</option>
               <option value="1">Sim</option>
               <option value="0">Não</option>
@@ -400,17 +403,17 @@ h6{
           <button class="w3-button w3-gray w3-right w3-block" type="button" style="margin:12px 0" onclick="addSafraCafe()"><i class="fa fa-plus"></i> Adicionar safra</button>
         </div>
       </div>
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+        <button onclick="closeModalPropriedade()" type="button" class="w3-button w3-gray" style="width: 150px">
+          <i class="fa fa-times"></i>
+          Fechar
+        </button>
+        <button type="submit" class="w3-button w3-black w3-right" style="width: 150px">
+          <i class="fa fa-check"></i>
+          Salvar
+        </button>
+      </div>
     </form>
-    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-      <button onclick="closeModalPropriedade()" type="button" class="w3-button w3-gray" style="width: 150px">
-        <i class="fa fa-times"></i>
-        Fechar
-      </button>
-      <button onclick="$('#cadastroPropriedade').css('display','none')" type="button" class="w3-button w3-black w3-right" style="width: 150px">
-        <i class="fa fa-check"></i>
-        Salvar
-      </button>
-    </div>
   </div>
 </div>
 
