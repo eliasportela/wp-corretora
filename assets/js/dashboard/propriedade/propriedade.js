@@ -2,13 +2,13 @@ jQuery(document).ready(function(){
 
 	jQuery('#inserirPropriedade').submit(function(){
 		
-		if ($("#selectCidades").val() == 0) {
-			swal("","Selecione a cidade do produtor","warning");
+		if ($("#selectPropCidades").val() == 0) {
+			swal("","Selecione a cidade da Propriedade","warning");
 
 		}else{
 
 			var dadosajax = new FormData(this);
-			pageurl = base_urla + 'admin/api/produtor';
+			pageurl = base_urla + 'admin/api/propriedade/1';
 
 			request("Salvando as informações");
 			$.ajax({
@@ -106,4 +106,15 @@ function modalPropriedade() {
 function closeModalPropriedade() {
 	$('html').css("overflow","auto");
 	$('#modalPropriedade').css("display","none");
+}
+
+//liberar select do tipo de processamento
+function toogleTipoProcessamento(){
+	console.log($("#tipo_processamento").val());
+	if ($("#tipo_processamento").val() == "Via Úmida") {
+		$("#processamento_via_umido").removeAttr("disabled");
+	}else{
+		$("#processamento_via_umido").prop("disabled","true");
+		$("#processamento_via_umido").val("");
+	}
 }

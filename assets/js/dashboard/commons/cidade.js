@@ -1,13 +1,11 @@
-function getCidades(par1,par2) {
+function getCidades(par1,par2,par3) {
 	var estado = $("#"+par1);
 	var selector = $("#"+par2);
 	var url = base_urla + 'admin/api/cidade?id=';
-	console.log(par1,par2);
-
+	
 	selector.html("<option>Buscando cidades...</option>");
 	selector.prop("disabled","true");
 
-	console.log(estado);
 	if (estado.val() == 0) {
 		selector.html("<option>Selecione o Estado</option>");
 		return;
@@ -25,6 +23,10 @@ function getCidades(par1,par2) {
     })
     .done(function(){
     	selector.removeAttr("disabled");
+    	if (par3) {
+    		selector.val(par3);
+    		console.log(par3);
+    	}
     });
 }
 

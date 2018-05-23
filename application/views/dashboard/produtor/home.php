@@ -19,7 +19,7 @@ h6{
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
   <!-- Header -->
   <header class="w3-container w3-cell-row" style="padding-top:22px">
-    <span class="w3-xlarge"><i class="fa fa fa-user fa-fw"></i><b> Produtor</b></span>
+    <span class="w3-xlarge"><i class="fa fa fa-user fa-fw"></i>Produtor</span>
     <button onclick="window.location.href='<?=base_url("admin/produtor/cadastro")?>'" class="w3-button w3-round w3-black w3-right"><i class="fa fa-plus"></i> Cadastrar Produtor</button>  
     <button class="w3-button w3-black w3-right" style="margin-right: 12px" onclick="limparSearch(1)">Limpar Filtros</button>
   </header>

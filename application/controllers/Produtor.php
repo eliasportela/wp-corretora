@@ -19,7 +19,7 @@ class Produtor extends CI_Controller {
 		if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)) {
 
 			$data["t_pessoas"] = $this->Crud_model->ReadAll("tipo_pessoa");
-			$header['title'] = "Dash | Produtor";
+			$header['title'] = "Dash | Produtores";
 			$menu['id_page'] = 3;
 
 			$this->load->view('dashboard/template/commons/header',$header);
@@ -45,7 +45,8 @@ class Produtor extends CI_Controller {
 			$data["estados"] = $this->Crud_model->ReadAll("estado");
 			$data["t_pessoas"] = $this->Crud_model->ReadAll("tipo_pessoa");
 
-			$header['title'] = "Dash | Produtor";
+			$header['title'] = "Dash | Cadastro Produtor";
+			$data['title'] = "Cadastro de Produtor";
 			$menu['id_page'] = 3;
 
 			$this->load->view('dashboard/template/commons/header',$header);
@@ -57,6 +58,68 @@ class Produtor extends CI_Controller {
 			redirect(base_url('login'));
 		}
 
+	}
+
+	//Tela Edição Produtor
+	public function Editar() {
+
+		$nivel_user = 1; //Nivel requirido para visualizar a pagina
+
+		if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)){	
+			
+			$data["produtores"] = false;
+			
+			//Estados
+			$data["estados"] = $this->Crud_model->ReadAll("estado");
+			$data["t_pessoas"] = $this->Crud_model->ReadAll("tipo_pessoa");
+
+			$header['title'] = "Dash | Produtor";
+			$data['title'] = "Editar Produtor";
+			$menu['id_page'] = 3;
+
+			$dataModel = $this->Crud_model->Read('produtor',array('id_produtor' => $this->uri->segment(3)));
+
+			if ($dataModel) {
+				
+				$data['produtor'] = $dataModel->id_produtor;
+				$this->load->view('dashboard/template/commons/header',$header);
+				$this->load->view('dashboard/template/commons/menu',$menu);
+				$this->load->view('dashboard/produtor/cadastro',$data);
+				$this->load->view('dashboard/template/commons/footer');
+			
+			}else{
+				redirect(base_url('admin/produtor'));	
+			}
+			
+			
+		}else{
+			redirect(base_url('login'));
+		}
+
+	}
+
+	//Select individual
+	public function GetId(){
+		
+		$ref = $this->uri->segment(5);
+		
+		if ($ref > 0):
+			
+			$sql = "SELECT * FROM produtor p
+					INNER JOIN cidade c ON (c.id_cidade = p.id_cidade)
+					INNER JOIN estado e ON (e.id_estado = c.id_estado)
+					WHERE p.fg_ativo = 1 AND p.id_produtor = $ref";
+					
+			$res = $this->Crud_model->Query($sql);
+			
+			if ($res):
+				$json = json_encode($res,JSON_UNESCAPED_UNICODE);
+				echo $json;
+				return;
+			endif;
+		else:
+			$this->output->set_status_header('500');
+		endif;
 	}
 
 	//Select com Paginacao

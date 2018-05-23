@@ -44,7 +44,8 @@ class Propriedade extends CI_Controller {
 		$dataRegister = $this->input->post();
 		
 		if ($dataRegister['nome_propriedade'] != NULL):
-			
+
+
 			//Config ambiente de upload
 			$path = './uploads/docs/propriedades/';
 			$config['upload_path'] = $path;
@@ -60,6 +61,7 @@ class Propriedade extends CI_Controller {
 
 			$logimg = null;
 
+			//upload da imagem
 			if (!$this->upload->do_upload('foto_file')) {
 				$logimg = $this->upload->display_errors(null,null);
 			} else {
@@ -70,6 +72,7 @@ class Propriedade extends CI_Controller {
 			$dataModel = array(
 				'id_produtor' => trim($dataRegister['id_produtor']),
 				'nome_propriedade' => trim($dataRegister['nome_propriedade']),
+				'id_tipo_propriedade' => trim($dataRegister['id_tipo_propriedade']),
 				'cnpj' => trim($dataRegister['cnpj']),
 				'contato' => trim($dataRegister['contato']),
 				'telefone' => trim($dataRegister['telefone']),
@@ -95,22 +98,54 @@ class Propriedade extends CI_Controller {
 				'processamento_via_umido' => trim($dataRegister['processamento_via_umido']),
 				'logradouro' => trim($dataRegister['logradouro']),
 				'numero_km' => trim($dataRegister['numero_km']),
-				'complemento' => trim($dataRegister['complemento']),
-				'cep' => trim($dataRegister['cep']),
-				'bairro' => trim($dataRegister['bairro']),
 				'id_cidade' => trim($dataRegister['id_cidade']),
 				'obs' => trim($dataRegister['obs']));
 			
-			$res = $this->Crud_model->Insert('propriedade',$dataModel);
+			$res = $this->Crud_model->InsertID('propriedade',$dataModel);
 
 			if($res):
+
+				//Safras Geral
+				if($dataRegister['safraQtd'] != NULL):
+
+					for ($i=0; $i < count($dataRegister['safraQtd']); $i++) {
+						
+						$safraModel = array('safra_ano_inicio' => $dataRegister['safraAnoInicio'][$i],
+							'safra_ano_fim' => $dataRegister['safraAnoFim'][$i],
+							'valor_safra' => $dataRegister['safraQtd'][$i],
+							'id_propriedade' => $res);
+
+						$res = $this->Crud_model->Insert('safra_geral',$safraModel);
+					}
+
+				endif;
+
+				//Safras Cafés
+				if($dataRegister['safraCafeQtd'] != NULL):
+
+					for ($i=0; $i < count($dataRegister['safraCafeQtd']); $i++) {
+						
+						$safraModel = array(
+							'safra_ano_inicio' => $dataRegister['safraCafeAnoInicio'][$i],
+							'safra_ano_fim' => $dataRegister['safraCafeAnoFim'][$i],
+							'variedade' => $dataRegister['safraCafeVariedade'][$i],
+							'area_plantada' => $dataRegister['safraCafeArea'][$i],
+							'valor_safra' => $dataRegister['safraCafeQtd'][$i],
+							'id_propriedade' => $res);
+
+						$res = $this->Crud_model->Insert('safra_geral',$safraModel);
+					}
+
+				endif;
+
 				$this->output->set_status_header('200');
-				return;
+
 			endif;
 			
 		endif;
+
 		else:
-			$this->output->set_status_header('400');
+			$this->output->set_status_header('404');
 		endif;
 	}
 

@@ -106,15 +106,13 @@ function getProdutores(page){
 			data = JSON.parse(res);
 			PAGEQTD = data.pages; 
 			data.result.forEach(function(obj){
-				var tr = $('<tr>');
 				var col = "";
 				col += "<td>"+"<i class='fa fa-user'></i></td>"
 				col += "<td>"+obj.nome_produtor+"</td>"
 				col += "<td>"+obj.nome_tipo_pessoa+"</td>"
 				col += "<td>"+obj.email+"</td>"
 				col += "<td>"+obj.nome_cidade+"</td>"
-				tr.append(col);
-				selector.append(tr);
+				selector.append("<tr onclick=viewProdutor("+obj.id_produtor+")>"+col+"</tr>");
 			});
 			$("#naoencontrado").css("display","none");
 		}else{
@@ -166,4 +164,9 @@ function selectTipoPessoa(){
 		$("#label-cpf_cnpj").html("CNPJ");
 		$("#label-ie_rg").html("Inscrição Estadual");
 	}
+}
+
+
+function viewProdutor(id){
+	window.location.href = base_urla +"admin/produtor/" + id;
 }
