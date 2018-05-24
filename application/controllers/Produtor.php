@@ -47,11 +47,13 @@ class Produtor extends CI_Controller {
 
 			$header['title'] = "Dash | Cadastro Produtor";
 			$data['title'] = "Cadastro de Produtor";
+			$data['idFormulario'] = "inserirProdutor";
 			$menu['id_page'] = 3;
 
 			$this->load->view('dashboard/template/commons/header',$header);
 			$this->load->view('dashboard/template/commons/menu',$menu);
 			$this->load->view('dashboard/produtor/cadastro',$data);
+			$this->load->view('dashboard/produtor/modal-propriedade',$data);
 			$this->load->view('dashboard/template/commons/footer');
 			
 		}else{
@@ -75,6 +77,7 @@ class Produtor extends CI_Controller {
 
 			$header['title'] = "Dash | Produtor";
 			$data['title'] = "Editar Produtor";
+			$data['idFormulario'] = "editarProdutor";
 			$menu['id_page'] = 3;
 
 			$dataModel = $this->Crud_model->Read('produtor',array('id_produtor' => $this->uri->segment(3)));

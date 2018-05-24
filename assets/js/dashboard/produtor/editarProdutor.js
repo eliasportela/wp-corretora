@@ -56,27 +56,32 @@ function getProdutorID(id){
 			
 			$("#nome_produtor").val(data.nome_produtor);
 			$("#id_tipo_pessoa").val(data.id_tipo_pessoa);
+			$("#cpf_cnpj").val(data.cpf_cnpj);
 			$("#rg_inscricao_estadual").val(data.rg_inscricao_estadual);
 			$("#data_nascimento").val(data.data_nascimento);
 			$("#escolaridade").val(data.escolaridade);
 			$("#membros_familia").val(data.membros_familia);
 			$("#email").val(data.email);
 			$("#telefone").val(data.telefone);
-			$("#foto_produtor").val(data.foto_produtor);
 			$("#endereco").val(data.endereco);
 			$("#numero").val(data.numero);
 			$("#complemento").val(data.complemento);
 			$("#cep").val(data.cep);
 			$("#bairro").val(data.bairro);
 			$("#selectEstados").val(data.id_estado);
-			$("#comprovante_bancario").val(data.comprovante_bancario);
+			$("#certificados").val(data.certificados);
+			$("#image-foto-bd").attr("src",base_urla + 'uploads/docs/' + data.foto_produtor);
+			$("#image-comprovante-bd").attr("src",base_urla + 'uploads/docs/' + data.comprovante_bancario);
 
 		}else{
 			swal("","Erro interno, por favor recarregue a página","error");
 		}
 	})
 	.done(function(){
-    	//getCidades('selectEstados','selectCidades',data.id_cidade);
-    	//$("#id").val(data.id_estado);
+    	getCidades('selectEstados','selectCidades',data.id_cidade);
+    	$("#id").val(data.id_estado);
+    	//imgs
+    	$("#image-foto-bd").css("display","block");
+    	$("#image-comprovante-bd").css("display","block");
     });
 }
