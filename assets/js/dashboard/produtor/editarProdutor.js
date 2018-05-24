@@ -76,7 +76,7 @@ function getProdutorID(id){
 		}
 	})
 	.done(function(){
-    	getCidades('selectEstados','selectCidades',data.id_cidade);
+    	//getCidades('selectEstados','selectCidades',data.id_cidade);
     	//$("#id").val(data.id_estado);
     });
 }

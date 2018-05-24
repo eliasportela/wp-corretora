@@ -2,88 +2,6 @@ jQuery(document).ready(function(){
 
 	//Buscando Produtores
 	getProdutores(1);
-	//Inserir Propriedade
-	
-	jQuery('#inserirProdutor').submit(function(){
-		
-		if ($("#selectCidades").val() == 0) {
-			swal("","Selecione a cidade do produtor","warning");
-		
-		}else{
-
-			var dadosajax = new FormData(this);
-			pageurl = base_urla + 'admin/api/produtor';
-
-			request("Salvando as informações");
-			$.ajax({
-				url: pageurl,
-				type: 'POST',
-				data:  dadosajax,
-				mimeType:"multipart/form-data",
-				contentType: false,
-				cache: false,
-				processData:false,
-				success: function(data, textStatus, jqXHR)
-				{
-					console.log(jqXHR);
-					swal("","Dados inseridos com sucesso","success");
-					requestSuccess();
-				},
-				error: function(jqXHR, textStatus, errorThrown) 
-				{
-					console.log(jqXHR);
-					requestSuccess();
-				}          
-			});
-		}
-
-		return false;
-	});
-
-
-	//Editar Prorpriedade
-	jQuery('#editarPropriedade').submit(function(){
-
-		var dadosImagemImovel = new FormData(this);
-		pageurl = base_urla + 'admin/imagem-perfil-imovel';
-
-		if (parseInt($('#wcrop').val())) { // verificca se foi selecionado uma area de corte
-			request('Enviando a Imagem!');
-			$.ajax({
-				url: pageurl,
-				type: 'POST',
-				data:  dadosImagemImovel,
-				mimeType:"multipart/form-data",
-				contentType: false,
-				cache: false,
-				processData:false,
-				success: function(data, textStatus, jqXHR)
-				{
-			             // Em caso de sucesso faz isto...
-			             requestSuccess();
-			             swal({
-			             	title: 'Sucesso!',
-			             	text: 'Imagem alterada com sucesso!!',
-			             	type: 'success'
-			             },function(){
-			             	console.log(data);
-			             	buscarImovelId(data);
-			             	$("#fuiAlterado").val(1);
-			             	$('#modalSelecionarImagem').css('display','none');
-			             });
-			         },
-			         error: function(jqXHR, textStatus, errorThrown) 
-			         {
-			         	requestSuccess();
-			         	console.log(textStatus);
-			         	swal("Erro!","Erro desconhecido","error");
-			         }          
-			     });
-		}else{
-			swal("Erro!!","Selecione a área de corte para continuar!","error");
-		}
-		return false;
-	});
 
 });
 
@@ -148,21 +66,6 @@ function pagination(tipo){
 		PAGEID = PAGEID + 1;
 		getProdutores(PAGEID);
 		$("#btnanterior").removeAttr("disabled");
-	}
-}
-
-//Mudar doc do tiipo de pessoa
-function selectTipoPessoa(){
-	var tipo = $("#tipo_pessoa").val();
-	//pessoa fisica
-	if (tipo == 1) {
-		$("#label-cpf_cnpj").html("CPF");
-		$("#label-ie_rg").html("RG");
-	}
-	//pessoa juridica
-	else{
-		$("#label-cpf_cnpj").html("CNPJ");
-		$("#label-ie_rg").html("Inscrição Estadual");
 	}
 }
 

@@ -232,11 +232,14 @@ class Produtor extends CI_Controller {
 				'id_cidade' => trim($dataRegister['id_cidade']),
 				'comprovante_bancario' => $comprovante_name,
 				'certificados' => trim($dataRegister['certificados']));
-			$res = $this->Crud_model->Insert('produtor',$dataModel);
+			$res = $this->Crud_model->InsertId('produtor',$dataModel);
+			
 			if($res):
+				echo $res;
 				$this->output->set_status_header('200');
 				return;
 			endif;
+			
 		endif;
 		else:
 			$this->output->set_status_header('400');
