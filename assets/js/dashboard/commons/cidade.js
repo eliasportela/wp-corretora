@@ -25,7 +25,6 @@ function getCidades(par1,par2,par3) {
     	selector.removeAttr("disabled");
     	if (par3) {
     		selector.val(par3);
-    		console.log(par3);
     	}
     });
 }

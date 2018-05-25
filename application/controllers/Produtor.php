@@ -48,6 +48,7 @@ class Produtor extends CI_Controller {
 			$header['title'] = "Dash | Cadastro Produtor";
 			$data['title'] = "Cadastro de Produtor";
 			$data['idFormulario'] = "inserirProdutor";
+			$data['btnFoto'] = "Selecionar";
 			$menu['id_page'] = 3;
 
 			$this->load->view('dashboard/template/commons/header',$header);
@@ -78,6 +79,7 @@ class Produtor extends CI_Controller {
 			$header['title'] = "Dash | Produtor";
 			$data['title'] = "Editar Produtor";
 			$data['idFormulario'] = "editarProdutor";
+			$data['btnFoto'] = "Alterar";
 			$menu['id_page'] = 3;
 
 			$dataModel = $this->Crud_model->Read('produtor',array('id_produtor' => $this->uri->segment(3)));
@@ -88,6 +90,7 @@ class Produtor extends CI_Controller {
 				$this->load->view('dashboard/template/commons/header',$header);
 				$this->load->view('dashboard/template/commons/menu',$menu);
 				$this->load->view('dashboard/produtor/cadastro',$data);
+				$this->load->view('dashboard/produtor/modal-propriedade',$data);
 				$this->load->view('dashboard/template/commons/footer');
 			
 			}else{
@@ -185,36 +188,6 @@ class Produtor extends CI_Controller {
 		$dataRegister = $this->input->post();
 		if ($dataRegister AND $dataRegister['nome_produtor'] != NULL):
 			
-			//Config ambiente de upload
-			$this->load->library('upload');
-			$path = './uploads/docs/';
-			$config['upload_path'] = $path;
-			$config['allowed_types'] = 'pdf|jpg|jpeg|png';
-			$config['max_size'] = '5000';
-			$config['encrypt_name']  = TRUE;
-			$this->upload->initialize($config);
-
-			//verifica se o path é válido, se não for cria o diretório
-			if (!is_dir($path)) {
-				mkdir($path, 0777, $recursive = true);
-			}
-
-			$logimg1 = null;
-			$logimg2 = null;
-
-			if (!$this->upload->do_upload('foto_file')) {
-				$logimg1 = $this->upload->display_errors(null,null);
-			} else {
-				$dadosImagem = $this->upload->data();
-				$foto_name = $dadosImagem['file_name'];
-			}
-
-			if (!$this->upload->do_upload('comprovante_file')) {
-				$logimg2 = $this->upload->display_errors(null,null);
-			} else {
-				$dadosImagem = $this->upload->data();
-				$comprovante_name = $dadosImagem['file_name'];
-			}
 			
 			$dataModel = array(
 				'nome_produtor' => trim($dataRegister['nome_produtor']),
@@ -237,12 +210,42 @@ class Produtor extends CI_Controller {
 				'certificados' => trim($dataRegister['certificados']));
 			$res = $this->Crud_model->InsertId('produtor',$dataModel);
 			
-			if($res):
+			
+			//Config ambiente de upload
+			$path = './uploads/docs/'.$res;
+			$config['upload_path'] = $path;
+			$config['allowed_types'] = 'pdf|jpg|jpeg|png';
+			$config['max_size'] = '5000';
+			$config['encrypt_name']  = TRUE;
+			$this->upload->initialize($config);
+
+			//verifica se o path é válido, se não for cria o diretório
+			if (!is_dir($path)) {
+				mkdir($path, 0777, $recursive = true);
+			}
+
+			if (!$this->upload->do_upload('foto_file')) {
+				$foto_name = "";
+			} else {
+				$dadosImagem = $this->upload->data();
+				$foto_name = $dadosImagem['file_name'];
+			}
+
+			if (!$this->upload->do_upload('comprovante_file')) {
+				$comprovante_name = "";
+			} else {
+				$dadosImagem = $this->upload->data();
+				$comprovante_name = $dadosImagem['file_name'];
+			}
+
+			$dataModel = array('comprovante_bancario' => $foto_name,'foto_produtor' => $comprovante_name);
+			$upload = $this->Crud_model->Update('produtor',$dataModel,array('id_produtor' => $res));
+
+			if($res and $upload):
 				echo $res;
 				$this->output->set_status_header('200');
 				return;
 			endif;
-			
 		endif;
 		else:
 			$this->output->set_status_header('400');
@@ -252,43 +255,90 @@ class Produtor extends CI_Controller {
 	//Inserindo registros
 	public function Edit() {
 
-		$nivel_user = 2;
-
+		$nivel_user = 1;
+		$foto_name = null;
+		$comprovante_name = null;
+		
 		if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)):
+
+		$dataRegister = $this->input->post();
+
+		$dataId = (int)$this->uri->segment(5);
+
+		if ($dataRegister AND $dataId > 0):
 			
-			$dataId = (int)$this->uri->segment(5);
-			$dataRegister = $this->input->post();
+			//Config ambiente de upload
+			$path = './uploads/docs/'.$dataId.'/';
+			$config['upload_path'] = $path;
+			$config['allowed_types'] = 'pdf|jpg|jpeg|png';
+			$config['max_size'] = '5000';
+			$config['encrypt_name']  = TRUE;
+			$this->upload->initialize($config);
 
-			if (($dataId > 0) AND ($dataRegister != NULL) AND ($dataRegister['nome_produtor'] != NULL)):
+			//verifica se o path é válido, se não for cria o diretório
+			if (!is_dir($path)) {
+				mkdir($path, 0777, $recursive = true);
+			}
 
-				$dataModel = array(
-					'nome_produtor' => trim($dataRegister['nome_produtor']),
-					'id_tipo_pessoa' => trim($dataRegister['id_tipo_pessoa']),
-					'cpf_cnpj' => trim($dataRegister['cpf_cnpj']),
-					'rg_inscricao_estadual' => trim($dataRegister['rg_inscricao_estadual']),
-					'data_nascimento' => trim($dataRegister['data_nascimento']),
-					'escolaridade' => trim($dataRegister['escolaridade']),
-					'membros_familia' => trim($dataRegister['membros_familia']),
-					'email' => trim($dataRegister['email']),
-					'telefone' => trim($dataRegister['telefone']),
-					'foto_produtor' => trim($dataRegister['foto_produtor']),
-					'endereco' => trim($dataRegister['endereco']),
-					'numero' => trim($dataRegister['numero']),
-					'complemento' => trim($dataRegister['complemento']),
-					'cep' => trim($dataRegister['cep']),
-					'bairro' => trim($dataRegister['bairro']),
-					'id_cidade' => trim($dataRegister['id_cidade']),
-					'comprovante_bancario' => trim($dataRegister['comprovante_bancario']),
-					'certificados' => trim($dataRegister['certificados']));
-				
-				$res = $this->Crud_model->Update('produtor',$dataModel, array('id_produtor' => $dataId));
-				
-				if($res):
-					$this->output->set_status_header('200');
-					return;
-				endif;
+			if (!$this->upload->do_upload('foto_file')) {
+				$foto_name = false;
+			} else {
+				$dadosImagem = $this->upload->data();
+				$foto_name = $dadosImagem['file_name'];
+			}
+
+			if (!$this->upload->do_upload('comprovante_file')) {
+				$comprovante_name = false;
+			} else {
+				$dadosImagem = $this->upload->data();
+				$comprovante_name = $dadosImagem['file_name'];
+			}
+			
+			$dataModel = array(
+				'nome_produtor' => trim($dataRegister['nome_produtor']),
+				'id_tipo_pessoa' => trim($dataRegister['id_tipo_pessoa']),
+				'cpf_cnpj' => trim($dataRegister['cpf_cnpj']),
+				'rg_inscricao_estadual' => trim($dataRegister['rg_inscricao_estadual']),
+				'data_nascimento' => trim($dataRegister['data_nascimento']),
+				'escolaridade' => trim($dataRegister['escolaridade']),
+				'membros_familia' => trim($dataRegister['membros_familia']),
+				'email' => trim($dataRegister['email']),
+				'telefone' => trim($dataRegister['telefone']),
+				'endereco' => trim($dataRegister['endereco']),
+				'numero' => trim($dataRegister['numero']),
+				'complemento' => trim($dataRegister['complemento']),
+				'cep' => trim($dataRegister['cep']),
+				'bairro' => trim($dataRegister['bairro']),
+				'id_cidade' => trim($dataRegister['id_cidade']),
+				'certificados' => trim($dataRegister['certificados']));
+			
+			//caso mudou a img exclui a anterior
+			$sql = "SELECT foto_produtor, comprovante_bancario FROM produtor WHERE id_produtor = $dataId";
+			$upload = $this->Crud_model->Query($sql);
+
+			if ($foto_name) {
+				$dataModel = array_merge($dataModel,array('foto_produtor' => $foto_name));
+				if ($upload) {
+					unlink($path.$upload[0]->foto_produtor);
+				}
+			}
+			if ($comprovante_name) {
+				$dataModel = array_merge($dataModel,array('comprovante_bancario' => $comprovante_name));
+				if ($upload) {
+					unlink($path.$upload[0]->comprovante_bancario);
+				}
+			}
+
+			
+			$res = $this->Crud_model->Update('produtor',$dataModel,array('id_produtor' => $dataId));
+
+			if($res):
+				echo $res;
+				$this->output->set_status_header('200');
+				return;
 			endif;
-
+			
+		endif;
 		else:
 			$this->output->set_status_header('400');
 		endif;

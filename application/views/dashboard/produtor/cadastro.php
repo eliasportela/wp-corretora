@@ -41,15 +41,19 @@ img{
           <div class="w3-row-padding">
             <div class="w3-col m12">Dados Pessoais</div>
             <div class="w3-col m3 w3-margin-top">
+              <label for="nome_produtor">Nome Produtor</label>
               <input type="text" class="w3-input w3-border" placeholder="Nome" id="nome_produtor" name="nome_produtor" required>
             </div>
             <div class="w3-col m3 w3-margin-top">
+              <label for="email">E-mail</label>
               <input type="text" class="w3-input w3-border" placeholder="E-mail" id="email" name="email">
             </div>
             <div class="w3-col m3 w3-margin-top">
+              <label for="certificados">Certificados</label>
               <input type="text" class="w3-input w3-border" placeholder="Certificados" id="certificados" name="certificados">
             </div>
             <div class="w3-col m3 w3-margin-top">
+              <label id="label-cpf_cnpj">CPF</label>
               <input type="text" class="w3-input w3-border" placeholder="Telefone" id="telefone" name="telefone">
             </div>
             <div class="w3-col m3 w3-margin-top">
@@ -92,12 +96,12 @@ img{
             </div>
             <div class="w3-col m3 w3-margin-top">
               <label for="foto_file">Foto</label>
-              <button type="button" class="w3-button w3-black w3-block" onclick="modalFoto()">Selecionar</button>
+              <button type="button" class="w3-button w3-black w3-block" onclick="modalFoto()"><?=$btnFoto?></button>
               <input type="file" class="w3-input" id="foto_file" name="foto_file" style="display: none;">
             </div>
             <div class="w3-col m3 w3-margin-top">
               <label>Comprovante Bancário</label>
-              <button type="button" class="w3-button w3-black w3-block" onclick="modalComprovante()">Selecionar</button>
+              <button type="button" class="w3-button w3-black w3-block" onclick="modalComprovante()"><?=$btnFoto?></button>
               <input type="file" class="w3-input" id="comprovante_file" name="comprovante_file" style="display: none;">
             </div>
 
