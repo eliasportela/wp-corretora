@@ -35,6 +35,10 @@ jQuery(document).ready(function(){
 
 		return false;
 	});
+
+	if (IDPRODUTOR != "") {
+		getPropriedades(IDPRODUTOR);
+	}
 });
 
 var SAFRA = 0;
@@ -97,10 +101,18 @@ function removeSafraCafe(id){
 }
 
 //Modal Propriedade
-function modalPropriedade() {
-	$('html').css("overflow","hidden");
-	$('#modalPropriedade').css("z-index","5");
-	$('#modalPropriedade').css("display","block");
+function modalPropriedade(id) {
+	if (IDPRODUTOR != "") {
+		if (id != undefined) {
+			getPropriedadesId(id);
+		}
+		$('html').css("overflow","hidden");
+		$('#modalPropriedade').css("z-index","5");
+		$('#modalPropriedade').css("display","block");
+		//funcao editar
+	}else{
+		swal("","Para cadastrar uma propriedade você precisa salvar o produtor!","warning");
+	}
 }
 
 function closeModalPropriedade() {
@@ -117,4 +129,77 @@ function toogleTipoProcessamento(){
 		$("#processamento_via_umido").prop("disabled","true");
 		$("#processamento_via_umido").val("");
 	}
+}
+
+
+//Propriedades
+function getPropriedades(id) {
+	
+	var selector = $("#propriedades");
+	var url = base_urla + 'admin/api/propriedade/' + id;
+	
+	selector.empty();
+	
+	//request("Buscando Dados");
+	$.get(url, function(res) {
+		if (res) {
+			data = JSON.parse(res);
+			
+			data.forEach(function(obj){
+				var col = "";
+				col += "<td><i class='fa fa-building-o'></i></td>"
+				col += "<td>"+obj.nome_propriedade+"</td>";
+				col += "<td>"+obj.nome_cidade+"</td>";
+				col += "<td>"+obj.nome_estado+"</td>";
+				selector.append("<tr onclick='modalPropriedade("+obj.id_propriedade+")'>"+col+"</tr>");
+			});
+		}
+	})
+	.done(function(){
+    	
+    });
+}
+
+//Editar/Visualizar
+function getPropriedadesId(id){
+
+	var url = base_urla + 'admin/api/propriedade/id/'+id;
+	var data = null;
+	
+	$.get(url, function(res) {
+		
+		if (res) {
+			data = JSON.parse(res);
+			data = data[0];
+			console.log(data);
+			// $("#nome_produtor").val(data.nome_produtor);
+			// $("#tipo_pessoa").val(data.id_tipo_pessoa);
+			// $("#cpf_cnpj").val(data.cpf_cnpj);
+			// $("#rg_inscricao_estadual").val(data.rg_inscricao_estadual);
+			// $("#data_nascimento").val(data.data_nascimento);
+			// $("#escolaridade").val(data.escolaridade);
+			// $("#membros_familia").val(data.membros_familia);
+			// $("#email").val(data.email);
+			// $("#telefone").val(data.telefone);
+			// $("#endereco").val(data.endereco);
+			// $("#numero").val(data.numero);
+			// $("#complemento").val(data.complemento);
+			// $("#cep").val(data.cep);
+			// $("#bairro").val(data.bairro);
+			// $("#selectEstados").val(data.id_estado);
+			// $("#certificados").val(data.certificados);
+		}else{
+			swal("","Erro interno, por favor recarregue a página","error");
+		}
+	})
+	.done(function(){
+    	//getCidades('selectEstados','selectCidades',data.id_cidade);
+    	//$("#id").val(data.id_estado);
+    	
+    	//imgs
+    	// if (data.comprovante_bancario != "") {
+    	// 	$("#image-comprovante-bd").attr("src",base_urla + 'uploads/docs/'+IDPRODUTOR+'/'+data.comprovante_bancario);
+    	// 	$("#image-comprovante-bd").css("display","block");
+    	// }
+    });
 }

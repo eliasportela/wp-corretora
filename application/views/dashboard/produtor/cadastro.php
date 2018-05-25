@@ -9,6 +9,9 @@ img{
 .w3-centered tr td {
   padding: 13px;
 }
+.w3-table tr{
+  cursor: pointer;
+}
 .w3-table td{
   vertical-align: middle;
 }
@@ -154,33 +157,17 @@ img{
       </button>
     </div>
     <br>
-    <div class="w3-display-container w3-responsive w3-card w3-white w3-margin-bottom" style="min-height: 200px">
-      <table class="w3-table w3-bordered w3-centered">
+    <div class="w3-display-container w3-responsive w3-card w3-white w3-margin-bottom" style="min-height: 150px">
+      <table class="w3-table w3-bordered w3-centered w3-hoverable">
         <thead>
           <tr class="w3-black">
-            <th style="width: 10%">Visualizar</th>
-            <th style="width: 30%">Nome</th>
-            <th style="width: 20%">CNPJ</th>
-            <th style="width: 30%">Cidade</th>
-            <th style="width: 10%">Remover</th>
+            <th style="width: 10%"></th>
+            <th style="width: 20%">Nome</th>
+            <th style="width: 35%">Cidade</th>
+            <th style="width: 35%">Estado</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>
-              <button class="w3-button w3-border w3-round">
-                <i class="fa fa-eye"></i>
-              </button>
-            </td>
-            <td>Fazenda Cachoeiras</td>
-            <td>192.123.0001/01</td>
-            <td>São Tomás de Aquino</td>
-            <td>
-              <button class="w3-button w3-red w3-round">
-                <i class="fa fa-trash-o"></i>
-              </button>
-            </td>
-          </tr>
+        <tbody id="propriedades">
         </tbody>
       </table>
     </div>

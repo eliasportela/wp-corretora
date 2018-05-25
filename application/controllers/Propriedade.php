@@ -17,8 +17,33 @@ class Propriedade extends CI_Controller {
 		$produtor = $this->uri->segment(4);
 
 		if ($produtor > 0):
-			$sql = "SELECT * FROM propriedade
-			WHERE id_produtor = $produtor and fg_ativo = 1";
+			$sql = "SELECT * FROM propriedade p
+			INNER JOIN cidade c ON (c.id_cidade = p.id_cidade) 
+			INNER JOIN estado e ON (e.id_estado = c.id_estado)
+			WHERE p.id_produtor = $produtor and p.fg_ativo = 1";
+
+			$res = $this->Crud_model->Query($sql);
+			
+			if ($res):
+				$json = json_encode($res,JSON_UNESCAPED_UNICODE);
+				echo $json;
+				$this->output->set_status_header('200');
+				return;
+			endif;
+		else:
+			$this->output->set_status_header('500');
+		endif;
+	}
+
+	public function GetId(){
+		
+		$produtor = $this->uri->segment(5);
+
+		if ($produtor > 0):
+			$sql = "SELECT * FROM propriedade p
+			INNER JOIN cidade c ON (c.id_cidade = p.id_cidade) 
+			INNER JOIN estado e ON (e.id_estado = c.id_estado)
+			WHERE p.id_produtor = $produtor and p.fg_ativo = 1";
 
 			$res = $this->Crud_model->Query($sql);
 			
