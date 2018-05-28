@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 25-Maio-2018 às 18:06
+-- Generation Time: 28-Maio-2018 às 17:49
 -- Versão do servidor: 5.7.21-0ubuntu0.16.04.1
 -- PHP Version: 7.0.28-0ubuntu0.16.04.1
 
@@ -5738,35 +5738,36 @@ INSERT INTO `produtor` (`id_produtor`, `nome_produtor`, `id_tipo_pessoa`, `cpf_c
 CREATE TABLE `propriedade` (
   `id_propriedade` int(11) NOT NULL,
   `id_produtor` int(11) NOT NULL,
-  `id_tipo_propriedade` int(11) NOT NULL,
+  `tipo_propriedade` varchar(64) NOT NULL,
   `nome_propriedade` varchar(128) NOT NULL,
-  `cnpj` varchar(24) DEFAULT '',
+  `cnpj` varchar(24) DEFAULT NULL,
   `contato` varchar(128) DEFAULT NULL,
   `telefone` varchar(16) DEFAULT NULL,
   `foto_propriedade` varchar(256) DEFAULT NULL,
   `latitude` varchar(28) DEFAULT NULL,
   `longitude` varchar(28) DEFAULT NULL,
   `altitude` varchar(28) DEFAULT NULL,
-  `area_total` float DEFAULT NULL,
-  `area_plantada` float DEFAULT NULL,
-  `area_irrigada` float DEFAULT NULL,
-  `arrendada` int(1) DEFAULT NULL,
-  `prod_media_cafe` float DEFAULT NULL,
-  `p_eletricidade` int(1) DEFAULT NULL,
-  `p_familiar` int(1) DEFAULT NULL,
-  `p_analise_solo_folha` int(1) DEFAULT NULL,
-  `p_adubacao_organica` int(1) DEFAULT NULL,
-  `p_fertilizacao` int(1) DEFAULT NULL,
-  `p_analise_camada_expessura` int(1) DEFAULT NULL,
-  `p_sistema_tulhas` int(1) DEFAULT NULL,
-  `p_protecao_chuva` int(1) DEFAULT NULL,
-  `tipo_terreiro` varchar(64) DEFAULT 'Não Informado',
+  `area_total` varchar(30) DEFAULT NULL,
+  `area_plantada` varchar(30) DEFAULT NULL,
+  `area_irrigada` varchar(30) DEFAULT NULL,
+  `arrendada` varchar(30) DEFAULT NULL,
+  `prod_media_cafe` varchar(30) DEFAULT NULL,
+  `p_eletricidade` varchar(15) DEFAULT NULL,
+  `p_familiar` varchar(15) DEFAULT NULL,
+  `p_analise_solo_folha` varchar(15) DEFAULT NULL,
+  `p_adubacao_organica` varchar(15) DEFAULT NULL,
+  `p_fertilizacao` varchar(15) DEFAULT NULL,
+  `p_analise_camada_expessura` varchar(15) DEFAULT NULL,
+  `p_sistema_tulhas` varchar(15) DEFAULT NULL,
+  `p_protecao_chuva` varchar(15) DEFAULT NULL,
+  `tipo_terreiro` varchar(64) DEFAULT NULL,
   `tipo_processamento` varchar(64) DEFAULT 'Não Informado',
   `processamento_via_umido` varchar(64) DEFAULT 'Não Informado',
   `logradouro` varchar(128) DEFAULT NULL,
   `numero_km` varchar(16) DEFAULT NULL,
   `id_cidade` int(11) NOT NULL,
   `obs` text,
+  `dt_cadastro` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fg_ativo` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -5774,8 +5775,10 @@ CREATE TABLE `propriedade` (
 -- Extraindo dados da tabela `propriedade`
 --
 
-INSERT INTO `propriedade` (`id_propriedade`, `id_produtor`, `id_tipo_propriedade`, `nome_propriedade`, `cnpj`, `contato`, `telefone`, `foto_propriedade`, `latitude`, `longitude`, `altitude`, `area_total`, `area_plantada`, `area_irrigada`, `arrendada`, `prod_media_cafe`, `p_eletricidade`, `p_familiar`, `p_analise_solo_folha`, `p_adubacao_organica`, `p_fertilizacao`, `p_analise_camada_expessura`, `p_sistema_tulhas`, `p_protecao_chuva`, `tipo_terreiro`, `tipo_processamento`, `processamento_via_umido`, `logradouro`, `numero_km`, `id_cidade`, `obs`, `fg_ativo`) VALUES
-(1, 3, 1, 'Teste', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Não Informado', 'Não Informado', 'Não Informado', NULL, NULL, 10, NULL, 1);
+INSERT INTO `propriedade` (`id_propriedade`, `id_produtor`, `tipo_propriedade`, `nome_propriedade`, `cnpj`, `contato`, `telefone`, `foto_propriedade`, `latitude`, `longitude`, `altitude`, `area_total`, `area_plantada`, `area_irrigada`, `arrendada`, `prod_media_cafe`, `p_eletricidade`, `p_familiar`, `p_analise_solo_folha`, `p_adubacao_organica`, `p_fertilizacao`, `p_analise_camada_expessura`, `p_sistema_tulhas`, `p_protecao_chuva`, `tipo_terreiro`, `tipo_processamento`, `processamento_via_umido`, `logradouro`, `numero_km`, `id_cidade`, `obs`, `dt_cadastro`, `fg_ativo`) VALUES
+(9, 3, 'Fazenda', 'Cachoeiras', '', '', '', NULL, '', '', '', '', '', '', '', '', 'Não Informado', 'Não Informado', '2', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', '', 'Rodovia dos Almirantes', 'KM 300', 89, '', '2018-05-28 17:00:24', 1),
+(10, 3, 'Fazenda', 'Leonidas', '', '', '', NULL, '', '', '', '', '', '', '', '', 'Não Informado', 'Não Informado', '2', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', '', 'Rodovia dos Camioneiros', 'KM 250', 1477, '', '2018-05-28 17:06:10', 1),
+(11, 3, 'Fazenda', 'Vitória', '', '', '', NULL, '', '', '', '', '', '', '', '', 'Não Informado', 'Não Informado', '2', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Via Úmida', 'Não Informado', 'Rodovia dos Camioneiros', 'KM 250', 1477, '', '2018-05-28 17:06:46', 1);
 
 -- --------------------------------------------------------
 
@@ -5790,9 +5793,16 @@ CREATE TABLE `safra_cafe` (
   `id_propriedade` int(11) NOT NULL,
   `variedade` varchar(32) NOT NULL,
   `area_plantada` float DEFAULT NULL,
-  `valor_safra` float NOT NULL,
+  `valor_safra` decimal(7,2) NOT NULL,
   `fg_ativo` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `safra_cafe`
+--
+
+INSERT INTO `safra_cafe` (`id_safra_cafe`, `safra_ano_inicio`, `safra_ano_fim`, `id_propriedade`, `variedade`, `area_plantada`, `valor_safra`, `fg_ativo`) VALUES
+(2, '2019', '2020', 9, 'Outros', 200, '30000.00', 1);
 
 -- --------------------------------------------------------
 
@@ -5804,10 +5814,17 @@ CREATE TABLE `safra_geral` (
   `id_safra_geral` int(11) NOT NULL,
   `safra_ano_inicio` varchar(4) NOT NULL,
   `safra_ano_fim` varchar(4) NOT NULL,
-  `valor_safra` float NOT NULL,
+  `valor_safra` decimal(7,2) NOT NULL,
   `id_propriedade` int(11) NOT NULL,
   `fg_ativo` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `safra_geral`
+--
+
+INSERT INTO `safra_geral` (`id_safra_geral`, `safra_ano_inicio`, `safra_ano_fim`, `valor_safra`, `id_propriedade`, `fg_ativo`) VALUES
+(5, '2019', '2020', '2400.00', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -5944,17 +5961,17 @@ ALTER TABLE `produtor`
 -- AUTO_INCREMENT for table `propriedade`
 --
 ALTER TABLE `propriedade`
-  MODIFY `id_propriedade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_propriedade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `safra_cafe`
 --
 ALTER TABLE `safra_cafe`
-  MODIFY `id_safra_cafe` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_safra_cafe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `safra_geral`
 --
 ALTER TABLE `safra_geral`
-  MODIFY `id_safra_geral` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_safra_geral` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tipo_pessoa`
 --

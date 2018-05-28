@@ -37,13 +37,13 @@ class Propriedade extends CI_Controller {
 
 	public function GetId(){
 		
-		$produtor = $this->uri->segment(5);
+		$propriedade = $this->uri->segment(5);
 
-		if ($produtor > 0):
+		if ($propriedade > 0):
 			$sql = "SELECT * FROM propriedade p
 			INNER JOIN cidade c ON (c.id_cidade = p.id_cidade) 
 			INNER JOIN estado e ON (e.id_estado = c.id_estado)
-			WHERE p.id_produtor = $produtor and p.fg_ativo = 1";
+			WHERE p.id_propriedade = $propriedade and p.fg_ativo = 1";
 
 			$res = $this->Crud_model->Query($sql);
 			
@@ -63,16 +63,16 @@ class Propriedade extends CI_Controller {
 
 		$nivel_user = 1;
 		$foto_propriedade = null;
-		
 		if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)):
 
 		$dataRegister = $this->input->post();
 		
 		if ($dataRegister['nome_propriedade'] != NULL):
 
-
+			$produtor = trim($dataRegister['id_produtor']);
+			
 			//Config ambiente de upload
-			$path = './uploads/docs/propriedades/';
+			$path = './uploads/docs/'.$produtor.'/propriedades/';
 			$config['upload_path'] = $path;
 			$config['allowed_types'] = 'pdf|jpg|jpeg|png';
 			$config['max_size'] = '5000';
@@ -87,7 +87,7 @@ class Propriedade extends CI_Controller {
 			$logimg = null;
 
 			//upload da imagem
-			if (!$this->upload->do_upload('foto_file')) {
+			if (!$this->upload->do_upload('propriedade_file')) {
 				$logimg = $this->upload->display_errors(null,null);
 			} else {
 				$dadosImagem = $this->upload->data();
@@ -95,9 +95,9 @@ class Propriedade extends CI_Controller {
 			}
 
 			$dataModel = array(
-				'id_produtor' => trim($dataRegister['id_produtor']),
+				'id_produtor' => $produtor,
 				'nome_propriedade' => trim($dataRegister['nome_propriedade']),
-				'id_tipo_propriedade' => trim($dataRegister['id_tipo_propriedade']),
+				'tipo_propriedade' => trim($dataRegister['tipo_propriedade']),
 				'cnpj' => trim($dataRegister['cnpj']),
 				'contato' => trim($dataRegister['contato']),
 				'telefone' => trim($dataRegister['telefone']),
@@ -158,7 +158,7 @@ class Propriedade extends CI_Controller {
 							'valor_safra' => $dataRegister['safraCafeQtd'][$i],
 							'id_propriedade' => $res);
 
-						$res = $this->Crud_model->Insert('safra_geral',$safraModel);
+						$res = $this->Crud_model->Insert('safra_cafe',$safraModel);
 					}
 
 				endif;

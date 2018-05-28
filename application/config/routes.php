@@ -40,6 +40,10 @@ $route['admin/api/propriedade/(:num)']['post'] = 'Propriedade/Register';
 $route['admin/api/propriedade/editar/(:num)']['post'] = 'Propriedade/Edit';
 $route['admin/api/propriedade/remover/(:num)']['get'] = 'Propriedade/Remove';
 
+#Safras
+$route['admin/api/safra/(:num)']['get'] = 'Safra/Get';
+$route['admin/api/safra-cafe/(:num)']['get'] = 'Safra/GetCafe';
+
 #Contato
 $route['admin/contatos'] = 'Contato';
 $route['admin/notificacao-contato'] = 'Contato/NotificacaoContato';

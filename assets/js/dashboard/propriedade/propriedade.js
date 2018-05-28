@@ -22,8 +22,11 @@ jQuery(document).ready(function(){
 				success: function(data, textStatus, jqXHR)
 				{
 					console.log(jqXHR);
-					swal("","Dados inseridos com sucesso","success");
 					requestSuccess();
+					swal("","Dados inseridos com sucesso","success");
+					getPropriedades(IDPRODUTOR);
+					closeModalPropriedade();
+
 				},
 				error: function(jqXHR, textStatus, errorThrown) 
 				{
@@ -80,8 +83,8 @@ function addSafraCafe(){
 	'</td>';
 	col += '<td>'+
 	'<select class="w3-select w3-border w3-white" name="safraCafeVariedade[]">'+
-	'<option value="2">Café Arábica</option>'+
-	'<option value="1">Outros</option>'+
+		'<option value="Café Arábica">Café Arábica</option>'+
+		'<option value="Outros">Outros</option>'+
 	'</select>'+
 	'</td>';
 	col += '<td><input type="number" class="w3-input w3-border" placeholder="Área" name="safraCafeArea[]"></td>';
@@ -172,34 +175,94 @@ function getPropriedadesId(id){
 			data = JSON.parse(res);
 			data = data[0];
 			console.log(data);
-			// $("#nome_produtor").val(data.nome_produtor);
-			// $("#tipo_pessoa").val(data.id_tipo_pessoa);
-			// $("#cpf_cnpj").val(data.cpf_cnpj);
-			// $("#rg_inscricao_estadual").val(data.rg_inscricao_estadual);
-			// $("#data_nascimento").val(data.data_nascimento);
-			// $("#escolaridade").val(data.escolaridade);
-			// $("#membros_familia").val(data.membros_familia);
-			// $("#email").val(data.email);
-			// $("#telefone").val(data.telefone);
-			// $("#endereco").val(data.endereco);
-			// $("#numero").val(data.numero);
-			// $("#complemento").val(data.complemento);
-			// $("#cep").val(data.cep);
-			// $("#bairro").val(data.bairro);
-			// $("#selectEstados").val(data.id_estado);
-			// $("#certificados").val(data.certificados);
+			$("#nome_propriedade").val(data.nome_propriedade);
+			$("#tipo_propriedade").val(data.tipo_propriedade);
+			$("#cnpj").val(data.cnpj);
+			$("#contato").val(data.contato);
+			$("#telefone").val(data.telefone);
+			$("#foto_propriedade").val(data.foto_propriedade);
+			$("#latitude").val(data.latitude);
+			$("#longitude").val(data.longitude);
+			$("#altitude").val(data.altitude);
+			$("#area_total").val(data.area_total);
+			$("#area_plantada").val(data.area_plantada);
+			$("#area_irrigada").val(data.area_irrigada);
+			$("#arrendada").val(data.arrendada);
+			$("#prod_media_cafe").val(data.prod_media_cafe);
+			$("#p_eletricidade").val(data.p_eletricidade);
+			$("#p_familiar").val(data.p_familiar);
+			$("#p_analise_solo_folha").val(data.p_analise_solo_folha);
+			$("#p_adubacao_organica").val(data.p_adubacao_organica);
+			$("#p_fertilizacao").val(data.p_fertilizacao);
+			$("#p_analise_camada_expessura").val(data.p_analise_camada_expessura);
+			$("#p_sistema_tulhas").val(data.p_sistema_tulhas);
+			$("#p_protecao_chuva").val(data.p_protecao_chuva);
+			$("#tipo_terreiro").val(data.tipo_terreiro);
+			$("#tipo_processamento").val(data.tipo_processamento);
+			$("#processamento_via_umido").val(data.processamento_via_umido);
+			$("#logradouro").val(data.logradouro);
+			$("#numero_km").val(data.numero_km);
+			$("#id_cidade").val(data.id_cidade);
+			$("#obs").val(data.obs);
+			$("#selectPropEstados").val(data.id_estado);
+			
 		}else{
 			swal("","Erro interno, por favor recarregue a página","error");
 		}
 	})
 	.done(function(){
-    	//getCidades('selectEstados','selectCidades',data.id_cidade);
-    	//$("#id").val(data.id_estado);
+    	getCidades('selectPropEstados','selectPropCidades',data.id_cidade);
     	
-    	//imgs
-    	// if (data.comprovante_bancario != "") {
-    	// 	$("#image-comprovante-bd").attr("src",base_urla + 'uploads/docs/'+IDPRODUTOR+'/'+data.comprovante_bancario);
-    	// 	$("#image-comprovante-bd").css("display","block");
-    	// }
+    	getSafras(id);
+    	getSafrasCafes(id);
+    	toogleTipoProcessamento();
+    });
+}
+
+function getSafras(id){
+	url = base_urla + 'admin/api/safra/' + id;
+	selecto = $("#tabelaSafra");
+	$.get(url, function(res) {
+		if (res) {
+			data = JSON.parse(res);
+			
+			data.forEach(function(obj){
+				var col = "";
+				col += '<td>'+obj.safra_ano_inicio+ '/' +obj.safra_ano_fim + '</td>';
+				col += '<td>'+obj.valor_safra+'</td>';
+				col += '<td>'+
+							'<button class="w3-button w3-black w3-round"><i class="fa fa-edit"></i></button> '+
+							'<button class="w3-button w3-red w3-round"><i class="fa fa-trash-o"></i></button></td>';
+				selecto.append("<tr>"+col+"</tr>");
+			});
+		}
+	})
+	.done(function(){
+    	
+    });
+}
+
+function getSafrasCafes(id){
+	url = base_urla + 'admin/api/safra-cafe/' + id;
+	selector = $("#tabelaSafraCafe");
+	$.get(url, function(res) {
+		if (res) {
+			data = JSON.parse(res);
+			
+			data.forEach(function(obj){
+				var col = "";
+				col += '<td>'+obj.safra_ano_inicio+ '/' +obj.safra_ano_fim + '</td>';
+				col += '<td>'+obj.variedade+'</td>';
+				col += '<td>'+obj.area_plantada+'</td>';
+				col += '<td>'+obj.valor_safra+'</td>';
+				col += '<td>'+
+							'<button class="w3-button w3-black w3-round"><i class="fa fa-edit"></i></button> '+
+							'<button class="w3-button w3-red w3-round"><i class="fa fa-trash-o"></i></button></td>';
+				selector.append("<tr>"+col+"</tr>");
+			});
+		}
+	})
+	.done(function(){
+    	
     });
 }

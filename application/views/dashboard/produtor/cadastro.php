@@ -56,8 +56,8 @@ img{
               <input type="text" class="w3-input w3-border" placeholder="Certificados" id="certificados" name="certificados">
             </div>
             <div class="w3-col m3 w3-margin-top">
-              <label id="label-cpf_cnpj">CPF</label>
-              <input type="text" class="w3-input w3-border" placeholder="Telefone" id="telefone" name="telefone">
+              <label for="telefone">Telefone</label>
+              <input type="text" class="w3-input w3-border" placeholder="Ex: (35)3535-0000" id="telefone" name="telefone">
             </div>
             <div class="w3-col m3 w3-margin-top">
               <label>Tipo de Pessoa</label>

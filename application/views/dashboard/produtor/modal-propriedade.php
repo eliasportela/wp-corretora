@@ -9,41 +9,44 @@
         <div class="w3-row-padding">
           <div class="w3-col l4 w3-margin-top">
             <label>Tipo</label>
-            <select class="w3-select w3-border w3-white" name="id_tipo_propriedade">
-              <option>Fazenda</option>
-              <option>Sítio</option>
-              <option>Chácara</option>
+            <select class="w3-select w3-border w3-white" name="tipo_propriedade" id="tipo_propriedade">
+              <option value="Fazenda">Fazenda</option>
+              <option value="Sitio">Sítio</option>
+              <option value="Chacara">Chácara</option>
             </select>
           </div>
+          <?php if (isset($produtor)): ?>
+            <input type="hidden" name="id_produtor" value="<?=$produtor?>">
+          <?php endif;?>
           <div class="w3-col l4 w3-margin-top">
             <label>Nome da Propriedade</label>
-            <input type="text" class="w3-input w3-border" placeholder="Nome da Propriedade" name="nome_propriedade" required>
+            <input type="text" class="w3-input w3-border" placeholder="Nome da Propriedade" name="nome_propriedade" id="nome_propriedade" required>
           </div>
           <div class="w3-col l4 w3-margin-top">
             <label>CNPJ</label>
-            <input type="text" class="w3-input w3-border" placeholder="Ex: 123.121.0001/01" name="cnpj">
+            <input type="text" class="w3-input w3-border" placeholder="Ex: 123.121.0001/01" name="cnpj" id="cnpj">
           </div>
           <div class="w3-col l4 w3-margin-top">
             <label>Contatos na Propriedade</label>
-            <input type="text" class="w3-input w3-border" placeholder="Ex: Daniel, Joaquim" name="telefone">
+            <input type="text" class="w3-input w3-border" placeholder="Ex: Daniel, Joaquim" name="telefone" id="telefone">
           </div>
           <div class="w3-col l4 w3-margin-top">
             <label>Telefone</label>
-            <input type="text" class="w3-input w3-border" placeholder="Ex: (16) 3531-1215" name="contato">
+            <input type="text" class="w3-input w3-border" placeholder="Ex: (16) 3531-1215" name="contato" id="contato">
           </div>
           <div class="w3-col l4 w3-margin-top">
             <label>Enviar Foto</label>
-            <input type="file" class="w3-input" name="propriedade_file">
+            <input type="file" class="w3-input" name="propriedade_file" id="propriedade_file">
           </div>
         </div>
         <div class="w3-row-padding">
           <div class="w3-col l4 w3-margin-top">
             <label>Logradouro</label>
-            <input type="text" class="w3-input w3-border" placeholder="Ex: Rodovia Ronan Rocha" name="logradouro" required>
+            <input type="text" class="w3-input w3-border" placeholder="Ex: Rodovia Ronan Rocha" name="logradouro" id="logradouro" required>
           </div>
           <div class="w3-col l2 w3-margin-top">
             <label>Número/KM</label>
-            <input type="text" class="w3-input w3-border" placeholder="Ex: KM 200" name="numero_km">
+            <input type="text" class="w3-input w3-border" placeholder="Ex: KM 200" name="numero_km" id="numero_km">
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Estado</label>
@@ -64,111 +67,111 @@
         <div class="w3-row-padding">
           <div class="w3-col l3 w3-margin-top">
             <label>Latitude</label>
-            <input type="number" class="w3-input w3-border" placeholder="Ex: 1.4324121" name="latitude">
+            <input type="number" class="w3-input w3-border" placeholder="Ex: 1.4324121" name="latitude" id="latitude">
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Longitude</label>
-            <input type="number" class="w3-input w3-border" placeholder="Ex: 1.323345" name="longitude">
+            <input type="number" class="w3-input w3-border" placeholder="Ex: 1.323345" name="longitude" id="longitude">
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Altitude (m)</label>
-            <input type="number" class="w3-input w3-border" placeholder="Ex: 1.323121" name="altitude">
+            <input type="number" class="w3-input w3-border" placeholder="Ex: 1.323121" name="altitude" id="altitude">
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Área Total (m2)</label>
-            <input type="number" class="w3-input w3-border" placeholder="Ex: 24.5" name="area_total">
+            <input type="number" class="w3-input w3-border" placeholder="Ex: 24.5" name="area_total" id="area_total">
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Área Plantada (m2)</label>
-            <input type="number" class="w3-input w3-border" placeholder="Ex: 12.5" name="area_plantada">
+            <input type="number" class="w3-input w3-border" placeholder="Ex: 12.5" name="area_plantada" id="area_plantada">
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Área Irrigada (m2)</label>
-            <input type="number" class="w3-input w3-border" placeholder="Ex: 12.5" name="area_irrigada">
+            <input type="number" class="w3-input w3-border" placeholder="Ex: 12.5" name="area_irrigada" id="area_irrigada">
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Área Arrendada (m2)</label>
-            <input type="number" class="w3-input w3-border" placeholder="Ex: 6.3" name="arrendada">
+            <input type="number" class="w3-input w3-border" placeholder="Ex: 6.3" name="arrendada" id="arrendada">
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Prod. media Café (ha)</label>
-            <input type="number" class="w3-input w3-border" placeholder="Ex: 4.2" name="prod_media_cafe">
+            <input type="number" class="w3-input w3-border" placeholder="Ex: 4.2" name="prod_media_cafe" id="prod_media_cafe">
           </div>
           <div class="w3-col l12 w3-margin-top">
             <label>Observações</label>
-            <textarea class="w3-input w3-border" name="obs" placeholder="Informe aqui caso houver observações"></textarea>
+            <textarea class="w3-input w3-border" name="obs" id="obs" placeholder="Informe aqui caso houver observações"></textarea>
           </div>
           <div class="w3-col l12 w3-margin-top">
             <b>Possui*</b>
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Eletricidade?</label>
-            <select class="w3-select w3-border" name="p_eletricidade">
-              <option value="">Não Informado</option>
+            <select class="w3-select w3-border" name="p_eletricidade" id="p_eletricidade">
+              <option value="Não Informado">Não Informado</option>
               <option value="1">Sim</option>
               <option value="0">Não</option>
             </select>
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Propriedade Familiar?</label>
-            <select class="w3-select w3-border" name="p_familiar">
-              <option value="">Não Informado</option>
+            <select class="w3-select w3-border" name="p_familiar" id="p_familiar">
+              <option value="Não Informado">Não Informado</option>
               <option value="1">Sim</option>
               <option value="0">Não</option>
             </select>
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Análise de solo/folha?</label>
-            <select class="w3-select w3-border" name="p_analise_solo_folha">
-              <option value="">Não Informado</option>
+            <select class="w3-select w3-border" name="p_analise_solo_folha" id="p_analise_solo_folha">
+              <option value="2">Não Informado</option>
               <option value="1">Sim</option>
               <option value="0">Não</option>
             </select>
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Adubação Orgânica?</label>
-            <select class="w3-select w3-border" name="p_adubacao_organica">
-              <option value="">Não Informado</option>
+            <select class="w3-select w3-border" name="p_adubacao_organica" id="p_adubacao_organica">
+              <option value="Não Informado">Não Informado</option>
               <option value="1">Sim</option>
               <option value="0">Não</option>
             </select>
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Fertilização?</label>
-            <select class="w3-select w3-border" name="p_fertilizacao">
-              <option value="">Não Informado</option>
+            <select class="w3-select w3-border" name="p_fertilizacao" id="p_fertilizacao">
+              <option value="Não Informado">Não Informado</option>
               <option value="1">Sim</option>
               <option value="0">Não</option>
             </select>
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Análise camada expessura?</label>
-            <select class="w3-select w3-border" name="p_analise_camada_expessura">
-              <option value="">Não Informado</option>
+            <select class="w3-select w3-border" name="p_analise_camada_expessura" id="p_analise_camada_expessura">
+              <option value="Não Informado">Não Informado</option>
               <option value="1">Sim</option>
               <option value="0">Não</option>
             </select>
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Sistemas de Tulhas?</label>
-            <select class="w3-select w3-border" name="p_sistema_tulhas">
-              <option value="">Não Informado</option>
+            <select class="w3-select w3-border" name="p_sistema_tulhas" id="p_sistema_tulhas">
+              <option value="Não Informado">Não Informado</option>
               <option value="1">Sim</option>
               <option value="0">Não</option>
             </select>
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Proteção Chuva?</label>
-            <select class="w3-select w3-border" name="p_protecao_chuva">
-              <option value="">Não Informado</option>
+            <select class="w3-select w3-border" name="p_protecao_chuva" id="p_protecao_chuva">
+              <option value="Não Informado">Não Informado</option>
               <option value="1">Sim</option>
               <option value="0">Não</option>
             </select>
           </div>
           <div class="w3-col l4 w3-margin-top">
             <label>Tipo de Terreiro</label>
-            <select class="w3-select w3-border" name="tipo_terreiro">
-              <option value="">Não Informado</option>
+            <select class="w3-select w3-border" name="tipo_terreiro" id="tipo_terreiro">
+              <option value="Não Informado">Não Informado</option>
               <option value="Asfalto">Asfalto</option>
               <option value="Coberto">Coberto</option>
               <option value="Concreto">Concreto</option>
@@ -180,7 +183,7 @@
           <div class="w3-col l4 w3-margin-top">
             <label>Tipo de Processamento</label>
             <select class="w3-select w3-border" name="tipo_processamento" id="tipo_processamento" onchange="toogleTipoProcessamento()">
-              <option value="">Não Informado</option>
+              <option value="Não Informado">Não Informado</option>
               <option value="Via Seca">Via Seca</option>
               <option value="Via Úmida">Via Úmida</option>
             </select>
@@ -188,7 +191,7 @@
           <div class="w3-col l4 w3-margin-top">
             <label>Processamento via úmido</label>
             <select class="w3-select w3-border" name="processamento_via_umido" id="processamento_via_umido" disabled>
-              <option value="">Não Informado</option>
+              <option value="Não Informado">Não Informado</option>
               <option value="CD">CD</option>
               <option value="Despolpado">Despolpado</option>
               <option value="Desmucilado">Desmucilado</option>
@@ -208,18 +211,6 @@
               </tr>
             </thead>
             <tbody id="tabelaSafra">
-              <tr>
-                <td style="width: 40%">2018 / 2019</td>
-                <td style="width: 30%">600</td>
-                <td style="width: 30%">
-                  <button class="w3-button w3-black w3-round">
-                    <i class="fa fa-edit"></i>
-                  </button>
-                  <button class="w3-button w3-red w3-round">
-                    <i class="fa fa-trash-o"></i>
-                  </button>
-                </td>
-              </tr>
             </tbody>
           </table>
           <button class="w3-button w3-gray w3-right w3-block" type="button" id="btnAddSafra" style="margin:12px 0" onclick="addSafra()"><i class="fa fa-plus"></i> Adicionar safra</button>
@@ -239,20 +230,6 @@
               </tr>
             </thead>
             <tbody id="tabelaSafraCafe">
-              <tr>
-                <td>2018 /2019</td>
-                <td>Café Arábica</td>
-                <td>200 m2</td>
-                <td>600</td>
-                <td>
-                  <button class="w3-button w3-black w3-round">
-                    <i class="fa fa-edit"></i>
-                  </button>
-                  <button class="w3-button w3-red w3-round">
-                    <i class="fa fa-trash-o"></i>
-                  </button>
-                </td>
-              </tr>
             </tbody>
           </table>
           <button class="w3-button w3-gray w3-right w3-block" type="button" style="margin:12px 0" onclick="addSafraCafe()"><i class="fa fa-plus"></i> Adicionar safra</button>
