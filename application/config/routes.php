@@ -36,8 +36,8 @@ $route['admin/api/produtor/remover/(:num)'] = 'Produtor/Remove';
 #Propriedades
 $route['admin/api/propriedade/(:num)']['get'] = 'Propriedade/Get';
 $route['admin/api/propriedade/id/(:num)']['get'] = 'Propriedade/GetId';
-$route['admin/api/propriedade/(:num)']['post'] = 'Propriedade/Register';
-$route['admin/api/propriedade/editar/(:num)']['post'] = 'Propriedade/Edit';
+$route['admin/api/propriedade/']['post'] = 'Propriedade/Register';
+$route['admin/api/propriedade/(:num)']['post'] = 'Propriedade/Edit';
 $route['admin/api/propriedade/remover/(:num)']['get'] = 'Propriedade/Remove';
 
 #Safras

@@ -177,47 +177,124 @@ class Propriedade extends CI_Controller {
 	//Inserindo registros
 	public function Edit() {
 
-		$nivel_user = 2;
+		$nivel_user = 1;
+		$foto_propriedade = null;
+		
+		$dataRegister = $this->input->post();
+		$propriedade = (int)$this->uri->segment(4);
+		$produtor = trim($dataRegister['id_produtor']);
 
 		if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)):
+
+		$path = './uploads/docs/'.$produtor.'/propriedades/';
+		$config['upload_path'] = $path;
+		$config['allowed_types'] = 'pdf|jpg|jpeg|png';
+		$config['max_size'] = '5000';
+		$config['encrypt_name']  = TRUE;
+		$this->upload->initialize($config);
+
+		if (!is_dir($path)) {
+			mkdir($path, 0777, $recursive = true);
+		}
+
+		
+		if ($dataRegister['nome_propriedade'] != NULL):
+
+			if ($this->upload->do_upload('propriedade_file')) {
+				$dadosImagem = $this->upload->data();
+				$foto_propriedade = $dadosImagem['file_name'];
+			}
 			
-			$dataId = (int)$this->uri->segment(5);
-			$dataRegister = $this->input->post();
+			$dataModel = array(
+				'nome_propriedade' => trim($dataRegister['nome_propriedade']),
+				'tipo_propriedade' => trim($dataRegister['tipo_propriedade']),
+				'cnpj' => trim($dataRegister['cnpj']),
+				'contato' => trim($dataRegister['contato']),
+				'telefone' => trim($dataRegister['telefone']),
+				'latitude' => trim($dataRegister['latitude']),
+				'longitude' => trim($dataRegister['longitude']),
+				'altitude' => trim($dataRegister['altitude']),
+				'area_total' => trim($dataRegister['area_total']),
+				'area_plantada' => trim($dataRegister['area_plantada']),
+				'area_irrigada' => trim($dataRegister['area_irrigada']),
+				'arrendada' => trim($dataRegister['arrendada']),
+				'prod_media_cafe' => trim($dataRegister['prod_media_cafe']),
+				'p_eletricidade' => trim($dataRegister['p_eletricidade']),
+				'p_familiar' => trim($dataRegister['p_familiar']),
+				'p_analise_solo_folha' => trim($dataRegister['p_analise_solo_folha']),
+				'p_adubacao_organica' => trim($dataRegister['p_adubacao_organica']),
+				'p_fertilizacao' => trim($dataRegister['p_fertilizacao']),
+				'p_analise_camada_expessura' => trim($dataRegister['p_analise_camada_expessura']),
+				'p_sistema_tulhas' => trim($dataRegister['p_sistema_tulhas']),
+				'p_protecao_chuva' => trim($dataRegister['p_protecao_chuva']),
+				'tipo_terreiro' => trim($dataRegister['tipo_terreiro']),
+				'tipo_processamento' => trim($dataRegister['tipo_processamento']),
+				'logradouro' => trim($dataRegister['logradouro']),
+				'numero_km' => trim($dataRegister['numero_km']),
+				'id_cidade' => trim($dataRegister['id_cidade']),
+				'obs' => trim($dataRegister['obs']));
 
-			if (($dataId > 0) AND ($dataRegister != NULL) AND ($dataRegister['nome_produtor'] != NULL)):
+			if (isset($dataRegister['processamento_via_umido'])) {
+				$dataModel = array_merge($dataModel,array('processamento_via_umido' => trim($dataRegister['processamento_via_umido'])));
+			}
 
-				$dataModel = array(
-					'nome_produtor' => trim($dataRegister['nome_produtor']),
-					'id_tipo_pessoa' => trim($dataRegister['id_tipo_pessoa']),
-					'cpf_cnpj' => trim($dataRegister['cpf_cnpj']),
-					'rg_inscricao_estadual' => trim($dataRegister['rg_inscricao_estadual']),
-					'data_nascimento' => trim($dataRegister['data_nascimento']),
-					'escolaridade' => trim($dataRegister['escolaridade']),
-					'membros_familia' => trim($dataRegister['membros_familia']),
-					'email' => trim($dataRegister['email']),
-					'telefone' => trim($dataRegister['telefone']),
-					'foto_produtor' => trim($dataRegister['foto_produtor']),
-					'endereco' => trim($dataRegister['endereco']),
-					'numero' => trim($dataRegister['numero']),
-					'complemento' => trim($dataRegister['complemento']),
-					'cep' => trim($dataRegister['cep']),
-					'bairro' => trim($dataRegister['bairro']),
-					'id_cidade' => trim($dataRegister['id_cidade']),
-					'comprovante_bancario' => trim($dataRegister['comprovante_bancario']),
-					'certificados' => trim($dataRegister['certificados']));
+			if ($foto_propriedade) {
 				
-				$res = $this->Crud_model->Update('produtor',$dataModel, array('id_produtor' => $dataId));
-				
-				if($res):
-					$this->output->set_status_header('200');
-					return;
+				$sql = "SELECT foto_propriedade FROM propriedade WHERE id_propriedade = $propriedade";
+				$upload = $this->Crud_model->Query($sql);
+				$dataModel = array_merge($dataModel,array('foto_propriedade' => $foto_propriedade));
+				if ($upload) {
+					unlink($path.$upload[0]->foto_propriedade);
+				}
+			}
+
+			$res = $this->Crud_model->Update('propriedade',$dataModel,array('id_propriedade' => $propriedade));
+
+			if($res):
+
+				//Safras Geral
+				if(isset($dataRegister['safraQtd'])):
+
+					for ($i=0; $i < count($dataRegister['safraQtd']); $i++) {
+						
+						$safraModel = array('safra_ano_inicio' => $dataRegister['safraAnoInicio'][$i],
+							'safra_ano_fim' => $dataRegister['safraAnoFim'][$i],
+							'valor_safra' => $dataRegister['safraQtd'][$i],
+							'id_propriedade' => $res);
+
+						$res = $this->Crud_model->Insert('safra_geral',$safraModel);
+					}
+
 				endif;
-			endif;
 
-		else:
-			$this->output->set_status_header('400');
+				//Safras Cafés
+				if(isset($dataRegister['safraCafeQtd'])):
+
+					for ($i=0; $i < count($dataRegister['safraCafeQtd']); $i++) {
+						
+						$safraModel = array(
+							'safra_ano_inicio' => $dataRegister['safraCafeAnoInicio'][$i],
+							'safra_ano_fim' => $dataRegister['safraCafeAnoFim'][$i],
+							'variedade' => $dataRegister['safraCafeVariedade'][$i],
+							'area_plantada' => $dataRegister['safraCafeArea'][$i],
+							'valor_safra' => $dataRegister['safraCafeQtd'][$i],
+							'id_propriedade' => $res);
+
+						$res = $this->Crud_model->Insert('safra_cafe',$safraModel);
+					}
+
+				endif;
+
+				$this->output->set_status_header('200');
+
+			endif;
+			
 		endif;
 
+		else:
+			$this->output->set_status_header('404');
+		endif;
+		
 	}
 
 	//Delete registro

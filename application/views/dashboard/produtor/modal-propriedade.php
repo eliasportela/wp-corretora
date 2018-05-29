@@ -2,7 +2,7 @@
   <div class="w3-modal-content modal w3-card-4 w3-animate-left">
     <form method="POST" action="" id="inserirPropriedade">
       <div class="w3-container w3-padding-16 w3-large w3-border-bottom">
-        <i class="fa fa-building"></i> Cadastro de Propriedade  
+        <i class="fa fa-building"></i> <span id="titleForm">Cadastro de Propriedade</span>
         <span class="w3-right" onclick="closeModalPropriedade()" style="cursor: pointer;"><i class="fa fa-times"></i></span>
       </div>
       <div class="w3-section" >
@@ -18,6 +18,7 @@
           <?php if (isset($produtor)): ?>
             <input type="hidden" name="id_produtor" value="<?=$produtor?>">
           <?php endif;?>
+          <input type="hidden" name="id_propriedade" id="id_propriedade" value="0">
           <div class="w3-col l4 w3-margin-top">
             <label>Nome da Propriedade</label>
             <input type="text" class="w3-input w3-border" placeholder="Nome da Propriedade" name="nome_propriedade" id="nome_propriedade" required>
@@ -190,7 +191,7 @@
           </div>
           <div class="w3-col l4 w3-margin-top">
             <label>Processamento via úmido</label>
-            <select class="w3-select w3-border" name="processamento_via_umido" id="processamento_via_umido" disabled>
+            <select class="w3-select w3-border" name="processamento_via_umido" id="processamento_via_umido">
               <option value="Não Informado">Não Informado</option>
               <option value="CD">CD</option>
               <option value="Despolpado">Despolpado</option>
@@ -250,3 +251,4 @@
 </div>
 
 <script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/propriedade/propriedade.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/dashboard/propriedade/editarPropriedade.js');?>"></script>
