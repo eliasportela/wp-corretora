@@ -89,7 +89,7 @@ function getProdutorID(id){
     		$("#image-foto-bd").css("display","block");
     	}
     	if (data.comprovante_bancario != "") {
-    		$("#image-comprovante-bd").attr("src",base_urla + 'uploads/docs/'+IDPRODUTOR+'/'+data.comprovante_bancario);
+    		$("#view-comprovante").attr("href",base_urla + 'uploads/docs/'+IDPRODUTOR+'/'+data.comprovante_bancario);
     		$("#image-comprovante-bd").css("display","block");
     	}
     });

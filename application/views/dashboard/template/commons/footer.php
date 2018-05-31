@@ -6,7 +6,7 @@
   }
 }
 </style>
-<div id="request" class="w3-modal" style="padding-top: 35vh;">
+<div id="request" class="w3-modal" style="padding-top: 35vh;z-index: 99">
   <div class="w3-modal-content w3-card-4 modal-request">
     <div class="w3-container">
       <div class="w3-row-padding w3-center" id="botaoSelecionarImagemImovel">

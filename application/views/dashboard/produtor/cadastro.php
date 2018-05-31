@@ -19,6 +19,11 @@ img{
   min-width: 1024px;
 }
 
+.w3-red:hover{
+  background-color: red!important;
+  color: #fff!important;
+}
+
 </style>
 
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
@@ -98,14 +103,14 @@ img{
               </select>
             </div>
             <div class="w3-col m3 w3-margin-top">
-              <label for="foto_file">Foto</label>
+              <label for="foto_file">Foto (JPEG,PNG,JPG)</label>
               <button type="button" class="w3-button w3-black w3-block" onclick="modalFoto()"><?=$btnFoto?></button>
-              <input type="file" class="w3-input" id="foto_file" name="foto_file" style="display: none;">
+              <input type="file" class="w3-input" id="foto_file" name="foto_file" accept="image/*" style="display: none;">
             </div>
             <div class="w3-col m3 w3-margin-top">
               <label>Comprovante Bancário</label>
               <button type="button" class="w3-button w3-black w3-block" onclick="modalComprovante()"><?=$btnFoto?></button>
-              <input type="file" class="w3-input" id="comprovante_file" name="comprovante_file" style="display: none;">
+              <input type="file" class="w3-input" id="comprovante_file" name="comprovante_file" accept="image/*" style="display: none;">
             </div>
 
             <div class="w3-col m12 w3-margin-top">Correspondência</div>
@@ -163,8 +168,9 @@ img{
           <tr class="w3-black">
             <th style="width: 10%"></th>
             <th style="width: 20%">Nome</th>
-            <th style="width: 35%">Cidade</th>
-            <th style="width: 35%">Estado</th>
+            <th style="width: 30%">Cidade</th>
+            <th style="width: 20%">Estado</th>
+            <th style="width: 20%">Remover</th>
           </tr>
         </thead>
         <tbody id="propriedades">
@@ -220,8 +226,10 @@ img{
       </div>
       <div class="w3-border w3-padding w3-padding-32">
         <label class="w3-button w3-black w3-block" for="comprovante_file">Buscar</label>
-        <div id="image-comprovante"></div>
-        <img src="" id="image-comprovante-bd" style="display: none;">
+        <p class="w3-center" id="image-comprovante"></p>
+        <div id="image-comprovante-bd" style="display: none;">
+          <a href="" target="_blanck" id="view-comprovante" class="w3-button w3-black w3-block">Visualizar comprovante</a>
+        </div>
       </div>
     </div>
     <div class="w3-padding-16 w3-padding">
