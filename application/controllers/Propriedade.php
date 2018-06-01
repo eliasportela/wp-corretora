@@ -65,109 +65,124 @@ class Propriedade extends CI_Controller {
 		$foto_propriedade = null;
 		if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)):
 
-		$dataRegister = $this->input->post();
-		
-		if ($dataRegister['nome_propriedade'] != NULL):
+			$dataRegister = $this->input->post();
 
-			$produtor = trim($dataRegister['id_produtor']);
-			
+			if ($dataRegister['nome_propriedade'] != NULL):
+
+				$produtor = trim($dataRegister['id_produtor']);
+
 			//Config ambiente de upload
-			$path = './uploads/docs/'.$produtor.'/propriedades/';
-			$config['upload_path'] = $path;
-			$config['allowed_types'] = 'pdf|jpg|jpeg|png';
-			$config['max_size'] = '5000';
-			$config['encrypt_name']  = TRUE;
-			$this->upload->initialize($config);
+				$path = './uploads/docs/'.$produtor.'/propriedades/';
+				$config['upload_path'] = $path;
+				$config['allowed_types'] = 'pdf|jpg|jpeg|png';
+				$config['max_size'] = '5000';
+				$config['encrypt_name']  = TRUE;
+				$this->upload->initialize($config);
 
 			//verifica se o path é válido, se não for cria o diretório
-			if (!is_dir($path)) {
-				mkdir($path, 0777, $recursive = true);
-			}
+				if (!is_dir($path)) {
+					mkdir($path, 0777, $recursive = true);
+				}
 
-			$logimg = null;
+				$logimg = null;
 
 			//upload da imagem
-			if (!$this->upload->do_upload('propriedade_file')) {
-				$logimg = $this->upload->display_errors(null,null);
-			} else {
-				$dadosImagem = $this->upload->data();
-				$foto_propriedade = $dadosImagem['file_name'];
-			}
+				if (!$this->upload->do_upload('propriedade_file')) {
+					$logimg = $this->upload->display_errors(null,null);
+				} else {
+					$dadosImagem = $this->upload->data();
+					$foto_propriedade = $dadosImagem['file_name'];
+				}
 
-			$dataModel = array(
-				'id_produtor' => $produtor,
-				'nome_propriedade' => trim($dataRegister['nome_propriedade']),
-				'tipo_propriedade' => trim($dataRegister['tipo_propriedade']),
-				'cnpj' => trim($dataRegister['cnpj']),
-				'contato' => trim($dataRegister['contato']),
-				'telefone' => trim($dataRegister['telefone']),
-				'foto_propriedade' => $foto_propriedade,
-				'latitude' => trim($dataRegister['latitude']),
-				'longitude' => trim($dataRegister['longitude']),
-				'altitude' => trim($dataRegister['altitude']),
-				'area_total' => trim($dataRegister['area_total']),
-				'area_plantada' => trim($dataRegister['area_plantada']),
-				'area_irrigada' => trim($dataRegister['area_irrigada']),
-				'arrendada' => trim($dataRegister['arrendada']),
-				'prod_media_cafe' => trim($dataRegister['prod_media_cafe']),
-				'p_eletricidade' => trim($dataRegister['p_eletricidade']),
-				'p_familiar' => trim($dataRegister['p_familiar']),
-				'p_analise_solo_folha' => trim($dataRegister['p_analise_solo_folha']),
-				'p_adubacao_organica' => trim($dataRegister['p_adubacao_organica']),
-				'p_fertilizacao' => trim($dataRegister['p_fertilizacao']),
-				'p_analise_camada_expessura' => trim($dataRegister['p_analise_camada_expessura']),
-				'p_sistema_tulhas' => trim($dataRegister['p_sistema_tulhas']),
-				'p_protecao_chuva' => trim($dataRegister['p_protecao_chuva']),
-				'tipo_terreiro' => trim($dataRegister['tipo_terreiro']),
-				'tipo_processamento' => trim($dataRegister['tipo_processamento']),
-				'processamento_via_umido' => trim($dataRegister['processamento_via_umido']),
-				'logradouro' => trim($dataRegister['logradouro']),
-				'numero_km' => trim($dataRegister['numero_km']),
-				'id_cidade' => trim($dataRegister['id_cidade']),
-				'obs' => trim($dataRegister['obs']));
-			
-			$res = $this->Crud_model->InsertID('propriedade',$dataModel);
+				$dataModel = array(
+					'id_produtor' => $produtor,
+					'nome_propriedade' => trim($dataRegister['nome_propriedade']),
+					'tipo_propriedade' => trim($dataRegister['tipo_propriedade']),
+					'cnpj' => trim($dataRegister['cnpj']),
+					'contato' => trim($dataRegister['contato']),
+					'telefone' => trim($dataRegister['telefone']),
+					'foto_propriedade' => $foto_propriedade,
+					'latitude' => trim($dataRegister['latitude']),
+					'longitude' => trim($dataRegister['longitude']),
+					'altitude' => trim($dataRegister['altitude']),
+					'area_total' => trim($dataRegister['area_total']),
+					'area_plantada' => trim($dataRegister['area_plantada']),
+					'area_irrigada' => trim($dataRegister['area_irrigada']),
+					'arrendada' => trim($dataRegister['arrendada']),
+					'prod_media_cafe' => trim($dataRegister['prod_media_cafe']),
+					'p_eletricidade' => trim($dataRegister['p_eletricidade']),
+					'p_familiar' => trim($dataRegister['p_familiar']),
+					'p_analise_solo_folha' => trim($dataRegister['p_analise_solo_folha']),
+					'p_adubacao_organica' => trim($dataRegister['p_adubacao_organica']),
+					'p_fertilizacao' => trim($dataRegister['p_fertilizacao']),
+					'p_analise_camada_expessura' => trim($dataRegister['p_analise_camada_expessura']),
+					'p_sistema_tulhas' => trim($dataRegister['p_sistema_tulhas']),
+					'p_protecao_chuva' => trim($dataRegister['p_protecao_chuva']),
+					'tipo_terreiro' => trim($dataRegister['tipo_terreiro']),
+					'tipo_processamento' => trim($dataRegister['tipo_processamento']),
+					'processamento_via_umido' => trim($dataRegister['processamento_via_umido']),
+					'logradouro' => trim($dataRegister['logradouro']),
+					'numero_km' => trim($dataRegister['numero_km']),
+					'id_cidade' => trim($dataRegister['id_cidade']),
+					'obs' => trim($dataRegister['obs']));
 
-			if($res):
+				$propriedade = $this->Crud_model->InsertID('propriedade',$dataModel);
 
-				//Safras Geral
-				if($dataRegister['safraQtd'] != NULL):
+				if($propriedade):
 
-					for ($i=0; $i < count($dataRegister['safraQtd']); $i++) {
-						
-						$safraModel = array('safra_ano_inicio' => $dataRegister['safraAnoInicio'][$i],
-							'safra_ano_fim' => $dataRegister['safraAnoFim'][$i],
-							'valor_safra' => $dataRegister['safraQtd'][$i],
-							'id_propriedade' => $res);
+				//Safras Previsao
+					if(isset($dataRegister['safraPreQtd'])):
 
-						$res = $this->Crud_model->Insert('safra_geral',$safraModel);
-					}
+						for ($i=0; $i < count($dataRegister['safraPreQtd']); $i++) {
 
-				endif;
+							$safraModel = array('safra_ano_inicio' => $dataRegister['safraPreAnoInicio'][$i],
+								'safra_ano_fim' => $dataRegister['safraPreAnoFim'][$i],
+								'qtd_safra' => $dataRegister['safraPreQtd'][$i],
+								'id_propriedade' => $propriedade);
+
+							$res = $this->Crud_model->Insert('safra_previsao',$safraModel);
+						}
+
+					endif;
+
+				//Safras Fechamento
+					if(isset($dataRegister['safraFeQtd'])):
+
+						for ($i=0; $i < count($dataRegister['safraFeQtd']); $i++) {
+
+							$safraModel = array('safra_ano_inicio' => $dataRegister['safraFeAnoInicio'][$i],
+								'safra_ano_fim' => $dataRegister['safraFeAnoFim'][$i],
+								'qtd_safra' => $dataRegister['safraFeQtd'][$i],
+								'id_propriedade' => $propriedade);
+
+							$res = $this->Crud_model->Insert('safra_fechamento',$safraModel);
+						}
+
+					endif;
 
 				//Safras Cafés
-				if($dataRegister['safraCafeQtd'] != NULL):
+					if(isset($dataRegister['safraCafeQtd'])):
 
-					for ($i=0; $i < count($dataRegister['safraCafeQtd']); $i++) {
-						
-						$safraModel = array(
-							'safra_ano_inicio' => $dataRegister['safraCafeAnoInicio'][$i],
-							'safra_ano_fim' => $dataRegister['safraCafeAnoFim'][$i],
-							'variedade' => $dataRegister['safraCafeVariedade'][$i],
-							'area_plantada' => $dataRegister['safraCafeArea'][$i],
-							'valor_safra' => $dataRegister['safraCafeQtd'][$i],
-							'id_propriedade' => $res);
+						for ($i=0; $i < count($dataRegister['safraCafeQtd']); $i++) {
 
-						$res = $this->Crud_model->Insert('safra_cafe',$safraModel);
-					}
+							$safraModel = array(
+								'safra_ano_inicio' => $dataRegister['safraCafeAnoInicio'][$i],
+								'safra_ano_fim' => $dataRegister['safraCafeAnoFim'][$i],
+								'variedade' => $dataRegister['safraCafeVariedade'][$i],
+								'area_plantada' => $dataRegister['safraCafeArea'][$i],
+								'qtd_safra' => $dataRegister['safraCafeQtd'][$i],
+								'id_propriedade' => $propriedade);
+
+							$res = $this->Crud_model->Insert('safra_cafe',$safraModel);
+						}
+
+					endif;
+
+					$this->output->set_status_header('200');
 
 				endif;
 
-				$this->output->set_status_header('200');
-
 			endif;
-			
-		endif;
 
 		else:
 			$this->output->set_status_header('404');
@@ -186,110 +201,128 @@ class Propriedade extends CI_Controller {
 
 		if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)):
 
-		$path = './uploads/docs/'.$produtor.'/propriedades/';
-		$config['upload_path'] = $path;
-		$config['allowed_types'] = 'pdf|jpg|jpeg|png';
-		$config['max_size'] = '5000';
-		$config['encrypt_name']  = TRUE;
-		$this->upload->initialize($config);
+			$path = './uploads/docs/'.$produtor.'/propriedades/';
+			$config['upload_path'] = $path;
+			$config['allowed_types'] = 'pdf|jpg|jpeg|png';
+			$config['max_size'] = '5000';
+			$config['encrypt_name']  = TRUE;
+			$this->upload->initialize($config);
 
-		if (!is_dir($path)) {
-			mkdir($path, 0777, $recursive = true);
-		}
-
-		
-		if ($dataRegister['nome_propriedade'] != NULL):
-
-			if ($this->upload->do_upload('propriedade_file')) {
-				$dadosImagem = $this->upload->data();
-				$foto_propriedade = $dadosImagem['file_name'];
-			}
-			
-			$dataModel = array(
-				'nome_propriedade' => trim($dataRegister['nome_propriedade']),
-				'tipo_propriedade' => trim($dataRegister['tipo_propriedade']),
-				'cnpj' => trim($dataRegister['cnpj']),
-				'contato' => trim($dataRegister['contato']),
-				'telefone' => trim($dataRegister['telefone']),
-				'latitude' => trim($dataRegister['latitude']),
-				'longitude' => trim($dataRegister['longitude']),
-				'altitude' => trim($dataRegister['altitude']),
-				'area_total' => trim($dataRegister['area_total']),
-				'area_plantada' => trim($dataRegister['area_plantada']),
-				'area_irrigada' => trim($dataRegister['area_irrigada']),
-				'arrendada' => trim($dataRegister['arrendada']),
-				'prod_media_cafe' => trim($dataRegister['prod_media_cafe']),
-				'p_eletricidade' => trim($dataRegister['p_eletricidade']),
-				'p_familiar' => trim($dataRegister['p_familiar']),
-				'p_analise_solo_folha' => trim($dataRegister['p_analise_solo_folha']),
-				'p_adubacao_organica' => trim($dataRegister['p_adubacao_organica']),
-				'p_fertilizacao' => trim($dataRegister['p_fertilizacao']),
-				'p_analise_camada_expessura' => trim($dataRegister['p_analise_camada_expessura']),
-				'p_sistema_tulhas' => trim($dataRegister['p_sistema_tulhas']),
-				'p_protecao_chuva' => trim($dataRegister['p_protecao_chuva']),
-				'tipo_terreiro' => trim($dataRegister['tipo_terreiro']),
-				'tipo_processamento' => trim($dataRegister['tipo_processamento']),
-				'logradouro' => trim($dataRegister['logradouro']),
-				'numero_km' => trim($dataRegister['numero_km']),
-				'id_cidade' => trim($dataRegister['id_cidade']),
-				'obs' => trim($dataRegister['obs']));
-
-			if (isset($dataRegister['processamento_via_umido'])) {
-				$dataModel = array_merge($dataModel,array('processamento_via_umido' => trim($dataRegister['processamento_via_umido'])));
+			if (!is_dir($path)) {
+				mkdir($path, 0777, $recursive = true);
 			}
 
-			if ($foto_propriedade) {
-				
-				$sql = "SELECT foto_propriedade FROM propriedade WHERE id_propriedade = $propriedade";
-				$upload = $this->Crud_model->Query($sql);
-				$dataModel = array_merge($dataModel,array('foto_propriedade' => $foto_propriedade));
-				if ($upload) {
-					unlink($path.$upload[0]->foto_propriedade);
+
+			if ($dataRegister['nome_propriedade'] != NULL):
+
+				if ($this->upload->do_upload('propriedade_file')) {
+					$dadosImagem = $this->upload->data();
+					$foto_propriedade = $dadosImagem['file_name'];
+				}else{
+					$data = array('error' => $this->upload->display_errors());
+					die(var_dump($data));
 				}
-			}
 
-			$res = $this->Crud_model->Update('propriedade',$dataModel,array('id_propriedade' => $propriedade));
+				$dataModel = array(
+					'nome_propriedade' => trim($dataRegister['nome_propriedade']),
+					'tipo_propriedade' => trim($dataRegister['tipo_propriedade']),
+					'cnpj' => trim($dataRegister['cnpj']),
+					'contato' => trim($dataRegister['contato']),
+					'telefone' => trim($dataRegister['telefone']),
+					'latitude' => trim($dataRegister['latitude']),
+					'longitude' => trim($dataRegister['longitude']),
+					'altitude' => trim($dataRegister['altitude']),
+					'area_total' => trim($dataRegister['area_total']),
+					'area_plantada' => trim($dataRegister['area_plantada']),
+					'area_irrigada' => trim($dataRegister['area_irrigada']),
+					'arrendada' => trim($dataRegister['arrendada']),
+					'prod_media_cafe' => trim($dataRegister['prod_media_cafe']),
+					'p_eletricidade' => trim($dataRegister['p_eletricidade']),
+					'p_familiar' => trim($dataRegister['p_familiar']),
+					'p_analise_solo_folha' => trim($dataRegister['p_analise_solo_folha']),
+					'p_adubacao_organica' => trim($dataRegister['p_adubacao_organica']),
+					'p_fertilizacao' => trim($dataRegister['p_fertilizacao']),
+					'p_analise_camada_expessura' => trim($dataRegister['p_analise_camada_expessura']),
+					'p_sistema_tulhas' => trim($dataRegister['p_sistema_tulhas']),
+					'p_protecao_chuva' => trim($dataRegister['p_protecao_chuva']),
+					'tipo_terreiro' => trim($dataRegister['tipo_terreiro']),
+					'tipo_processamento' => trim($dataRegister['tipo_processamento']),
+					'logradouro' => trim($dataRegister['logradouro']),
+					'numero_km' => trim($dataRegister['numero_km']),
+					'id_cidade' => trim($dataRegister['id_cidade']),
+					'obs' => trim($dataRegister['obs']));
 
-			if($res):
+				if (isset($dataRegister['processamento_via_umido'])) {
+					$dataModel = array_merge($dataModel,array('processamento_via_umido' => trim($dataRegister['processamento_via_umido'])));
+				}
 
-				//Safras Geral
-				if(isset($dataRegister['safraQtd'])):
+				if ($foto_propriedade) {
 
-					for ($i=0; $i < count($dataRegister['safraQtd']); $i++) {
-						
-						$safraModel = array('safra_ano_inicio' => $dataRegister['safraAnoInicio'][$i],
-							'safra_ano_fim' => $dataRegister['safraAnoFim'][$i],
-							'valor_safra' => $dataRegister['safraQtd'][$i],
-							'id_propriedade' => $res);
-
-						$res = $this->Crud_model->Insert('safra_geral',$safraModel);
+					$sql = "SELECT foto_propriedade FROM propriedade WHERE id_propriedade = $propriedade";
+					$upload = $this->Crud_model->Query($sql);
+					$dataModel = array_merge($dataModel,array('foto_propriedade' => $foto_propriedade));
+					if ($upload) {
+						unlink($path.$upload[0]->foto_propriedade);
 					}
+				}
 
-				endif;
+				$res = $this->Crud_model->Update('propriedade',$dataModel,array('id_propriedade' => $propriedade));
+
+				if($res):
+
+				//Safras Previsao
+					if(isset($dataRegister['safraPreQtd'])):
+
+						for ($i=0; $i < count($dataRegister['safraPreQtd']); $i++) {
+
+							$safraModel = array('safra_ano_inicio' => $dataRegister['safraPreAnoInicio'][$i],
+								'safra_ano_fim' => $dataRegister['safraPreAnoFim'][$i],
+								'qtd_safra' => $dataRegister['safraPreQtd'][$i],
+								'id_propriedade' => $propriedade);
+
+							$res = $this->Crud_model->Insert('safra_previsao',$safraModel);
+						}
+
+					endif;
+
+				//Safras Fechamento
+					if(isset($dataRegister['safraFeQtd'])):
+
+						for ($i=0; $i < count($dataRegister['safraFeQtd']); $i++) {
+
+							$safraModel = array('safra_ano_inicio' => $dataRegister['safraFeAnoInicio'][$i],
+								'safra_ano_fim' => $dataRegister['safraFeAnoFim'][$i],
+								'qtd_safra' => $dataRegister['safraFeQtd'][$i],
+								'id_propriedade' => $propriedade);
+
+							$res = $this->Crud_model->Insert('safra_fechamento',$safraModel);
+						}
+
+					endif;
 
 				//Safras Cafés
-				if(isset($dataRegister['safraCafeQtd'])):
+					if(isset($dataRegister['safraCafeQtd'])):
 
-					for ($i=0; $i < count($dataRegister['safraCafeQtd']); $i++) {
-						
-						$safraModel = array(
-							'safra_ano_inicio' => $dataRegister['safraCafeAnoInicio'][$i],
-							'safra_ano_fim' => $dataRegister['safraCafeAnoFim'][$i],
-							'variedade' => $dataRegister['safraCafeVariedade'][$i],
-							'area_plantada' => $dataRegister['safraCafeArea'][$i],
-							'valor_safra' => $dataRegister['safraCafeQtd'][$i],
-							'id_propriedade' => $res);
+						for ($i=0; $i < count($dataRegister['safraCafeQtd']); $i++) {
 
-						$res = $this->Crud_model->Insert('safra_cafe',$safraModel);
-					}
+							$safraModel = array(
+								'safra_ano_inicio' => $dataRegister['safraCafeAnoInicio'][$i],
+								'safra_ano_fim' => $dataRegister['safraCafeAnoFim'][$i],
+								'variedade' => $dataRegister['safraCafeVariedade'][$i],
+								'area_plantada' => $dataRegister['safraCafeArea'][$i],
+								'qtd_safra' => $dataRegister['safraCafeQtd'][$i],
+								'id_propriedade' => $propriedade);
+
+							$res = $this->Crud_model->Insert('safra_cafe',$safraModel);
+						}
+
+					endif;
+
+					$this->output->set_status_header('200');
 
 				endif;
 
-				$this->output->set_status_header('200');
-
 			endif;
-			
-		endif;
 
 		else:
 			$this->output->set_status_header('404');
@@ -299,30 +332,31 @@ class Propriedade extends CI_Controller {
 
 	//Delete registro
 	public function Remove(){
-		
 		$nivel_user = 2;
-
 		if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)):
-			
 			$dataId = (int)$this->uri->segment(5);
-			
 			if ($dataId > 0):
-
-				$res = $this->Crud_model->Delete('produtor',array('id_produtor' => $dataId));
+				//remover img
+				$sql = "SELECT id_produtor, foto_propriedade FROM propriedade WHERE id_propriedade = $dataId";
+				$query = $this->Crud_model->Query($sql);
+				if ($query) {
+					$path = './uploads/docs/'.$query[0]->id_produtor.'/propriedades/';
+					unlink($path.$query[0]->foto_propriedade);
+				}
 				
+				$res = $this->Crud_model->Delete('safra_previsao',array('id_propriedade' => $dataId));
+				$res = $this->Crud_model->Delete('safra_fechamento',array('id_propriedade' => $dataId));
+				$res = $this->Crud_model->Delete('safra_cafe',array('id_propriedade' => $dataId));
+				$res = $this->Crud_model->Delete('propriedade',array('id_propriedade' => $dataId));
 				if($res):
-					$res = $this->Crud_model->Delete('propriedade',array('id_produtor' => $dataId));
-					
 					$this->output->set_status_header('200');
-					
 					return;
 				endif;
 			endif;
-
 		else:
 			$this->output->set_status_header('400');
 		endif;
-
 	}
+
 
 }

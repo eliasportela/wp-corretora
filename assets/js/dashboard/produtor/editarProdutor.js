@@ -89,8 +89,25 @@ function getProdutorID(id){
     		$("#image-foto-bd").css("display","block");
     	}
     	if (data.comprovante_bancario != "") {
-    		$("#image-comprovante-bd").attr("src",base_urla + 'uploads/docs/'+IDPRODUTOR+'/'+data.comprovante_bancario);
+    		$("#view-comprovante").attr("href",base_urla + 'uploads/docs/'+IDPRODUTOR+'/'+data.comprovante_bancario);
     		$("#image-comprovante-bd").css("display","block");
     	}
     });
+}
+
+function deletarProdutorId(id) {
+	swal({
+		title: "Você tem certeza?",
+		text: "Todos os dados associados como (propriedade, safras, imagens e documentos) serão excluídos e não será possível recuperar posteriomente",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonText: "Sim, quero remover",
+		closeOnConfirm: true,
+		html: false
+	}, function(){
+		url = base_urla + 'admin/api/produtor/remover/' + id;
+		$.get(url).done(function(){
+			window.location.href = base_urla +"admin/produtor";
+		});
+	});
 }

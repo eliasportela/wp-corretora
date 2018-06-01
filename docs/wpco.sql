@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Tempo de geração: 28/05/2018 às 21:03
+-- Tempo de geração: 31/05/2018 às 19:27
 -- Versão do servidor: 5.7.21-0ubuntu0.16.04.1
 -- Versão do PHP: 7.0.25-0ubuntu0.16.04.1
 
@@ -5714,7 +5714,7 @@ CREATE TABLE `produtor` (
 
 INSERT INTO `produtor` (`id_produtor`, `nome_produtor`, `id_tipo_pessoa`, `cpf_cnpj`, `rg_inscricao_estadual`, `data_nascimento`, `escolaridade`, `membros_familia`, `email`, `telefone`, `foto_produtor`, `endereco`, `numero`, `complemento`, `cep`, `bairro`, `id_cidade`, `comprovante_bancario`, `certificados`, `dt_cadastro`, `fg_ativo`) VALUES
 (3, 'Elias Portela', 1, '13181677804', '12345678', '1996-11-24', 1, 4, 'edwportela@gmail.com', '1635351805', '', 'Rua Agenor Teofilo de Carvalho', '14', '', '37960000', 'Centro', 1, '', '', '2018-05-20 21:29:27', 1),
-(4, 'Danilo', 1, '13181677804', '12345678', '1996-11-24', 1, 4, 'edwportela@gmail.com', '1635351805', '', 'Rua Agenor Teofilo de Carvalho', '14', '', '37960000', 'Centro', 1, '', '', '2018-05-20 21:29:27', 1),
+(4, 'Danilo', 1, '13181677808', '12345676', '1996-11-20', 5, 3, 'danilo.rifa@gmail.com', '1635352240', '17ae8425c318ec6f1394deec88bbd6e8.jpg', 'Rua Agenor Teofilo de Carvalho', '14', '123', '37920000', 'Centro', 3756, 'a55bc5d36ae106ed7a6a024fde3518a7.pdf', 'aaaa', '2018-05-20 21:29:27', 1),
 (5, 'Leandro', 1, '13181677804', '12345678', '1996-11-24', 1, 4, 'edwportela@gmail.com', '1635351805', '', 'Rua Agenor Teofilo de Carvalho', '14', '', '37960000', 'Centro', 1, '', '', '2018-05-20 21:29:27', 1),
 (6, 'Ana Laura', 1, '13181677804', '12345678', '1996-11-24', 1, 4, 'edwportela@gmail.com', '1635351805', '', 'Rua Agenor Teofilo de Carvalho', '14', '', '37960000', 'Centro', 1, '', '', '2018-05-20 21:29:27', 1),
 (7, 'Julia', 1, '13181677804', '12345678', '1996-11-24', 1, 4, 'edwportela@gmail.com', '1635351805', '', 'Rua Agenor Teofilo de Carvalho', '14', '', '37960000', 'Centro', 1, '', '', '2018-05-20 21:29:27', 1),
@@ -5776,9 +5776,10 @@ CREATE TABLE `propriedade` (
 --
 
 INSERT INTO `propriedade` (`id_propriedade`, `id_produtor`, `tipo_propriedade`, `nome_propriedade`, `cnpj`, `contato`, `telefone`, `foto_propriedade`, `latitude`, `longitude`, `altitude`, `area_total`, `area_plantada`, `area_irrigada`, `arrendada`, `prod_media_cafe`, `p_eletricidade`, `p_familiar`, `p_analise_solo_folha`, `p_adubacao_organica`, `p_fertilizacao`, `p_analise_camada_expessura`, `p_sistema_tulhas`, `p_protecao_chuva`, `tipo_terreiro`, `tipo_processamento`, `processamento_via_umido`, `logradouro`, `numero_km`, `id_cidade`, `obs`, `dt_cadastro`, `fg_ativo`) VALUES
-(9, 3, 'Fazenda', 'Casemiro', '', '', '', NULL, '', '', '', '', '', '', '', '', 'Não Informado', 'Não Informado', '2', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Via Úmida', 'CD', 'Rodovia dos Almirantes', 'KM 300', 89, '', '2018-05-28 17:00:24', 1),
+(9, 3, 'Fazenda', 'Casemir', '', '', '', '39619a74cc27f18ffae8712f9b8c7f60.jpg', '', '', '', '', '', '', '', '', 'Não Informado', 'Não Informado', '2', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Via Úmida', 'Não Informado', 'Rodovia dos Almirantes', 'KM 300', 89, '', '2018-05-28 17:00:24', 1),
 (10, 3, 'Fazenda', 'Leonidas', '', '', '', NULL, '', '', '', '', '', '', '', '', 'Não Informado', 'Não Informado', '2', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Rodovia dos Camioneiros', 'KM 250', 1477, '', '2018-05-28 17:06:10', 1),
-(11, 3, 'Fazenda', 'Vitória', '', '', '', NULL, '', '', '', '', '', '', '', '', 'Não Informado', 'Não Informado', '2', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Asfalto', 'Via Úmida', 'Não Informado', 'Rodovia dos Camioneiros', 'KM 250', 1477, '', '2018-05-28 17:06:46', 1);
+(11, 3, 'Fazenda', 'Vitória', '', '', '', NULL, '', '', '', '', '', '', '', '', 'Não Informado', 'Não Informado', '2', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Asfalto', 'Via Úmida', 'Não Informado', 'Rodovia dos Camioneiros', 'KM 250', 1477, '', '2018-05-28 17:06:46', 1),
+(21, 4, 'Fazenda', 'Jubileia', '123456', '', '', '1863480c0969628f06337a4873ed4123.jpg', '', '', '', '', '', '', '', '', 'Não Informado', 'Não Informado', '2', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', 'Não Informado', '', 'Rodovia Arlindo Braga', 'KM 250', 137, '', '2018-05-31 18:44:15', 1);
 
 -- --------------------------------------------------------
 
@@ -5793,38 +5794,39 @@ CREATE TABLE `safra_cafe` (
   `id_propriedade` int(11) NOT NULL,
   `variedade` varchar(32) NOT NULL,
   `area_plantada` float DEFAULT NULL,
-  `valor_safra` decimal(7,2) NOT NULL,
+  `qtd_safra` varchar(10) NOT NULL,
   `fg_ativo` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Fazendo dump de dados para tabela `safra_cafe`
---
-
-INSERT INTO `safra_cafe` (`id_safra_cafe`, `safra_ano_inicio`, `safra_ano_fim`, `id_propriedade`, `variedade`, `area_plantada`, `valor_safra`, `fg_ativo`) VALUES
-(2, '2019', '2020', 9, 'Outros', 200, '30000.00', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `safra_geral`
+-- Estrutura para tabela `safra_fechamento`
 --
 
-CREATE TABLE `safra_geral` (
-  `id_safra_geral` int(11) NOT NULL,
+CREATE TABLE `safra_fechamento` (
+  `id_safra_fechamento` int(11) NOT NULL,
   `safra_ano_inicio` varchar(4) NOT NULL,
   `safra_ano_fim` varchar(4) NOT NULL,
-  `valor_safra` decimal(7,2) NOT NULL,
+  `qtd_safra` varchar(10) NOT NULL,
   `id_propriedade` int(11) NOT NULL,
   `fg_ativo` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Fazendo dump de dados para tabela `safra_geral`
+-- Estrutura para tabela `safra_previsao`
 --
 
-INSERT INTO `safra_geral` (`id_safra_geral`, `safra_ano_inicio`, `safra_ano_fim`, `valor_safra`, `id_propriedade`, `fg_ativo`) VALUES
-(5, '2019', '2020', '2400.00', 9, 1);
+CREATE TABLE `safra_previsao` (
+  `id_safra_previsao` int(11) NOT NULL,
+  `safra_ano_inicio` varchar(4) NOT NULL,
+  `safra_ano_fim` varchar(4) NOT NULL,
+  `qtd_safra` varchar(10) NOT NULL,
+  `id_propriedade` int(11) NOT NULL,
+  `fg_ativo` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5915,10 +5917,17 @@ ALTER TABLE `safra_cafe`
   ADD KEY `id_propriedade` (`id_propriedade`);
 
 --
--- Índices de tabela `safra_geral`
+-- Índices de tabela `safra_fechamento`
 --
-ALTER TABLE `safra_geral`
-  ADD PRIMARY KEY (`id_safra_geral`),
+ALTER TABLE `safra_fechamento`
+  ADD PRIMARY KEY (`id_safra_fechamento`),
+  ADD KEY `id_propriedade` (`id_propriedade`);
+
+--
+-- Índices de tabela `safra_previsao`
+--
+ALTER TABLE `safra_previsao`
+  ADD PRIMARY KEY (`id_safra_previsao`),
   ADD KEY `id_propriedade` (`id_propriedade`);
 
 --
@@ -5961,17 +5970,22 @@ ALTER TABLE `produtor`
 -- AUTO_INCREMENT de tabela `propriedade`
 --
 ALTER TABLE `propriedade`
-  MODIFY `id_propriedade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_propriedade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de tabela `safra_cafe`
 --
 ALTER TABLE `safra_cafe`
-  MODIFY `id_safra_cafe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_safra_cafe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT de tabela `safra_geral`
+-- AUTO_INCREMENT de tabela `safra_fechamento`
 --
-ALTER TABLE `safra_geral`
-  MODIFY `id_safra_geral` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `safra_fechamento`
+  MODIFY `id_safra_fechamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT de tabela `safra_previsao`
+--
+ALTER TABLE `safra_previsao`
+  MODIFY `id_safra_previsao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de tabela `tipo_pessoa`
 --
@@ -6013,10 +6027,16 @@ ALTER TABLE `safra_cafe`
   ADD CONSTRAINT `safra_cafe_ibfk_1` FOREIGN KEY (`id_propriedade`) REFERENCES `propriedade` (`id_propriedade`);
 
 --
--- Restrições para tabelas `safra_geral`
+-- Restrições para tabelas `safra_fechamento`
 --
-ALTER TABLE `safra_geral`
-  ADD CONSTRAINT `safra_geral_ibfk_1` FOREIGN KEY (`id_propriedade`) REFERENCES `propriedade` (`id_propriedade`);
+ALTER TABLE `safra_fechamento`
+  ADD CONSTRAINT `safra_fechamento_ibfk_1` FOREIGN KEY (`id_propriedade`) REFERENCES `propriedade` (`id_propriedade`);
+
+--
+-- Restrições para tabelas `safra_previsao`
+--
+ALTER TABLE `safra_previsao`
+  ADD CONSTRAINT `safra_previsao_ibfk_1` FOREIGN KEY (`id_propriedade`) REFERENCES `propriedade` (`id_propriedade`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

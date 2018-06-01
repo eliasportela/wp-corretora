@@ -9,7 +9,6 @@ function getPropriedadesId(id){
 		if (res) {
 			data = JSON.parse(res);
 			data = data[0];
-			console.log(data);
 			$("#nome_propriedade").val(data.nome_propriedade);
 			$("#tipo_propriedade").val(data.tipo_propriedade);
 			$("#cnpj").val(data.cnpj);
@@ -46,15 +45,23 @@ function getPropriedadesId(id){
 	})
 	.done(function(){
     	getCidades('selectPropEstados','selectPropCidades',data.id_cidade);
-    	getSafras(id);
+    	getSafrasFechamento(id);
+    	getSafrasPrevisao(id);
     	getSafrasCafes(id);
     	toogleTipoProcessamento();
+    	$("#image-propriedade").empty();
+    	$("#image-propriedade-bd").attr("src","");
+    	if ((data.foto_propriedade != "") && (data.foto_propriedade != null)) {
+    		$("#image-propriedade-bd").attr("src",base_urla + 'uploads/docs/'+IDPRODUTOR+'/propriedades/'+data.foto_propriedade);
+    		$("#image-propriedade-bd").css("display","block");
+    	}
     });
 }
 
-function getSafras(id){
-	url = base_urla + 'admin/api/safra/' + id;
-	selecto = $("#tabelaSafra");
+function getSafrasPrevisao(id){
+	url = base_urla + 'admin/api/safra-previsao/' + id;
+	previsao = $("#tabelaSafraPrevisao");
+	previsao.empty();
 	$.get(url, function(res) {
 		if (res) {
 			data = JSON.parse(res);
@@ -62,10 +69,30 @@ function getSafras(id){
 			data.forEach(function(obj){
 				var col = "";
 				col += '<td>'+obj.safra_ano_inicio+ '/' +obj.safra_ano_fim + '</td>';
-				col += '<td>'+obj.valor_safra+'</td>';
-				col += '<td>'+
-							'<button class="w3-button w3-red w3-round"><i class="fa fa-trash-o"></i></button></td>';
-				selecto.append("<tr>"+col+"</tr>");
+				col += '<td>'+obj.qtd_safra+'</td>';
+				col += '<td><button type="button" class="w3-button w3-red w3-round" onclick="removerSafraPrevisao('+obj.id_safra_previsao+')"><i class="fa fa-trash-o"></i></button></td>';
+				previsao.append("<tr>"+col+"</tr>");
+			});
+		}
+	})
+	.done(function(){
+    	
+    });
+}
+
+function getSafrasFechamento(id){
+	url = base_urla + 'admin/api/safra-fechamento/' + id;
+	fechamento = $("#tabelaSafraFechamento");
+	fechamento.empty()
+	$.get(url, function(res) {
+		if (res) {
+			data = JSON.parse(res);
+			data.forEach(function(obj){
+				var col = "";
+				col += '<td>'+obj.safra_ano_inicio+ '/' +obj.safra_ano_fim + '</td>';
+				col += '<td>'+obj.qtd_safra+'</td>';
+				col += '<td><button type="button" class="w3-button w3-red w3-round" onclick="removerSafraFechamento('+obj.id_safra_fechamento+')"><i class="fa fa-trash-o"></i></button></td>';
+				fechamento.append("<tr>"+col+"</tr>");
 			});
 		}
 	})
@@ -77,6 +104,7 @@ function getSafras(id){
 function getSafrasCafes(id){
 	url = base_urla + 'admin/api/safra-cafe/' + id;
 	selector = $("#tabelaSafraCafe");
+	selector.empty();
 	$.get(url, function(res) {
 		if (res) {
 			data = JSON.parse(res);
@@ -86,9 +114,9 @@ function getSafrasCafes(id){
 				col += '<td>'+obj.safra_ano_inicio+ '/' +obj.safra_ano_fim + '</td>';
 				col += '<td>'+obj.variedade+'</td>';
 				col += '<td>'+obj.area_plantada+'</td>';
-				col += '<td>'+obj.valor_safra+'</td>';
+				col += '<td>'+obj.qtd_safra+'</td>';
 				col += '<td>'+
-							'<button class="w3-button w3-red w3-round"><i class="fa fa-trash-o"></i></button></td>';
+							'<button type="button" class="w3-button w3-red w3-round" onclick="removerSafraCafe('+obj.id_safra_cafe+')"><i class="fa fa-trash-o"></i></button></td>';
 				selector.append("<tr>"+col+"</tr>");
 			});
 		}
