@@ -92,7 +92,7 @@ class Produtor extends CI_Controller {
 				$this->load->view('dashboard/produtor/cadastro',$data);
 				$this->load->view('dashboard/produtor/modal-propriedade',$data);
 				$this->load->view('dashboard/template/commons/footer');
-			
+
 			}else{
 				redirect(base_url('admin/produtor'));	
 			}
@@ -112,10 +112,10 @@ class Produtor extends CI_Controller {
 		if ($ref > 0):
 			
 			$sql = "SELECT * FROM produtor p
-					INNER JOIN cidade c ON (c.id_cidade = p.id_cidade)
-					INNER JOIN estado e ON (e.id_estado = c.id_estado)
-					WHERE p.fg_ativo = 1 AND p.id_produtor = $ref";
-					
+			INNER JOIN cidade c ON (c.id_cidade = p.id_cidade)
+			INNER JOIN estado e ON (e.id_estado = c.id_estado)
+			WHERE p.fg_ativo = 1 AND p.id_produtor = $ref";
+
 			$res = $this->Crud_model->Query($sql);
 			
 			if ($res):
@@ -185,68 +185,68 @@ class Produtor extends CI_Controller {
 		
 		if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)):
 
-		$dataRegister = $this->input->post();
-		if ($dataRegister AND $dataRegister['nome_produtor'] != NULL):
-			
-			
-			$dataModel = array(
-				'nome_produtor' => trim($dataRegister['nome_produtor']),
-				'id_tipo_pessoa' => trim($dataRegister['id_tipo_pessoa']),
-				'cpf_cnpj' => trim($dataRegister['cpf_cnpj']),
-				'rg_inscricao_estadual' => trim($dataRegister['rg_inscricao_estadual']),
-				'data_nascimento' => trim($dataRegister['data_nascimento']),
-				'escolaridade' => trim($dataRegister['escolaridade']),
-				'membros_familia' => trim($dataRegister['membros_familia']),
-				'email' => trim($dataRegister['email']),
-				'telefone' => trim($dataRegister['telefone']),
-				'foto_produtor' => $foto_name,
-				'endereco' => trim($dataRegister['endereco']),
-				'numero' => trim($dataRegister['numero']),
-				'complemento' => trim($dataRegister['complemento']),
-				'cep' => trim($dataRegister['cep']),
-				'bairro' => trim($dataRegister['bairro']),
-				'id_cidade' => trim($dataRegister['id_cidade']),
-				'comprovante_bancario' => $comprovante_name,
-				'certificados' => trim($dataRegister['certificados']));
-			$res = $this->Crud_model->InsertId('produtor',$dataModel);
-			
-			
+			$dataRegister = $this->input->post();
+			if ($dataRegister AND $dataRegister['nome_produtor'] != NULL):
+
+
+				$dataModel = array(
+					'nome_produtor' => trim($dataRegister['nome_produtor']),
+					'id_tipo_pessoa' => trim($dataRegister['id_tipo_pessoa']),
+					'cpf_cnpj' => trim($dataRegister['cpf_cnpj']),
+					'rg_inscricao_estadual' => trim($dataRegister['rg_inscricao_estadual']),
+					'data_nascimento' => trim($dataRegister['data_nascimento']),
+					'escolaridade' => trim($dataRegister['escolaridade']),
+					'membros_familia' => trim($dataRegister['membros_familia']),
+					'email' => trim($dataRegister['email']),
+					'telefone' => trim($dataRegister['telefone']),
+					'foto_produtor' => $foto_name,
+					'endereco' => trim($dataRegister['endereco']),
+					'numero' => trim($dataRegister['numero']),
+					'complemento' => trim($dataRegister['complemento']),
+					'cep' => trim($dataRegister['cep']),
+					'bairro' => trim($dataRegister['bairro']),
+					'id_cidade' => trim($dataRegister['id_cidade']),
+					'comprovante_bancario' => $comprovante_name,
+					'certificados' => trim($dataRegister['certificados']));
+				$res = $this->Crud_model->InsertId('produtor',$dataModel);
+
+
 			//Config ambiente de upload
-			$path = './uploads/docs/'.$res;
-			$config['upload_path'] = $path;
-			$config['allowed_types'] = 'pdf|jpg|jpeg|png';
-			$config['max_size'] = '5000';
-			$config['encrypt_name']  = TRUE;
-			$this->upload->initialize($config);
+				$path = './uploads/docs/'.$res;
+				$config['upload_path'] = $path;
+				$config['allowed_types'] = 'pdf|jpg|jpeg|png';
+				$config['max_size'] = '5000';
+				$config['encrypt_name']  = TRUE;
+				$this->upload->initialize($config);
 
 			//verifica se o path é válido, se não for cria o diretório
-			if (!is_dir($path)) {
-				mkdir($path, 0777, $recursive = true);
-			}
+				if (!is_dir($path)) {
+					mkdir($path, 0777, $recursive = true);
+				}
 
-			if (!$this->upload->do_upload('foto_file')) {
-				$foto_name = "";
-			} else {
-				$dadosImagem = $this->upload->data();
-				$foto_name = $dadosImagem['file_name'];
-			}
+				if (!$this->upload->do_upload('foto_file')) {
+					$foto_name = "";
+				} else {
+					$dadosImagem = $this->upload->data();
+					$foto_name = $dadosImagem['file_name'];
+				}
 
-			if (!$this->upload->do_upload('comprovante_file')) {
-				$comprovante_name = "";
-			} else {
-				$dadosImagem = $this->upload->data();
-				$comprovante_name = $dadosImagem['file_name'];
-			}
+				if (!$this->upload->do_upload('comprovante_file')) {
+					$comprovante_name = "";
+				} else {
+					$dadosImagem = $this->upload->data();
+					$comprovante_name = $dadosImagem['file_name'];
+				}
 
-			$dataModel = array('comprovante_bancario' => $foto_name,'foto_produtor' => $comprovante_name);
-			$upload = $this->Crud_model->Update('produtor',$dataModel,array('id_produtor' => $res));
+				$dataModel = array('comprovante_bancario' => $foto_name,'foto_produtor' => $comprovante_name);
+				$upload = $this->Crud_model->Update('produtor',$dataModel,array('id_produtor' => $res));
 
-			if($res and $upload):
-				echo $res;
-				$this->output->set_status_header('200');
-				return;
+				if($res and $upload):
+					echo $res;
+					$this->output->set_status_header('200');
+					return;
+				endif;
 			endif;
-		endif;
 		else:
 			$this->output->set_status_header('400');
 		endif;
@@ -261,84 +261,84 @@ class Produtor extends CI_Controller {
 		
 		if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)):
 
-		$dataRegister = $this->input->post();
+			$dataRegister = $this->input->post();
 
-		$dataId = (int)$this->uri->segment(5);
+			$dataId = (int)$this->uri->segment(5);
 
-		if ($dataRegister AND $dataId > 0):
-			
+			if ($dataRegister AND $dataId > 0):
+
 			//Config ambiente de upload
-			$path = './uploads/docs/'.$dataId.'/';
-			$config['upload_path'] = $path;
-			$config['allowed_types'] = 'pdf|jpg|jpeg|png';
-			$config['max_size'] = '5000';
-			$config['encrypt_name']  = TRUE;
-			$this->upload->initialize($config);
+				$path = './uploads/docs/'.$dataId.'/';
+				$config['upload_path'] = $path;
+				$config['allowed_types'] = 'pdf|jpg|jpeg|png';
+				$config['max_size'] = '5000';
+				$config['encrypt_name']  = TRUE;
+				$this->upload->initialize($config);
 
 			//verifica se o path é válido, se não for cria o diretório
-			if (!is_dir($path)) {
-				mkdir($path, 0777, $recursive = true);
-			}
+				if (!is_dir($path)) {
+					mkdir($path, 0777, $recursive = true);
+				}
 
-			if (!$this->upload->do_upload('foto_file')) {
-				$foto_name = false;
-			} else {
-				$dadosImagem = $this->upload->data();
-				$foto_name = $dadosImagem['file_name'];
-			}
+				if (!$this->upload->do_upload('foto_file')) {
+					$foto_name = false;
+				} else {
+					$dadosImagem = $this->upload->data();
+					$foto_name = $dadosImagem['file_name'];
+				}
 
-			if (!$this->upload->do_upload('comprovante_file')) {
-				$comprovante_name = false;
-			} else {
-				$dadosImagem = $this->upload->data();
-				$comprovante_name = $dadosImagem['file_name'];
-			}
-			
-			$dataModel = array(
-				'nome_produtor' => trim($dataRegister['nome_produtor']),
-				'id_tipo_pessoa' => trim($dataRegister['id_tipo_pessoa']),
-				'cpf_cnpj' => trim($dataRegister['cpf_cnpj']),
-				'rg_inscricao_estadual' => trim($dataRegister['rg_inscricao_estadual']),
-				'data_nascimento' => trim($dataRegister['data_nascimento']),
-				'escolaridade' => trim($dataRegister['escolaridade']),
-				'membros_familia' => trim($dataRegister['membros_familia']),
-				'email' => trim($dataRegister['email']),
-				'telefone' => trim($dataRegister['telefone']),
-				'endereco' => trim($dataRegister['endereco']),
-				'numero' => trim($dataRegister['numero']),
-				'complemento' => trim($dataRegister['complemento']),
-				'cep' => trim($dataRegister['cep']),
-				'bairro' => trim($dataRegister['bairro']),
-				'id_cidade' => trim($dataRegister['id_cidade']),
-				'certificados' => trim($dataRegister['certificados']));
-			
+				if (!$this->upload->do_upload('comprovante_file')) {
+					$comprovante_name = false;
+				} else {
+					$dadosImagem = $this->upload->data();
+					$comprovante_name = $dadosImagem['file_name'];
+				}
+
+				$dataModel = array(
+					'nome_produtor' => trim($dataRegister['nome_produtor']),
+					'id_tipo_pessoa' => trim($dataRegister['id_tipo_pessoa']),
+					'cpf_cnpj' => trim($dataRegister['cpf_cnpj']),
+					'rg_inscricao_estadual' => trim($dataRegister['rg_inscricao_estadual']),
+					'data_nascimento' => trim($dataRegister['data_nascimento']),
+					'escolaridade' => trim($dataRegister['escolaridade']),
+					'membros_familia' => trim($dataRegister['membros_familia']),
+					'email' => trim($dataRegister['email']),
+					'telefone' => trim($dataRegister['telefone']),
+					'endereco' => trim($dataRegister['endereco']),
+					'numero' => trim($dataRegister['numero']),
+					'complemento' => trim($dataRegister['complemento']),
+					'cep' => trim($dataRegister['cep']),
+					'bairro' => trim($dataRegister['bairro']),
+					'id_cidade' => trim($dataRegister['id_cidade']),
+					'certificados' => trim($dataRegister['certificados']));
+
 			//caso mudou a img exclui a anterior
-			$sql = "SELECT foto_produtor, comprovante_bancario FROM produtor WHERE id_produtor = $dataId";
-			$upload = $this->Crud_model->Query($sql);
+				$sql = "SELECT foto_produtor, comprovante_bancario FROM produtor WHERE id_produtor = $dataId";
+				$upload = $this->Crud_model->Query($sql);
 
-			if ($foto_name) {
-				$dataModel = array_merge($dataModel,array('foto_produtor' => $foto_name));
-				if ($upload) {
-					unlink($path.$upload[0]->foto_produtor);
+				if ($foto_name) {
+					$dataModel = array_merge($dataModel,array('foto_produtor' => $foto_name));
+					if ($upload) {
+						unlink($path.$upload[0]->foto_produtor);
+					}
 				}
-			}
-			if ($comprovante_name) {
-				$dataModel = array_merge($dataModel,array('comprovante_bancario' => $comprovante_name));
-				if ($upload) {
-					unlink($path.$upload[0]->comprovante_bancario);
+				if ($comprovante_name) {
+					$dataModel = array_merge($dataModel,array('comprovante_bancario' => $comprovante_name));
+					if ($upload) {
+						unlink($path.$upload[0]->comprovante_bancario);
+					}
 				}
-			}
 
-			
-			$res = $this->Crud_model->Update('produtor',$dataModel,array('id_produtor' => $dataId));
 
-			if($res):
-				echo $res;
-				$this->output->set_status_header('200');
-				return;
+				$res = $this->Crud_model->Update('produtor',$dataModel,array('id_produtor' => $dataId));
+
+				if($res):
+					echo $res;
+					$this->output->set_status_header('200');
+					return;
+				endif;
+
 			endif;
-			
-		endif;
 		else:
 			$this->output->set_status_header('400');
 		endif;
@@ -347,30 +347,57 @@ class Produtor extends CI_Controller {
 
 	//Delete registro
 	public function Remove(){
-		
 		$nivel_user = 2;
-
 		if (($this->session->userdata('logged')) and ($this->session->userdata('administrativo') >= $nivel_user)):
-			
 			$dataId = (int)$this->uri->segment(5);
-			
 			if ($dataId > 0):
 
+				$sql = "SELECT id_propriedade FROM propriedade WHERE id_produtor = $dataId";
+				$query = $this->Crud_model->Query($sql);
+				if ($query) {
+					foreach ($query as $q) {
+						$res = $this->Crud_model->Delete('safra_previsao',array('id_propriedade' => $q->id_propriedade));
+						$res = $this->Crud_model->Delete('safra_fechamento',array('id_propriedade' => $q->id_propriedade));
+						$res = $this->Crud_model->Delete('safra_cafe',array('id_propriedade' => $q->id_propriedade));
+					}
+				}
+				//remove todas as propriedades
+				$propriedade = $this->Crud_model->Delete('propriedade',array('id_produtor' => $dataId));
 				$res = $this->Crud_model->Delete('produtor',array('id_produtor' => $dataId));
-				
+
 				if($res):
-					$res = $this->Crud_model->Delete('propriedade',array('id_produtor' => $dataId));
-					
+					//remove a pasta
+					$path = './uploads/docs/'.$dataId.'/';
+					$this->unlinkRecursive($path);
 					$this->output->set_status_header('200');
-					
 					return;
 				endif;
 			endif;
-
 		else:
 			$this->output->set_status_header('400');
 		endif;
-
 	}
+
+	//funcao deletar pasta e conteudo
+	function unlinkRecursive($path) {
+
+		if($dh = @opendir($path)) { 
+
+			while (false !== ($obj = readdir($dh))) 
+			{ 
+				if($obj == '.' || $obj == '..') 
+				{ 
+					continue; 
+				} 
+				if (!@unlink($path . '/' . $obj)) 
+				{ 
+					$this->unlinkRecursive($path.'/'.$obj, true);
+				} 
+			} 
+			closedir($dh); 
+			@rmdir($path);
+		}
+		return;
+	} 
 
 }

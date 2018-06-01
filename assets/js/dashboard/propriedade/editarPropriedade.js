@@ -50,7 +50,8 @@ function getPropriedadesId(id){
     	getSafrasCafes(id);
     	toogleTipoProcessamento();
     	$("#image-propriedade").empty();
-    	if ((data.foto_propriedade != "") || (data.foto_propriedade != null)) {
+    	$("#image-propriedade-bd").attr("src","");
+    	if ((data.foto_propriedade != "") && (data.foto_propriedade != null)) {
     		$("#image-propriedade-bd").attr("src",base_urla + 'uploads/docs/'+IDPRODUTOR+'/propriedades/'+data.foto_propriedade);
     		$("#image-propriedade-bd").css("display","block");
     	}

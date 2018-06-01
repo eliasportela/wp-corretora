@@ -13,9 +13,11 @@
   </div>
   <div class="w3-bar-block">
     <a href="<?php echo base_url('admin')?>" class="w3-bar-item w3-button row-menu <?php if ($id_page == 1): echo 'w3-black'; endif; ?>"><i class="fa fa-home fa-fw"></i>  Home</a>
-    <a href="<?php echo base_url('admin/usuarios')?>" class="w3-bar-item w3-button row-menu <?php if ($id_page == 2): echo 'w3-black'; endif; ?>"><i class="fa fa-users fa-fw"></i>  Usuários</a>
     <a href="<?php echo base_url('admin/produtor')?>" class="w3-bar-item w3-button row-menu <?php if ($id_page == 3): echo 'w3-black'; endif; ?>"><i class="fa fa-user fa-fw"></i>  Produtores</a>
-    <a href="<?php echo base_url('admin/contatos')?>" class="w3-bar-item w3-button row-menu <?php if ($id_page == 5): echo 'w3-black'; endif; ?>"><i class="fa fa-phone fa-fw"></i>  Contatos</a>
+    <a href="<?php echo base_url('admin/contatos')?>" class="w3-bar-item w3-button row-menu <?php if ($id_page == 5): echo 'w3-black'; endif; ?>"><i class="fa fa-phone fa-fw"></i>  Contatos (BETA)</a>
+    <a href="#" class="w3-bar-item w3-button row-menu <?php if ($id_page == 5): echo 'w3-black'; endif; ?>"><i class="fa fa-print fa-fw"></i>  Relatórios (Indiponivel)</a>
+    <a href="#" class="w3-bar-item w3-button row-menu <?php if ($id_page == 8): echo 'w3-black'; endif; ?>"><i class="fa fa-users fa-fw"></i>  Usuários (Indiponivel)</a>
+    <a href="#" class="w3-bar-item w3-button row-menu <?php if ($id_page == 2): echo 'w3-black'; endif; ?>"><i class="fa fa-users fa-fw"></i>  Usuários (Indiponivel)</a>
     <a href="#" class="w3-bar-item w3-button row-menu <?php if ($id_page == 4): echo 'w3-black'; endif; ?>"><i class="fa fa-bullseye fa-fw"></i>  Site (Indiponivel)</a>
     <a href="#" class="w3-bar-item w3-button row-menu <?php if ($id_page == 6): echo 'w3-blue'; endif; ?>"><i class="fa fa-envelope fa-fw"></i>  CRM (Indiponivel)</a>
     <a href="#" class="w3-bar-item w3-button row-menu <?php if ($id_page == 7): echo 'w3-teal'; endif; ?>"><i class="fa fa-cog fa-fw"></i>  Configurações (Indiponivel)</a><br><br>

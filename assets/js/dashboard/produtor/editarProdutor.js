@@ -94,3 +94,20 @@ function getProdutorID(id){
     	}
     });
 }
+
+function deletarProdutorId(id) {
+	swal({
+		title: "Você tem certeza?",
+		text: "Todos os dados associados como (propriedade, safras, imagens e documentos) serão excluídos e não será possível recuperar posteriomente",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonText: "Sim, quero remover",
+		closeOnConfirm: true,
+		html: false
+	}, function(){
+		url = base_urla + 'admin/api/produtor/remover/' + id;
+		$.get(url).done(function(){
+			window.location.href = base_urla +"admin/produtor";
+		});
+	});
+}

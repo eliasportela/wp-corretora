@@ -188,7 +188,7 @@ img{
       </div>
       <br>
       <div class="w3-responsive w3-card w3-white w3-border w3-margin-bottom" style="min-height: 70px">
-        <button class="w3-button w3-red w3-round w3-margin">
+        <button type="button" class="w3-button w3-red w3-round w3-margin" onclick="deletarProdutorId(<?=$produtor?>)">
           <i class="fa fa-trash-o"></i>
           Deletar este Produtor
         </button>
