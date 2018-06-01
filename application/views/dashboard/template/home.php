@@ -16,7 +16,7 @@
       </a>
     </div>
     <div class="w3-col s6 l3 w3-margin-top">
-      <a href="admin/usuarios">
+      <a href="admin/contatos">
         <div class="w3-container w3-black w3-round w3-padding-16 w3-center">
           <div><i class="fa fa-bell w3-xxxlarge"></i><span> <b>3</b></span></div>
           <div class="w3-clear"></div>
@@ -25,8 +25,8 @@
       </a>
     </div>
     <div class="w3-col s6 l3 w3-margin-top">
-      <a href="admin/usuarios">
-        <div class="w3-container w3-black w3-round w3-padding-16 w3-center">
+      <a href="#">
+        <div class="w3-container w3-black w3-round w3-padding-16 w3-center w3-opacity">
           <i class="fa fa-users w3-xxxlarge"></i>
           <div class="w3-clear"></div>
           <h4>Usuários</h4>
@@ -46,7 +46,7 @@
   <div class="w3-panel">
     <div class="w3-container w3-card w3-white w3-padding w3-padding-16">
       <div class="w3-padding-16 w3-center">
-        <span class="w3-large">Últimos contatos</span>  
+        <span class="w3-large">Últimos contatos - (Indisponível)</span>  
       </div>
       <div class="w3-responsive w3-padding-16">
         <table class="w3-table w3-white w3-centered">
@@ -56,13 +56,6 @@
             <th style="width: 25%"><i class="fa fa-envelope"></i></th>
             <th style="width: 25%"><i class="fa fa-phone"></i></th>
           </tr>
-          <tr>
-            <td style="white-space: nowrap;">16/03 - 14:03</td>
-            <td style="white-space: nowrap;">Elias Portela</td>
-            <td style="white-space: nowrap;">edwportela@gmail.com</td>
-            <td style="white-space: nowrap;">(16) 3535-1805</td>
-          </tr>
-
         </table>
       </div>
     </div>
