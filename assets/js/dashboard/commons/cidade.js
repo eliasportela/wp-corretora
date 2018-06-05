@@ -7,7 +7,7 @@ function getCidades(par1,par2,par3) {
 	selector.prop("disabled","true");
 
 	if (estado.val() == 0) {
-		selector.html("<option>Selecione o Estado</option>");
+		selector.html("<option value='0'>Selecione o Estado</option>");
 		return;
 	}
 

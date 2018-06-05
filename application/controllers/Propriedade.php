@@ -220,7 +220,6 @@ class Propriedade extends CI_Controller {
 					$foto_propriedade = $dadosImagem['file_name'];
 				}else{
 					$data = array('error' => $this->upload->display_errors());
-					die(var_dump($data));
 				}
 
 				$dataModel = array(
