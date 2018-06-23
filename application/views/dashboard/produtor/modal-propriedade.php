@@ -61,8 +61,7 @@
           </div>
           <div class="w3-col l3 w3-margin-top">
             <label>Cidade</label>
-            <select class="w3-input w3-border" id="selectPropCidades" name="id_cidade" required disabled>
-              <option>Selecione o estado</option>
+            <select class="w3-input w3-border" id="selectPropCidades" name="selectPropCidades" required disabled>
             </select>
           </div>
         </div>

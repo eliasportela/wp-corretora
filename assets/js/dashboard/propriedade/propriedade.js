@@ -1,13 +1,13 @@
  jQuery(document).ready(function(){
 
  	jQuery('#inserirPropriedade').submit(function(){
-
- 		if ($("#selectPropCidades").val() == 0) {
+ 		console.log($("#selectPropCidades").val() == 0);
+ 		if (($("#selectPropCidades").val() == 0) || ($("#selectPropCidades").val() == undefined)) {
  			swal("","Selecione a cidade da Propriedade","warning");
-
  		}else{
 
  			var dadosajax = new FormData(this);
+ 			console.log($("#selectPropCidades").val());
  			pageurl = base_urla + 'admin/api/propriedade/';
 
  			if ($("#id_propriedade").val() > 0) {
@@ -50,7 +50,9 @@
  		return false;
  	});
 
- 	getPropriedades(IDPRODUTOR);
+ 	if (IDPRODUTOR != "") {
+ 		getPropriedades(IDPRODUTOR);
+ 	}
 
  });
 
@@ -149,7 +151,7 @@ function modalPropriedade(id) {
 			$("#titleForm").html("Editar Propriedade");
 		}else{
 			$("#inserirPropriedade").trigger("reset");
-			getCidades('selectPropEstados','selectPropCidades');
+			//getCidades('selectPropEstados','selectPropCidades');
 		}
 		$('html').css("overflow","hidden");
 		$('#modalPropriedade').css("z-index","5");

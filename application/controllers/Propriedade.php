@@ -123,7 +123,7 @@ class Propriedade extends CI_Controller {
 					'processamento_via_umido' => trim($dataRegister['processamento_via_umido']),
 					'logradouro' => trim($dataRegister['logradouro']),
 					'numero_km' => trim($dataRegister['numero_km']),
-					'id_cidade' => trim($dataRegister['id_cidade']),
+					'id_cidade' => trim($dataRegister['selectPropCidades']),
 					'obs' => trim($dataRegister['obs']));
 
 				$propriedade = $this->Crud_model->InsertID('propriedade',$dataModel);
@@ -220,7 +220,6 @@ class Propriedade extends CI_Controller {
 					$foto_propriedade = $dadosImagem['file_name'];
 				}else{
 					$data = array('error' => $this->upload->display_errors());
-					die(var_dump($data));
 				}
 
 				$dataModel = array(
@@ -249,8 +248,9 @@ class Propriedade extends CI_Controller {
 					'tipo_processamento' => trim($dataRegister['tipo_processamento']),
 					'logradouro' => trim($dataRegister['logradouro']),
 					'numero_km' => trim($dataRegister['numero_km']),
-					'id_cidade' => trim($dataRegister['id_cidade']),
+					'id_cidade' => trim($dataRegister['selectPropCidades']),
 					'obs' => trim($dataRegister['obs']));
+
 
 				if (isset($dataRegister['processamento_via_umido'])) {
 					$dataModel = array_merge($dataModel,array('processamento_via_umido' => trim($dataRegister['processamento_via_umido'])));

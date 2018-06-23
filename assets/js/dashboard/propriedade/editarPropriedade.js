@@ -35,7 +35,7 @@ function getPropriedadesId(id){
 			$("#tipo_processamento").val(data.tipo_processamento);
 			$("#logradouro").val(data.logradouro);
 			$("#numero_km").val(data.numero_km);
-			$("#id_cidade").val(data.id_cidade);
+			$("#selectPropCidades").val(data.id_cidade);
 			$("#obs").val(data.obs);
 			$("#selectPropEstados").val(data.id_estado);
 			

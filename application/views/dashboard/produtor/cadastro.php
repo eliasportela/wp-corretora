@@ -166,11 +166,11 @@ img{
       <table class="w3-table w3-bordered w3-centered w3-hoverable">
         <thead>
           <tr class="w3-black">
-            <th style="width: 10%"></th>
+            <th style="width: 5%"></th>
             <th style="width: 20%">Nome</th>
             <th style="width: 30%">Cidade</th>
             <th style="width: 20%">Estado</th>
-            <th style="width: 20%">Remover</th>
+            <th style="width: 25%">Remover</th>
           </tr>
         </thead>
         <tbody id="propriedades">
