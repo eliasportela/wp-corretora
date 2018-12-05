@@ -16,7 +16,7 @@
               <i class="fa fa-home"></i>
               Sobre nós
             </a>
-            <button class="w3-button hover-btn w3-block w3-green w3-round w3-margin-top" onclick="$('#modal-contato').css('display','block')">
+            <button class="w3-button hover-btn w3-block w3-green w3-round w3-margin-top w3-hide-large" onclick="$('#modal-contato').css('display','block')">
               <i class="fa fa-phone"></i>
               Solicitar contato
             </a>
@@ -131,7 +131,7 @@
   <h4 class="w3-padding-64">Missão, Visão e Valor</h4>
   <div class="w3-row-padding">
     <div class="w3-col m4 w3-padding">
-      <div class="w3-card w3-round w3-white w3-padding w3-padding-32 card-info">
+      <div class="w3-card w3-round w3-white w3-padding w3-padding-32 card-info2">
         <i class="fa fa-globe fa-3x w3-text-green"></i>
         <h4>Missão</h4>
         <p class="text">
@@ -140,7 +140,7 @@
       </div>
     </div>
     <div class="w3-col m4 w3-padding">
-      <div class="w3-card w3-round w3-white w3-padding w3-padding-32 card-info">
+      <div class="w3-card w3-round w3-white w3-padding w3-padding-32 card-info2">
         <i class="fa fa-retweet fa-3x w3-text-green"></i>
         <h4>Visão</h4>
         <p class="text">
@@ -149,7 +149,7 @@
       </div>
     </div>
     <div class="w3-col m4 w3-padding">
-      <div class="w3-card w3-round w3-white w3-padding w3-padding-32 card-info">
+      <div class="w3-card w3-round w3-white w3-padding w3-padding-32 card-info2">
         <i class="fa fa-dollar fa-3x w3-text-green"></i>
         <h4>Valor</h4>
         <p class="text">
@@ -162,37 +162,36 @@
 
 
 <br>
-<div class="w3-display-container w3-margin-top w3-center w3-green container-empresa" style="margin-bottom: 0">
+<div class="w3-display-container w3-margin-top w3-center w3-green container-empresa" style="margin-bottom: 0" id="contato">
   <div class="w3-display-middle">
     <i class="fa fa-phone fa-3x"></i>
     <h2>Fale Conosco</h2>
   </div>
 </div>
 <div class="w3-row-padding w3-padding-16" style="margin: 64px 5%">
-  <div class="w3-col l9">
-    <div id="map"></div>
-  </div>
-  <div class="w3-col l3 col-contato">
-    <div class="w3-display-container w3-card w3-round w3-white w3-padding w3-padding-16" style="height: 70vh">
-      <h4 class="w3-text-green"><b>Souza Cafés</b></h4>
-      <div class="w3-display-middle" style="width: 90%">
-        <h4 class="w3-text-green"><b>Endereço</b></h4>
-        <p>
-          <i class="fa fa-map-marker w3-text-green"></i> Av: Oliveira Rezende, 751 Braz <br>
-          São Sebastião do Paraíso – MG 37950-000
-        </p>
-        <h4 class="w3-text-green"><b>E-mail</b></h4>
-        <p>
-          <i class="fa fa-envelope w3-text-green"></i> contato@souzacafes.com.br
-        </p>
-        <h4 class="w3-text-green"><b>Telefone</b></h4>
-        <p>
-          <i class="fa fa-phone w3-text-green" ></i> (35) 3535-1805
-        </p>
-      </div>
-    </div>
+  <div id="map"></div>
+  <br>
+
+  <div class="w3-card w3-round w3-white w3-padding w3-padding-16">
+    <h4 class="w3-text-green"><b>Souza Cafés</b></h4>
+    
+    <h6 class="w3-text-green"><b>Endereço</b></h6>
+    <p>
+      <i class="fa fa-map-marker w3-text-green"></i> Av: Oliveira Rezende, 751 Braz <br>
+      São Sebastião do Paraíso – MG 37950-000
+    </p>
+    <h6 class="w3-text-green"><b>E-mail</b></h6>
+    <p>
+      <i class="fa fa-envelope w3-text-green"></i> contato@souzacafes.com.br
+    </p>
+    <h6 class="w3-text-green"><b>Telefone</b></h6>
+    <p>
+      <i class="fa fa-phone w3-text-green" ></i> (35) 3535-1805
+    </p>
+    
   </div>
 </div>
+
 
 <div id="modal-contato" class="w3-modal" style="padding-top: 70px!important">
   <div class="w3-modal-content w3-card-4 w3-round w3-animate-left w3-padding w3-padding-32 w3-display-container">

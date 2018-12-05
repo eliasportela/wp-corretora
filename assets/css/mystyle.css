@@ -20,8 +20,8 @@
 	overflow: hidden;
 }
 .image-banner{
-	width: 100%;
-	height: auto;
+	width: auto;
+	height: 100vh;
 }
 .container-home{
 	height: 70vh;
@@ -34,14 +34,17 @@
 	width: 80%;
 }
 .col-cotacoes{
-	height: 300px;
+	height: 310px;
 }
 .container-empresa{
 	height:200px;
 	margin-bottom: 64px
 }
 .card-info{
-	height: 230px
+	height: 265px
+}
+.card-info2{
+	height: 235px
 }
 .hover-btn:hover{
 	background-color: #4CAF50D9!important;
